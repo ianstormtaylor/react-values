@@ -23,8 +23,8 @@ const Thumb = styled('div')`
   cursor: pointer;
 `
 
-const ToggleExample = props => (
-  <BooleanValue defaultValue={false}>
+const Toggle = props => (
+  <BooleanValue {...props}>
     {({ value, toggle }) => (
       <Track on={value} onClick={toggle}>
         <Thumb on={value} />
@@ -33,4 +33,19 @@ const ToggleExample = props => (
   </BooleanValue>
 )
 
-export default ToggleExample
+class ReusableToggleExample extends React.Component {
+  state = {
+    on: false,
+  }
+
+  render() {
+    return (
+      <Toggle
+        value={this.state.on}
+        onChange={value => this.setState({ on: value })}
+      />
+    )
+  }
+}
+
+export default ReusableToggleExample

@@ -12,16 +12,16 @@ import {
 
 const EXAMPLES = [
   {
-    name: 'Toggle',
-    path: '/toggle',
-    Component: require('../toggle').default,
-    source: require('!raw-loader!../toggle'),
+    name: 'Basic Toggle',
+    path: '/basic-toggle',
+    Component: require('../basic-toggle').default,
+    source: require('!raw-loader!../basic-toggle'),
   },
   {
-    name: 'Controlled Toggle',
-    path: '/controlled-toggle',
-    Component: require('../controlled-toggle').default,
-    source: require('!raw-loader!../controlled-toggle'),
+    name: 'Reusable Toggle',
+    path: '/reusable-toggle',
+    Component: require('../reusable-toggle').default,
+    source: require('!raw-loader!../reusable-toggle'),
   },
 ]
 
@@ -159,7 +159,7 @@ export default class App extends React.Component {
                     }
                   </Route>
                 ))}
-                <Redirect from="/" to="/toggle" />
+                <Redirect from="/" to={EXAMPLES[0].path} />
               </Switch>
             )}
           </Content>

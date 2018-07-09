@@ -23,8 +23,8 @@ const Thumb = styled('div')`
   cursor: pointer;
 `
 
-const Toggle = props => (
-  <BooleanValue {...props}>
+const BasicToggleExample = props => (
+  <BooleanValue defaultValue={false}>
     {({ value, toggle }) => (
       <Track on={value} onClick={toggle}>
         <Thumb on={value} />
@@ -33,19 +33,4 @@ const Toggle = props => (
   </BooleanValue>
 )
 
-class ControlledToggleExample extends React.Component {
-  state = {
-    on: false,
-  }
-
-  render() {
-    return (
-      <Toggle
-        value={this.state.on}
-        onChange={value => this.setState({ on: value })}
-      />
-    )
-  }
-}
-
-export default ControlledToggleExample
+export default BasicToggleExample

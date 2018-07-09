@@ -76,9 +76,9 @@ const Toggle = ({ value, defaultValue, onChange }) => (
 
 While building an app with React, you end up building a lot of stateful components in the process. Whether at the UI kit level for things like toggles, tooltips, checkbox groups, dropdown, etc. Or at the app level for modals, popovers, sorting, filtering, etc.
 
-In the process, you end up re-implementing run of the mill state-handling logic all over the place, using `this.setState` and `this.state`. And for your components to be nicely reusable across your application you end up writing them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you pull out common transforms like `toggle`, `increment`, `decrement` into their own methods on the component. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
+In the process, you end up re-implementing run of the mill state handling logic all over the place, using `this.setState` and `this.state`. And for your components to be nicely reusable across your application you end up writing them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you re-invent common transforms like `open`, `close`, `toggle`, `increment`, `decrement`, etc. in lots of different components. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
 
-In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places. And your app's bundle size gets larger and larger.
+In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places in slightly different ways. All while your app's bundle size gets larger and larger.
 
 `react-values` solves all of that...
 
@@ -88,7 +88,7 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 `react-values` solves those problems with a few principles:
 
-1. **Use render props.** It uses a render-prop-based API with children functions to expose its state, and to provide powerful transform functions that do the state management for you.
+1. **Leverage render props.** It uses a render-prop-based API with children functions to expose its state, and to provide powerful transform functions that do the state management for you.
 
 2. **Follow React's conventions.** Its components follow React's own naming conventions, using familiar concepts like `value/defaultValue`. This makes it slot into existing frameworks extremely well.
 
@@ -102,8 +102,8 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 To get a sense for how you might use `react-values`, check out a few of the examples:
 
-* [**Toggle**](./examples/toggle) — using a `Boolean` to create a simple toggle component.
-* [**Controlled Toggle**](./examples/toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
+* [**Basic Toggle**](./examples/toggle) — using a `Boolean` to create a simple toggle component.
+* [**Reusable Toggle**](./examples/toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
 
 If you have an idea for an example that shows a common use case, pull request it!
 
