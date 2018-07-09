@@ -1,0 +1,33 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }],
+    "react",
+    "stage-0"
+  ],
+  "plugins": ["external-helpers","transform-class-properties"],
+  "env": {
+    "webpack": {
+      "presets": [
+        ["env", {
+          "modules": false
+        }],
+        "react",
+        "stage-0"
+      ],
+      "plugins": [
+        "transform-runtime",
+        "react-hot-loader/babel"
+      ]
+    },
+    "test": {
+      "presets": [
+        "env",
+        "react",
+        "stage-0"
+      ],
+      "plugins": ["transform-runtime"]
+    }
+  }
+}

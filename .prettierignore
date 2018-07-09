@@ -1,0 +1,6 @@
+build/
+dist/
+lib/
+node_modules/
+package.json
+tmp/

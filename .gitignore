@@ -1,0 +1,15 @@
+*.js.map
+.DS_Store
+.idea/
+.cache/
+.vscode/
+_book/
+build/
+dist/
+lerna-debug.log
+lib/
+node_modules/
+npm-debug.log
+packages/*/yarn.lock
+tmp/
+yarn-error.log

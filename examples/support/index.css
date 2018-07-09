@@ -1,0 +1,38 @@
+html,
+input,
+textarea {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+  background: #eee;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+pre {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  max-height: 20em;
+}
+
+input {
+  box-sizing: border-box;
+  font-size: 0.85em;
+  width: 100%;
+  padding: 0.5em;
+  border: 2px solid #ddd;
+  background: #fafafa;
+}
+
+input:focus {
+  outline: 0;
+  border-color: blue;
+}
