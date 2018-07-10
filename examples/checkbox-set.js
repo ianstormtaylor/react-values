@@ -4,10 +4,10 @@ import { SetValue } from '..'
 
 const FRUIT = [
   'chocolate',
-  'honeydew',
   'lime',
   'olive',
   'orange',
+  'honeydew',
   'plum',
   'salmon',
   'tomato',
@@ -20,14 +20,14 @@ const CheckboxSetExample = props => (
       <Container>
         <List>
           {FRUIT.map((fruit, i) => (
-            <div key={i} color={fruit}>
+            <Item key={i} color={fruit}>
               <Checkbox
                 type="checkbox"
                 checked={value.has(fruit)}
                 onChange={e => (e.target.checked ? add(fruit) : remove(fruit))}
               />{' '}
               {fruit}
-            </div>
+            </Item>
           ))}
         </List>
         <PillList>
@@ -53,10 +53,16 @@ const Container = styled('div')`
 
 const List = styled('div')`
   padding: 20px;
+  columns: 3;
+  column-gap: 20px;
 
   & > * + * {
     margin-top: 5px;
   }
+`
+
+const Item = styled('div')`
+  whitespace: no-wrap;
 `
 
 const Checkbox = styled('input')`
