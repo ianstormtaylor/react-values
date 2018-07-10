@@ -10,9 +10,7 @@
     "dist/",
     "lib/"
   ],
-  "dependencies": {
-    "date-fns": "^1.29.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": ">=16",
     "react-dom": ">=16"

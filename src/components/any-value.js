@@ -11,6 +11,11 @@ class AnyValue extends React.Component {
     this.state = { controlled, initial, value: initial }
   }
 
+  get value() {
+    const { state, props } = this
+    return state.controlled ? props.value : state.value
+  }
+
   transform = fn => {
     this.setState(
       existing => {
@@ -25,8 +30,7 @@ class AnyValue extends React.Component {
   }
 
   set = next => {
-    if (typeof next === 'function') next = next(this.state.value)
-    this.transform(() => next)
+    this.transform(v => (typeof next === 'function' ? next(v) : next))
   }
 
   reset = () => {
@@ -34,10 +38,8 @@ class AnyValue extends React.Component {
   }
 
   render() {
-    const { set, reset, props, state } = this
-    const value = state.controlled ? props.value : state.value
-    const ret = render(props, { value, set, reset })
-    return ret
+    const { set, reset, props, value } = this
+    return render(props, { value, set, reset })
   }
 }
 

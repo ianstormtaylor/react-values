@@ -80,17 +80,15 @@ In the process, you end up re-implementing run of the mill state handling logic 
 
 In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places in slightly different ways. All while your app's bundle size gets larger and larger.
 
-`react-values` solves all of that...
+`react-values` solves all of that with a few principles...
 
 <br/>
 
 ### Principles
 
-`react-values` solves those problems with a few principles:
-
 1. **Leverage render props.** It uses a render-prop-based API with children functions to expose its state, and to provide powerful transform functions that do the state management for you.
 
-2. **Follow React's conventions.** Its components follow React's own naming conventions, using familiar concepts like `value/defaultValue`. This makes it slot into existing frameworks extremely well.
+2. **Follow React's conventions.** Its components follow React's own naming conventions, using familiar concepts like `value/defaultValue`. This makes it extremely easy to slot into existing codebases or frameworks.
 
 3. **Follow JavaScript's conventions.** It also leverages JavaScript's familiar, built-in methods like `push/pop`, `filter`, etc. so that it's not reinventing the wheel and forcing you to constantly re-read documentation.
 
@@ -111,12 +109,9 @@ If you have an idea for an example that shows a common use case, pull request it
 
 ### Documentation
 
-If you're using Slate for the first time, check out the [Getting Started](http://docs.slatejs.org/walkthroughs/installing-react-values) walkthroughs and the [Guides](http://docs.slatejs.org/guides) to familiarize yourself with Slate's architecture and mental models. Once you've gotten familiar with those, you'll probably want to check out the full [API Reference](http://docs.slatejs.org/react-values-core).
+If you're using `react-values` for the first time, check out the [Getting Started](./docs/guide.md) guide to familiarize yourself with how it works. Once you've done that, you'll probably want to check out the full [API Reference](http://docs.slatejs.org/react-values-core).
 
-* [**Walkthroughs**](http://docs.slatejs.org/walkthroughs/installing-react-values)
-* [**Guides**](http://docs.slatejs.org/guides)
-* [**Reference**](http://docs.slatejs.org/react-values-core)
-* [**FAQ**](http://docs.slatejs.org/general/faq)
-* [**Resources**](http://docs.slatejs.org/general/resources)
+* [**Getting Started**](./docs/guide.md)
+* [**Reference**](./docs/reference.md)
 
-If even that's not enough, you can always [read the source itself](./src), which is heavily commented.
+If even that's not enough, you can always [read the source itself](./src), which is very simple!

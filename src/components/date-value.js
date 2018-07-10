@@ -1,93 +1,115 @@
 import React from 'react'
-import {
-  addDays,
-  addHours,
-  addMilliseconds,
-  addMinutes,
-  addMonths,
-  addSeconds,
-  addYears,
-  getDate,
-  getHours,
-  getMilliseconds,
-  getMinutes,
-  getMonth,
-  getSeconds,
-  getYear,
-  setDate,
-  setHours,
-  setMilliseconds,
-  setMinutes,
-  setMonth,
-  setSeconds,
-  setYear,
-} from 'date-fns'
 
 import AnyValue from './any-value'
 import defaults from '../utils/defaults'
+import proxy from '../utils/proxy'
 import render from '../utils/render'
 
 const DateValue = props => (
   <AnyValue {...props} {...defaults(props, new Date())}>
-    {value =>
-      render(props, {
+    {value => {
+      const d = value
+      const date = d.getDate()
+      const hours = d.getHours()
+      const milliseconds = d.getMilliseconds()
+      const minutes = d.getMinutes()
+      const month = d.getMonth()
+      const seconds = d.getSeconds()
+      const year = d.getFullYear()
+
+      const setYear = proxy(value, 'setFullYear', true)
+      const setDate = proxy(value, 'setDate', true)
+      const setHours = proxy(value, 'setHours', true)
+      const setMinutes = proxy(value, 'setMinutes', true)
+      const setSeconds = proxy(value, 'setSeconds', true)
+      const setMilliseconds = proxy(value, 'setMilliseconds', true)
+      const setMonth = m => value.set(v => setMonthHelper(v, m))
+
+      const incrementMilliseconds = (n = 1) => value.set(v => new Date(v + n))
+      const incrementSeconds = (n = 1) => incrementMilliseconds(n * 1000)
+      const incrementMinutes = (n = 1) => incrementSeconds(n * 60)
+      const incrementHours = (n = 1) => incrementMinutes(n * 60)
+      const incrementMonth = (n = 1) => value.set(v => addMonthsHelper(v, n))
+      const incrementYear = (n = 1) => incrementMonth(n * 12)
+      const incrementDate = (n = 1) =>
+        setDate(v => {
+          v.setDate(date + n)
+          return v
+        })
+
+      return render(props, {
         ...value,
-        date: getDate(value.value),
-        hours: getHours(value.value),
-        milliseconds: getMilliseconds(value.value),
-        minutes: getMinutes(value.value),
-        month: getMonth(value.value),
-        seconds: getSeconds(value.value),
-        year: getYear(value.value),
-        set: (param, val) => {
-          return arguments.length === 2
-            ? value.set(param)
-            : value.set(v => {
-                const [get, fn] = helpers(param)
-                const next = typeof val === 'function' ? val(get(v)) : val
-                return fn(v, next)
-              })
-        },
-        increment: (param, n = 1) => {
-          return arguments.length === 2
-            ? value.set(v => new Date(v + param))
-            : value.set(v => {
-                const [, , fn] = helpers(param)
-                return fn(v, n)
-              })
-        },
-        decrement: (param, n = 1) => {
-          return arguments.length === 2
-            ? value.set(v => new Date(v - param))
-            : value.set(v => {
-                const [, , fn] = helpers(param)
-                return fn(v, 0 - n)
-              })
-        },
+        date,
+        hours,
+        milliseconds,
+        minutes,
+        month,
+        seconds,
+        year,
+
+        setDate,
+        setHours,
+        setMilliseconds,
+        setMinutes,
+        setMonth,
+        setSeconds,
+        setYear,
+
+        incrementDate,
+        incrementHours,
+        incrementMilliseconds,
+        incrementMinutes,
+        incrementMonth,
+        incrementSeconds,
+        incrementYear,
+
+        decrementDate: (n = 1) => incrementDate(0 - n),
+        decrementFullYear: (n = 1) => incrementYear(0 - n),
+        decrementHours: (n = 1) => incrementHours(0 - n),
+        decrementMilliseconds: (n = 1) => incrementMilliseconds(0 - n),
+        decrementMinutes: (n = 1) => incrementMinutes(0 - n),
+        decrementMonth: (n = 1) => incrementMonth(0 - n),
+        decrementSeconds: (n = 1) => incrementSeconds(0 - n),
+
+        // Provide the years as `*FullYear` as well, since the native JavaScript
+        // APIs are named like that for backwards compatibility.
+        setFullYear: setYear,
+        incrementFullYear: incrementYear,
+        decrementYear: (n = 1) => incrementYear(0 - n),
       })
-    }
+    }}
   </AnyValue>
 )
 
-function helpers(param) {
-  switch (param) {
-    case 'date':
-      return [getDate, setDate, addDays]
-    case 'hours':
-      return [getHours, setHours, addHours]
-    case 'milliseconds':
-      return [getMilliseconds, setMilliseconds, addMilliseconds]
-    case 'minutes':
-      return [getMinutes, setMinutes, addMinutes]
-    case 'month':
-      return [getMonth, setMonth, addMonths]
-    case 'seconds':
-      return [getSeconds, setSeconds, addSeconds]
-    case 'year':
-      return [getYear, setYear, addYears]
-    default:
-      throw new Error(`Unknown date property parameter: "${param}`)
-  }
+function getDaysInMonth(date) {
+  const year = date.getFullYear()
+  const monthIndex = date.getMonth()
+  const lastDayOfMonth = new Date(0)
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0)
+  lastDayOfMonth.setHours(0, 0, 0, 0)
+  return lastDayOfMonth.getDate()
+}
+
+function setMonthHelper(date, month) {
+  const year = date.getFullYear()
+  const day = date.getDate()
+  const desired = new Date(0)
+  desired.setFullYear(year, month, 15)
+  desired.setHours(0, 0, 0, 0)
+  const max = getDaysInMonth(desired)
+  date.setMonth(month, Math.min(day, max))
+  return date
+}
+
+function addMonthsHelper(date, amount) {
+  const year = date.getFullYear()
+  const desiredMonth = date.getMonth() + amount
+  const desired = new Date(0)
+  desired.setFullYear(year, desiredMonth, 1)
+  desired.setHours(0, 0, 0, 0)
+  const max = getDaysInMonth(desired)
+  date.setMonth(desiredMonth, Math.min(max, date.getDate()))
+  return date
 }
 
 export default DateValue

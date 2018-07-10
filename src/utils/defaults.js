@@ -1,6 +1,5 @@
-export default function defaults(props, def) {
-  const { value, defaultValue } = props
-  if (value !== undefined) return value
-  if (defaultValue !== undefined) return defaultValue
-  return def
+export default function defaults(props, defaultValue) {
+  if (props.value !== undefined) return props.value
+  if (props.defaultValue !== undefined) return props.defaultValue
+  return defaultValue
 }
