@@ -47,7 +47,9 @@ describe('<DateValue>', () => {
     Renderer.create(<DateValue children={fake} defaultValue={new Date(0)} />)
     fake.lastArg.set(new Date(1000))
     fake.lastArg.clear()
-    assert.deepEqual(fake.lastArg.value, new Date())
+    const actual = fake.lastArg.value.toISOString().slice(0, 10)
+    const expected = new Date().toISOString().slice(0, 10)
+    assert.deepEqual(actual, expected)
   })
 
   it('year', () => {
