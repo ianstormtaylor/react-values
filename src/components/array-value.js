@@ -13,6 +13,8 @@ const ArrayValue = props => (
         concat: proxy(value, 'concat'),
         fill: proxy(value, 'fill'),
         filter: proxy(value, 'filter'),
+        flat: proxy(value, 'flat'),
+        flatMap: proxy(value, 'flatMap'),
         map: proxy(value, 'map'),
         reverse: proxy(value, 'reverse'),
         sort: proxy(value, 'sort'),
