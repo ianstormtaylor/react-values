@@ -4,6 +4,6 @@ This document maintains a list of changes to the `react-values` package with eac
 
 ---
 
-### `0.1.0` — July 9, 2018
+### `0.1.0` — July 10, 2018
 
 :tada:
