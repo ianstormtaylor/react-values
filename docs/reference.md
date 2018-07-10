@@ -15,7 +15,7 @@
 
 The `<AnyValue>` component is the most generic component exposed by `react-values`, and it is the base for all other components.
 
-It takes either a `value` or `defaultValue` and an `onChange` handler.
+It takes either a `value` or `defaultValue` and an `onChange` handler. Depending on whether you pass it `value` or `defaultValue` it will either be "controlled" or "uncontrolled", respectively.
 
 ```js
 <AnyValue

@@ -10,10 +10,10 @@ const MapValue = props => (
     {value =>
       render(props, {
         ...value,
-        set: (key, val) => {
-          return arguments.length === 2
-            ? value.set(v => v.set(key, val))
-            : value.set(key)
+        set: (...args) => {
+          return args.length === 1
+            ? value.set(...args)
+            : value.set(v => v.set(...args))
         },
         unset: proxy(value, 'delete', true),
         delete: proxy(value, 'delete', true),

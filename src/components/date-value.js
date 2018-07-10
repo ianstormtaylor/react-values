@@ -26,7 +26,7 @@ const DateValue = props => (
       const setYear = proxy(value, 'setFullYear', true)
 
       const incrementDate = (n = 1) =>
-        setDate(v => {
+        value.set(v => {
           v.setDate(date + n)
           return v
         })

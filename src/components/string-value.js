@@ -12,6 +12,7 @@ const ArrayValue = props => (
         ...value,
         clear: () => value.set(''),
         concat: proxy(value, 'concat'),
+        normalize: proxy(value, 'normalize'),
         padEnd: proxy(value, 'padEnd'),
         padStart: proxy(value, 'padStart'),
         repeat: proxy(value, 'repeat'),

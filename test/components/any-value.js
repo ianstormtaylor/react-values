@@ -28,13 +28,23 @@ describe('<AnyValue>', () => {
     Renderer.create(<AnyValue children={fake} />)
     fake.lastArg.set(true)
     assert.equal(fake.lastArg.value, true)
+    fake.lastArg.set('value')
+    assert.equal(fake.lastArg.value, 'value')
   })
 
   it('reset()', () => {
     const fake = sinon.fake.returns(null)
-    Renderer.create(<AnyValue children={fake} />)
+    Renderer.create(<AnyValue children={fake} defaultValue={42} />)
     fake.lastArg.set(true)
     fake.lastArg.reset()
+    assert.equal(fake.lastArg.value, 42)
+  })
+
+  it('clear()', () => {
+    const fake = sinon.fake.returns(null)
+    Renderer.create(<AnyValue children={fake} defaultValue={42} />)
+    fake.lastArg.set(true)
+    fake.lastArg.clear()
     assert.equal(fake.lastArg.value, undefined)
   })
 
@@ -44,5 +54,11 @@ describe('<AnyValue>', () => {
     Renderer.create(<AnyValue children={fake} onChange={onChange} />)
     fake.lastArg.set(42)
     assert.equal(onChange.lastArg, 42)
+  })
+
+  it('render', () => {
+    const fake = sinon.fake.returns(null)
+    Renderer.create(<AnyValue render={fake} value={42} />)
+    assert.equal(fake.lastArg.value, 42)
   })
 })
