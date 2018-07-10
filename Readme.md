@@ -103,8 +103,14 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 To get a sense for how you might use `react-values`, check out a few of the examples:
 
-* [**Basic Toggle**](./examples/basic-toggle.js) — using a `Boolean` to create a simple toggle component.
-* [**Reusable Toggle**](./examples/reusable-toggle.js) — showing how you might turn that toggle into a controlled component in your own UI kit.
+* [**Basic Toggle**](https://ianstormtaylor.github.io/react-values/#/basic-toggle) — using a `Boolean` to create a simple toggle component.
+* [**Reusable Toggle**](https://ianstormtaylor.github.io/react-values/#/reusable-toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
+* [**Counter**](https://ianstormtaylor.github.io/react-values/#/counter) — a simple counter using a `Number` and its convenience transforms.
+* [**Time Picker**](https://ianstormtaylor.github.io/react-values/#/time-picker) — a more complex time picker component, using `Date` and its convenience transforms.
+* [**Filtering**](https://ianstormtaylor.github.io/react-values/#/filtering) — a basic `String` value used for filtering a list.
+* [**Checkbox Set**](https://ianstormtaylor.github.io/react-values/#/checkbox-set) — using a `Set` to keep track of a checkbox group.
+* [**Simple Tooltip**](https://ianstormtaylor.github.io/react-values/#/tooltip) — a simplistic tooltip implemented as a `Boolean`.
+* [**Simple Modal**](https://ianstormtaylor.github.io/react-values/#/modal) — a simplistic modal implemented as a `Boolean`.
 
 If you have an idea for an example that shows a common use case, pull request it!
 
