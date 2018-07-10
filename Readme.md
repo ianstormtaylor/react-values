@@ -90,11 +90,11 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 2. **Follow React's conventions.** Its components follow React's own naming conventions, using familiar concepts like `value/defaultValue`. This makes it extremely easy to slot into existing codebases or frameworks.
 
-3. **Follow JavaScript's conventions.** It also leverages JavaScript's familiar, built-in methods like `setDate/setHours`, `push/pop`, `filter`, `concat`, etc. so that it's not reinventing the wheel and forcing you to constantly re-read documentation.
+3. **Follow JavaScript's conventions.** It exposes JavaScript's familiar, built-in methods like `setDate/setHours`, `push/pop`, `filter`, `concat`, etc. to avoid reinventing the wheel and forcing you to constantly read documentation.
 
 4. **Be extremely lightweight.** It's extremely lightweight (and tree-shakeable), with most components weighing just a few hundred bytes, so you can even import it from public-facing component libraries.
 
-5. **Prioritize convenience.** It's designed to provide convenient functions like `increment/decrement`, `toggle`, and even smarter ones like `incrementDate`, `decrementMonth`, etc. so you can build complex interactions in just a few lines of code.
+5. **Prioritize convenience.** It's designed to provide convenient functions like `increment`, `toggle`, and smarter ones like `incrementDate`, `decrementMonth`, so you can build complex interactions in just a few lines of code.
 
 <br/>
 
