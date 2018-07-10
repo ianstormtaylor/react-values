@@ -10,6 +10,7 @@ const ArrayValue = props => (
     {value =>
       render(props, {
         ...value,
+        clear: () => value.set(''),
         concat: proxy(value, 'concat'),
         padEnd: proxy(value, 'padEnd'),
         padStart: proxy(value, 'padStart'),

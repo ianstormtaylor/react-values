@@ -7,15 +7,19 @@ import render from '../utils/render'
 
 const SetValue = props => (
   <AnyValue {...props} {...defaults(props, new Set())}>
-    {value =>
-      render(props, {
+    {value => {
+      const add = proxy(value, 'add')
+      const remove = proxy(value, 'delete', true)
+      const clear = proxy(value, 'clear', true)
+      return render(props, {
         ...value,
-        add: proxy(value, 'add'),
-        remove: proxy(value, 'delete', true),
-        delete: proxy(value, 'delete', true),
-        clear: proxy(value, 'clear', true),
+        add,
+        remove,
+        delete: remove,
+        clear,
+        toggle: (val, boolean) => (boolean ? add(val) : remove(val)),
       })
-    }
+    }}
   </AnyValue>
 )
 

@@ -69,7 +69,7 @@ const config = {
     }),
     new ExtractTextPlugin('[name]-[contenthash].css'),
     new HtmlWebpackPlugin({
-      title: 'Slate',
+      title: 'react-values',
       template: HtmlWebpackTemplate,
       inject: false,
       scripts: ['https://cdn.polyfill.io/v2/polyfill.min.js'],

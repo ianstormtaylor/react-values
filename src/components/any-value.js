@@ -38,9 +38,13 @@ class AnyValue extends React.Component {
     this.transform(() => this.state.initial)
   }
 
+  clear = () => {
+    this.set()
+  }
+
   render() {
-    const { set, reset, props, value } = this
-    return render(props, { value, set, reset })
+    const { set, reset, clear, props, value } = this
+    return render(props, { value, set, reset, clear })
   }
 }
 

@@ -9,6 +9,7 @@ const BooleanValue = props => (
     {value =>
       render(props, {
         ...value,
+        clear: () => value.set(false),
         toggle: () => value.set(v => !v),
       })
     }

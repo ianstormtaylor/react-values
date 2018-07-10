@@ -26,6 +26,7 @@ It takes either a `value` or `defaultValue` and an `onChange` handler.
   {({
     value,
     set,
+    clear,
     reset,
   }) => (
     ...
@@ -33,11 +34,12 @@ It takes either a `value` or `defaultValue` and an `onChange` handler.
 </AnyValue>
 ```
 
-| Render Prop | Type                    | Description                            |
-| ----------- | ----------------------- | -------------------------------------- |
-| `value`     | `Any`                   | The state's current value.             |
-| `set`       | `Function` `set(value)` | Sets the value to a new state.         |
-| `reset`     | `Function` `reset()`    | Resets the value to its initial state. |
+| Render Prop | Type                    | Description                                                 |
+| ----------- | ----------------------- | ----------------------------------------------------------- |
+| `value`     | `Any`                   | The state's current value.                                  |
+| `set`       | `Function` `set(value)` | Sets the value to a new state.                              |
+| `clear`     | `Function` `clear()`    | Sets the value to `undefined`.                              |
+| `reset`     | `Function` `reset()`    | Resets the value to its initial `value/defaultValue` state. |
 
 ---
 
@@ -77,7 +79,10 @@ A value for an `Array`.
 | ----------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `value`     | `Array`                                       | The current array value.                                                                                                 |
 | `set`       | `Function` `set(array)`                       | Sets the value to a new state.                                                                                           |
-| `reset`     | `Function` `reset()`                          | Resets the value to its initial state.                                                                                   |
+| `clear`     | `Function` `clear()`                          | Sets the value to an `[]` empty array.                                                                                   |
+| `reset`     | `Function` `reset()`                          | Resets the value to its initial `value/defaultValue` state.                                                              |
+| `first`     | `Any`                                         | The first element in the current array value.                                                                            |
+| `last`      | `Any`                                         | The last element in the current array value.                                                                             |
 | `concat`    | `Function` `concat(...values)`                | Calls [`Array.concat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat).   |
 | `fill`      | `Function` `fill(value)`                      | Calls [`Array.fill`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill).       |
 | `filter`    | `Function` `filter(callback)`                 | Calls [`Array.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter).   |
@@ -108,6 +113,7 @@ A value for a `Boolean`.
   {({
     value,
     set,
+    clear,
     reset,
     toggle,
   }) => (
@@ -116,12 +122,13 @@ A value for a `Boolean`.
 </BooleanValue>
 ```
 
-| Render Prop | Type                      | Description                             |
-| ----------- | ------------------------- | --------------------------------------- |
-| `value`     | `Boolean`                 | The current boolean value.              |
-| `set`       | `Function` `set(boolean)` | Sets the value to a new state.          |
-| `reset`     | `Function` `reset()`      | Resets the value to its initial state.  |
-| `toggle`    | `Function` `toggle()`     | Sets the boolean to its opposite value. |
+| Render Prop | Type                      | Description                                                 |
+| ----------- | ------------------------- | ----------------------------------------------------------- |
+| `value`     | `Boolean`                 | The current boolean value.                                  |
+| `set`       | `Function` `set(boolean)` | Sets the value to a new state.                              |
+| `clear`     | `Function` `clear()`      | Sets the value to `false`.                                  |
+| `reset`     | `Function` `reset()`      | Resets the value to its initial `value/defaultValue` state. |
+| `toggle`    | `Function` `toggle()`     | Sets the boolean to its opposite value.                     |
 
 ---
 
@@ -138,6 +145,7 @@ A value for a `Date`.
   {({
     value,
     set,
+    clear,
     reset,
     date,
     hours,
@@ -176,8 +184,9 @@ A value for a `Date`.
 | Render Prop             | Type                                      | Description                                                                                                                                              |
 | ----------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`                 | `Date`                                    | The current date value.                                                                                                                                  |
-| `set`                   | `Function` `set(date)`                    | Sets the value to a new date.                                                                                                                            |
-| `reset`                 | `Function` `reset()`                      | Resets the value to its initial state.                                                                                                                   |
+| `set`                   | `Function` `set(date)`                    | Sets the value to a date.                                                                                                                                |
+| `clear`                 | `Function` `clear()`                      | Sets the value to `new Date()`.                                                                                                                          |
+| `reset`                 | `Function` `reset()`                      | Resets the value to its initial `value/defaultValue` state.                                                                                              |
 | `year`                  | `Number`                                  | The current state of [`value.getFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear).         |
 | `month`                 | `Number`                                  | The current state of [`value.getMonth()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth).               |
 | `date`                  | `Number`                                  | The current state of [`value.getDate()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate).                 |
@@ -222,10 +231,10 @@ A value for a `Map`.
   {({
     value,
     set,
+    clear,
     reset,
     unset,
     delete,
-    clear,
   }) => (
     ...
   )}
@@ -235,11 +244,11 @@ A value for a `Map`.
 | Render Prop | Type                                       | Description                                                                                                                                          |
 | ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`     | `Any`                                      | The current map value.                                                                                                                               |
-| `reset`     | `Function` `reset()`                       | Resets the value to its initial state.                                                                                                               |
 | `set`       | `Function` `set(key, value)` or `set(map)` | Calls [`Map.set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set), or sets the value to a new map.         |
+| `clear`     | `Function` `clear()`                       | Calls [`Map.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear).                                     |
+| `reset`     | `Function` `reset()`                       | Resets the value to its initial `value/defaultValue` state.                                                                                          |
 | `delete`    | `Function` `delete(key)`                   | Calls [`Map.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete).                                   |
 | `unset`     | `Function` `unset(key)`                    | An alias for [`Map.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) that's not a reserved word. |
-| `clear`     | `Function` `clear()`                       | Calls [`Map.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear).                                     |
 
 ---
 
@@ -265,13 +274,14 @@ A value for a `Number`.
 </NumberValue>
 ```
 
-| Render Prop | Type                          | Description                            |
-| ----------- | ----------------------------- | -------------------------------------- |
-| `value`     | `Number`                      | The current number value.              |
-| `set`       | `Function` `set(number)`      | Sets the value to a new `number`.      |
-| `reset`     | `Function` `reset()`          | Resets the value to its initial state. |
-| `increment` | `Function` `increment(n = 1)` | Increments the number by `n`.          |
-| `decrement` | `Function` `decrement(n = 1)` | Decrements the number by `n`.          |
+| Render Prop | Type                          | Description                                                 |
+| ----------- | ----------------------------- | ----------------------------------------------------------- |
+| `value`     | `Number`                      | The current number value.                                   |
+| `set`       | `Function` `set(number)`      | Sets the value to a new `number`.                           |
+| `clear`     | `Function` `clear()`          | Sets the value to `0`.                                      |
+| `reset`     | `Function` `reset()`          | Resets the value to its initial `value/defaultValue` state. |
+| `increment` | `Function` `increment(n = 1)` | Increments the number by `n`.                               |
+| `decrement` | `Function` `decrement(n = 1)` | Decrements the number by `n`.                               |
 
 ---
 
@@ -288,26 +298,28 @@ A value for a `Set`.
   {({
     value,
     set,
+    clear,
     reset,
     add,
     remove,
     delete,
-    clear,
+    toggle,
   }) => (
     ...
   )}
 </SetValue>
 ```
 
-| Render Prop | Type                       | Description                                                                                                                                          |
-| ----------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `value`     | `Set`                      | The current set value.                                                                                                                               |
-| `set`       | `Function` `set(set)`      | Sets the value to a new `set`.                                                                                                                       |
-| `reset`     | `Function` `reset()`       | Resets the value to its initial state.                                                                                                               |
-| `add`       | `Function` `add(value)`    | Calls [`Set.add`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add).                                         |
-| `delete`    | `Function` `delete(value)` | Calls [`Set.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete).                                   |
-| `remove`    | `Function` `remove(value)` | An alias for [`Set.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) that's not a reserved word. |
-| `clear`     | `Function` `clear()`       | Calls [`Set.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear).                                     |
+| Render Prop | Type                                | Description                                                                                                                                          |
+| ----------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`     | `Set`                               | The current set value.                                                                                                                               |
+| `set`       | `Function` `set(set)`               | Sets the value to a new `set`.                                                                                                                       |
+| `clear`     | `Function` `clear()`                | Calls [`Set.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear).                                     |
+| `reset`     | `Function` `reset()`                | Resets the value to its initial `value/defaultValue` state.                                                                                          |
+| `add`       | `Function` `add(value)`             | Calls [`Set.add`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add).                                         |
+| `delete`    | `Function` `delete(value)`          | Calls [`Set.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete).                                   |
+| `remove`    | `Function` `remove(value)`          | An alias for [`Set.delete`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) that's not a reserved word. |
+| `toggle`    | `Function` `toggle(value, boolean)` | Add or remove a `value` based on a `boolean`.                                                                                                        |
 
 ---
 
@@ -324,6 +336,7 @@ A value for a `String`.
   {({
     value,
     set,
+    clear,
     reset,
     concat,
     padEnd,
@@ -348,7 +361,8 @@ A value for a `String`.
 | ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `value`       | `String`                        | The current string value.                                                                                                          |
 | `set`         | `Function` `set(string)`        | Sets the value to a new `string`.                                                                                                  |
-| `reset`       | `Function` `reset()`            | Resets the value to its initial state.                                                                                             |
+| `clear`       | `Function` `clear()`            | Sets the value to an `''` empty string.                                                                                            |
+| `reset`       | `Function` `reset()`            | Resets the value to its initial `value/defaultValue` state.                                                                        |
 | `concat`      | `Function` `concat(value)`      | Calls [`String.concat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/concat).           |
 | `padEnd`      | `Function` `padEnd(value)`      | Calls [`String.padEnd`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padEnd).           |
 | `padStart`    | `Function` `padStart(value)`    | Calls [`String.padStart`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart).       |

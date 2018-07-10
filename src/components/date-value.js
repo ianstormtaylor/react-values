@@ -40,6 +40,8 @@ const DateValue = props => (
 
       return render(props, {
         ...value,
+        clear: () => value.set(new Date()),
+
         date,
         hours,
         milliseconds,

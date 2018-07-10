@@ -10,6 +10,9 @@ const ArrayValue = props => (
     {value =>
       render(props, {
         ...value,
+        first: value.value[0],
+        last: value.value[Math.max(0, value.value.length - 1)],
+        clear: () => value.set([]),
         concat: proxy(value, 'concat'),
         fill: proxy(value, 'fill'),
         filter: proxy(value, 'filter'),

@@ -9,6 +9,7 @@ const NumberValue = props => (
     {value =>
       render(props, {
         ...value,
+        clear: () => value.set(0),
         increment: (n = 1) => value.set(v => v + n),
         decrement: (n = 1) => value.set(v => v - n),
       })
