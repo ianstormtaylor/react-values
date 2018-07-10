@@ -12,7 +12,8 @@
   <a href="#why"><strong>Why?</strong></a> · 
   <a href="#principles"><strong>Principles</strong></a> · 
   <a href="#examples"><strong>Examples</strong></a> · 
-  <a href="http://docs.slatejs.org"><strong>Documentation</strong></a>
+  <a href="http://docs.slatejs.org"><strong>Documentation</strong></a> ·
+  <a href="http://docs.slatejs.org"><strong>Contributing!</strong></a>
 </p>
 <br/>
 
@@ -135,23 +136,8 @@ If even that's not enough, you can always [read the source itself](./src), which
 
 <br/>
 
-### Cheatsheet
+### Contributing!
 
-Here's a handy cheatsheet for quickly remembering how each value component works:
+All contributions are super welcome! Check out the [Contributing instructions](./Contributing.md) for more info!
 
-| Component        | Render Props                                                                                                                                                                                                                                                                  |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `<AnyValue>`     | `{ value, set, reset, clear }`                                                                                                                                                                                                                                                |
-| `<ArrayValue>`   | `{ value, set, reset, clear, concat, fill, filter, flat, flatMap, map, reverse, sort, slice, push, pop, shift, unshift, splice }`                                                                                                                                             |
-| `<BooleanValue>` | `{ value, set, reset, clear, toggle }`                                                                                                                                                                                                                                        |
-| `<DateValue>`    | `{ value, set, reset, clear, year, month, date, hours, minutes, seconds, milliseconds, set{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}, increment{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}, decrement{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}` |
-| `<MapValue>`     | `{ value, set, reset, clear, delete, unset }`                                                                                                                                                                                                                                 |
-| `<NumberValue>`  | `{ value, set, reset, clear, increment, decrement }`                                                                                                                                                                                                                          |
-| `<SetValue>`     | `{ value, set, reset, clear, add, delete, remove }`                                                                                                                                                                                                                           |
-| `<StringValue>`  | `{ value, set, reset, clear, concat, normalize, padEnd, padStart, repeat, replace, slice, substr, substring, toLowerCase, toUpperCase, trim, trimEnd, trimStart }`                                                                                                            |
-
-#### `<AnyValue>`
-
-```js
-<
-```
+Slate is [MIT-licensed](./License.md).
