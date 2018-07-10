@@ -1,5 +1,15 @@
 # Getting Started
 
+* [Installing `react-values`](#installing-react-values)
+* [Building a Component](#building-a-component)
+* [Introducing State](#introducing-state)
+* [Observing Changes](#observing-changes)
+* [Setting Defaults](#settings-defaults)
+* [Controlled vs. Uncontrolled](#controlled-vs-uncontrolled)
+* [Spreading Props](#spreading-props)
+
+## Installing `react-values`
+
 To install `react-values` with Yarn or Npm, simply:
 
 ```bash
@@ -24,7 +34,7 @@ import { BooleanValue, NumberValue } from 'react-values'
 >
 > This will expose the `ReactValues` global with its components.
 
----
+## Building a Component
 
 With `react-values` installed, now you can start building components with it. For example, lets build a toggle with the `<BooleanValue>` helper.
 
@@ -70,7 +80,7 @@ Which you can render like so:
 
 This works, but the toggle is not interactive. It has no way of managing any state, so it's always just "off".
 
----
+## Introducing State
 
 To make it stateful, lets use a `<BooleanValue>` helper from `react-values`:
 
@@ -98,7 +108,7 @@ This is great, it's a working toggle!
 
 But we're not done yet... There is no way to observe the toggle as it changes, so it's not all that useful. Let's fix that...
 
----
+## Observing Changes
 
 To observe the toggle's state, you can pass in an `onChange` prop to the `<BooleanValue>`:
 
@@ -120,11 +130,11 @@ Now you can listen for changes to the toggle by passing in an `onChange` handler
 <Toggle onChange={value => ...} />
 ```
 
----
+## Setting Defaults
 
-But if you want to share this component with others, they might ask you to be able to start the component in the "on" state instead of in the "off" state.
+If you want to share this component with others, they might ask you to be able to start the component in the "on" state instead of in the "off" state.
 
-No problem. To do this, use the `defaultValue` prop:
+To do this, use the `defaultValue` prop:
 
 ```js
 const Toggle = ({ defaultValue, onChange }) => (
@@ -147,7 +157,7 @@ That way people can do:
 />
 ```
 
----
+## Controlled vs. Uncontrolled
 
 But wait! What if someone wants to use the toggle in a "controlled" manner, just like you can with React's native `<input>` and `<select>` components.
 
@@ -179,7 +189,7 @@ Now anyone who renders the toggle can choose whether they want to use it in a "c
 />
 ```
 
----
+## Spreading Props
 
 One final change, just for simplicity's sake. You'll notice how we were passing the props in explicitly, but to make your code even simpler you can just spread them directly onto the `<BooleanValue>` instead:
 
