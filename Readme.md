@@ -114,6 +114,13 @@ If you have an idea for an example that shows a common use case, pull request it
 If you're using `react-values` for the first time, check out the [Getting Started](./docs/guide.md) guide to familiarize yourself with how it works. Once you've done that, you'll probably want to check out the full [API Reference](http://docs.slatejs.org/react-values-core).
 
 * [**Getting Started**](./docs/guide.md)
+  * [Installing `react-values`](./docs/guide.md#installing-react-values)
+  * [Building a Component](./docs/guide.md#building-a-component)
+  * [Introducing State](./docs/guide.md#introducing-state)
+  * [Observing Changes](./docs/guide.md#observing-changes)
+  * [Setting Defaults](./docs/guide.md#settings-defaults)
+  * [Controlled vs. Uncontrolled](./docs/guide.md#controlled-vs-uncontrolled)
+  * [Spreading Props](./docs/guide.md#spreading-props)
 * [**Reference**](./docs/reference.md)
   * [`<AnyValue>`](./docs/reference.md#anyvalue)
   * [`<ArrayValue>`](./docs/reference.md#arrayvalue)
@@ -125,3 +132,26 @@ If you're using `react-values` for the first time, check out the [Getting Starte
   * [`<StringValue>`](./docs/reference.md#stringvalue)
 
 If even that's not enough, you can always [read the source itself](./src), which is very simple!
+
+<br/>
+
+### Cheatsheet
+
+Here's a handy cheatsheet for quickly remembering how each value component works:
+
+| Component        | Render Props                                                                                                                                                                                                                                                                  |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<AnyValue>`     | `{ value, set, reset, clear }`                                                                                                                                                                                                                                                |
+| `<ArrayValue>`   | `{ value, set, reset, clear, concat, fill, filter, flat, flatMap, map, reverse, sort, slice, push, pop, shift, unshift, splice }`                                                                                                                                             |
+| `<BooleanValue>` | `{ value, set, reset, clear, toggle }`                                                                                                                                                                                                                                        |
+| `<DateValue>`    | `{ value, set, reset, clear, year, month, date, hours, minutes, seconds, milliseconds, set{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}, increment{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}, decrement{Year,Month,Date,Hours,Minutes,Seconds,Milliseconds}` |
+| `<MapValue>`     | `{ value, set, reset, clear, delete, unset }`                                                                                                                                                                                                                                 |
+| `<NumberValue>`  | `{ value, set, reset, clear, increment, decrement }`                                                                                                                                                                                                                          |
+| `<SetValue>`     | `{ value, set, reset, clear, add, delete, remove }`                                                                                                                                                                                                                           |
+| `<StringValue>`  | `{ value, set, reset, clear, concat, normalize, padEnd, padStart, repeat, replace, slice, substr, substring, toLowerCase, toUpperCase, trim, trimEnd, trimStart }`                                                                                                            |
+
+#### `<AnyValue>`
+
+```js
+<
+```
