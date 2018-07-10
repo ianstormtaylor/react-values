@@ -40,10 +40,10 @@ If you need to debug something, you can add a `debugger` line to the source, and
 
 ## Publishing Releases
 
-To publish a new release of the library follow the prompts after running:
+To publish a new release of the library run:
 
 ```js
-npm run release
+yarn release
 ```
 
-**But** you must make sure you are using `npm` to run the release script, because using `yarn` results in failures!
+Then follow the prompts that [`np`](https://github.com/sindresorhus/np) gives you. Make sure to choose the proper upgrade type if there are any breaking changes!
