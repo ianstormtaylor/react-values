@@ -2,7 +2,7 @@ import 'prismjs'
 import 'prismjs/components/prism-jsx.min'
 
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import Prism from 'react-prism'
 import {
   HashRouter,
