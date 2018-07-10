@@ -149,6 +149,18 @@ export default class App extends React.Component {
               <NavLogo src={logo} />
             </NavSection>
             <NavSection>
+              <NavHeading>Docs</NavHeading>
+              <ExternalLink href="https://github.com/ianstormtaylor/react-values">
+                GitHub
+              </ExternalLink>
+              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/guide.md">
+                Getting Started
+              </ExternalLink>
+              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/reference.md">
+                API Reference
+              </ExternalLink>
+            </NavSection>
+            <NavSection>
               <NavHeading>Examples</NavHeading>
               {examples.map(({ name, Component, path }) => (
                 <Route key={path} exact path={path}>
@@ -159,15 +171,6 @@ export default class App extends React.Component {
                   )}
                 </Route>
               ))}
-            </NavSection>
-            <NavSection>
-              <NavHeading>Docs</NavHeading>
-              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/guide.md">
-                Getting Started
-              </ExternalLink>
-              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/reference.md">
-                API Reference
-              </ExternalLink>
             </NavSection>
           </ColumnNav>
           {this.state.error ? (

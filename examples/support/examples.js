@@ -30,6 +30,12 @@ export default [
     source: require('!raw-loader!../filtering'),
   },
   {
+    name: 'Checkbox Set',
+    path: '/checkbox-set',
+    Component: require('../checkbox-set').default,
+    source: require('!raw-loader!../checkbox-set'),
+  },
+  {
     name: 'Simple Tooltip',
     path: '/tooltip',
     Component: require('../tooltip').default,

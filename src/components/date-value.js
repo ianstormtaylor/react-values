@@ -84,15 +84,6 @@ const DateValue = props => (
   </AnyValue>
 )
 
-function getDaysInMonth(date) {
-  const year = date.getFullYear()
-  const monthIndex = date.getMonth()
-  const lastDayOfMonth = new Date(0)
-  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0)
-  lastDayOfMonth.setHours(0, 0, 0, 0)
-  return lastDayOfMonth.getDate()
-}
-
 function setMonthHelper(date, month) {
   const year = date.getFullYear()
   const day = date.getDate()
@@ -113,6 +104,15 @@ function addMonthsHelper(date, amount) {
   const max = getDaysInMonth(desired)
   date.setMonth(desiredMonth, Math.min(max, date.getDate()))
   return date
+}
+
+function getDaysInMonth(date) {
+  const year = date.getFullYear()
+  const monthIndex = date.getMonth()
+  const lastDayOfMonth = new Date(0)
+  lastDayOfMonth.setFullYear(year, monthIndex + 1, 0)
+  lastDayOfMonth.setHours(0, 0, 0, 0)
+  return lastDayOfMonth.getDate()
 }
 
 export default DateValue
