@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/npm/dt/react-values.svg?maxAge=3600">
   </a> 
   <a href="https://unpkg.com/react-values/dist/react-values.min.js">
-    <img src="http://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react-values">
+    <img src="https://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react-values">
   </a>
   <a href="https://travis-ci.org/ianstormtaylor/react-values">
     <img src="https://travis-ci.org/ianstormtaylor/react-values.svg?branch=master">
