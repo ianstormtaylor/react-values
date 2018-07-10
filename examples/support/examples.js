@@ -24,6 +24,12 @@ export default [
     source: require('!raw-loader!../time-picker'),
   },
   {
+    name: 'Filtering',
+    path: '/filtering',
+    Component: require('../filtering').default,
+    source: require('!raw-loader!../filtering'),
+  },
+  {
     name: 'Simple Tooltip',
     path: '/tooltip',
     Component: require('../tooltip').default,

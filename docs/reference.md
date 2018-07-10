@@ -108,8 +108,8 @@ A value for a `Boolean`.
   {({
     value,
     set,
-    toggle,
     reset,
+    toggle,
   }) => (
     ...
   )}
@@ -120,8 +120,8 @@ A value for a `Boolean`.
 | ----------- | ------------------------- | --------------------------------------- |
 | `value`     | `Boolean`                 | The current boolean value.              |
 | `set`       | `Function` `set(boolean)` | Sets the value to a new state.          |
-| `toggle`    | `Function` `toggle()`     | Sets the boolean to its opposite value. |
 | `reset`     | `Function` `reset()`      | Resets the value to its initial state.  |
+| `toggle`    | `Function` `toggle()`     | Sets the boolean to its opposite value. |
 
 ---
 
