@@ -38,18 +38,20 @@
 
 `react-values` gives you a set of simple, composable helpers that let you build more complex, stateful UI components like toggles, dropdowns, lists, checkbox groups, popovers, tooltips, you name it!
 
-It does this using a small render-prop-based API that exposes helpful transforms like `toggle`, `increment`, `filter`, etc. depending on the type of value, all based on JavaScripts native value types. For example...
+It does this using a small render-prop-based API that exposes helpful transforms like `toggle`, `increment`, `filter`, etc. depending on the type of value, all based on JavaScripts native value types...
 
-* `Any` values get simple transforms like `set` and `clear`.
-* `Array` values get native methods like `push`, `pop`, `filter`, etc.
-* `Boolean` values get `toggle`, which we've all re-implemented 100 times.
-* `Date` values get really helpful transforms like `setHours` and `incrementMonth`.
-* `Map` values get native methods like `set`, `delete` and `clear`.
-* `Number` values get `increment` and `decrement`, which have also be re-written in every codebase ever.
-* `Set` values get native methods like `add`, `delete` and `clear`.
-* `String` values get native methods like `concat`, `repeat` and `trim`.
+* `Any` values provide simple transforms like `set` and `clear`.
+* `Array` values provide native methods like `push`, `pop`, `filter`, etc.
+* `Boolean` values provide `toggle`, which we've all re-implemented 100 times.
+* `Date` values provide really helpful transforms like `setHours` and `incrementMonth`.
+* `Map` values provide native methods like `set`, `delete` and `clear`.
+* `Number` values provide `increment` and `decrement`, which have also be re-written in every codebase ever.
+* `Set` values provide native methods like `add`, `delete` and `clear`.
+* `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
 
 This saves you from constantly re-write state management logic, so you can keep your components focused on behavior and presentation.
+
+For example, here's a `<Toggle>` implemented in just a few lines of code using a `<BooleanValue>`:
 
 ```js
 import { BooleanValue } from 'react-values'
