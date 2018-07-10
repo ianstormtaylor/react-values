@@ -8,7 +8,7 @@ import render from '../utils/render'
 const DateValue = props => (
   <AnyValue {...props} {...defaults(props, new Date())}>
     {value => {
-      const d = value
+      const d = value.value
       const date = d.getDate()
       const hours = d.getHours()
       const milliseconds = d.getMilliseconds()
@@ -17,25 +17,26 @@ const DateValue = props => (
       const seconds = d.getSeconds()
       const year = d.getFullYear()
 
-      const setYear = proxy(value, 'setFullYear', true)
       const setDate = proxy(value, 'setDate', true)
       const setHours = proxy(value, 'setHours', true)
-      const setMinutes = proxy(value, 'setMinutes', true)
-      const setSeconds = proxy(value, 'setSeconds', true)
       const setMilliseconds = proxy(value, 'setMilliseconds', true)
+      const setMinutes = proxy(value, 'setMinutes', true)
       const setMonth = m => value.set(v => setMonthHelper(v, m))
+      const setSeconds = proxy(value, 'setSeconds', true)
+      const setYear = proxy(value, 'setFullYear', true)
 
-      const incrementMilliseconds = (n = 1) => value.set(v => new Date(v + n))
-      const incrementSeconds = (n = 1) => incrementMilliseconds(n * 1000)
-      const incrementMinutes = (n = 1) => incrementSeconds(n * 60)
-      const incrementHours = (n = 1) => incrementMinutes(n * 60)
-      const incrementMonth = (n = 1) => value.set(v => addMonthsHelper(v, n))
-      const incrementYear = (n = 1) => incrementMonth(n * 12)
       const incrementDate = (n = 1) =>
         setDate(v => {
           v.setDate(date + n)
           return v
         })
+      const incrementHours = (n = 1) => incrementMinutes(n * 60)
+      const incrementMilliseconds = (n = 1) =>
+        value.set(v => new Date(v.getTime() + n))
+      const incrementMinutes = (n = 1) => incrementSeconds(n * 60)
+      const incrementMonth = (n = 1) => value.set(v => addMonthsHelper(v, n))
+      const incrementSeconds = (n = 1) => incrementMilliseconds(n * 1000)
+      const incrementYear = (n = 1) => incrementMonth(n * 12)
 
       return render(props, {
         ...value,
@@ -64,18 +65,18 @@ const DateValue = props => (
         incrementYear,
 
         decrementDate: (n = 1) => incrementDate(0 - n),
-        decrementFullYear: (n = 1) => incrementYear(0 - n),
         decrementHours: (n = 1) => incrementHours(0 - n),
         decrementMilliseconds: (n = 1) => incrementMilliseconds(0 - n),
         decrementMinutes: (n = 1) => incrementMinutes(0 - n),
         decrementMonth: (n = 1) => incrementMonth(0 - n),
         decrementSeconds: (n = 1) => incrementSeconds(0 - n),
+        decrementYear: (n = 1) => incrementYear(0 - n),
 
         // Provide the years as `*FullYear` as well, since the native JavaScript
         // APIs are named like that for backwards compatibility.
         setFullYear: setYear,
         incrementFullYear: incrementYear,
-        decrementYear: (n = 1) => incrementYear(0 - n),
+        decrementFullYear: (n = 1) => incrementYear(0 - n),
       })
     }}
   </AnyValue>

@@ -2,11 +2,21 @@ import React from 'react'
 import styled from 'react-emotion'
 import { BooleanValue } from '..'
 
+const BasicToggleExample = props => (
+  <BooleanValue>
+    {({ value, toggle }) => (
+      <Track on={value} onClick={toggle}>
+        <Thumb on={value} />
+      </Track>
+    )}
+  </BooleanValue>
+)
+
 const Track = styled('div')`
   position: relative;
   height: 25px;
   width: 50px;
-  background-color: ${props => (props.on ? 'lightgreen' : 'lightgray')};
+  background-color: ${props => (props.on ? 'dodgerblue' : 'lightgray')};
   border-radius: 999px;
   cursor: pointer;
 `
@@ -22,15 +32,5 @@ const Thumb = styled('div')`
   border-radius: 999px;
   cursor: pointer;
 `
-
-const BasicToggleExample = props => (
-  <BooleanValue defaultValue={false}>
-    {({ value, toggle }) => (
-      <Track on={value} onClick={toggle}>
-        <Thumb on={value} />
-      </Track>
-    )}
-  </BooleanValue>
-)
 
 export default BasicToggleExample

@@ -1,12 +1,13 @@
 import React from 'react'
 
-import defaults from '../utils/defaults'
 import render from '../utils/render'
 
 class AnyValue extends React.Component {
   constructor(props) {
     super(props)
-    const initial = defaults(props)
+    let initial
+    if (props.defaultValue !== undefined) initial = props.defaultValue
+    if (props.value !== undefined) initial = props.value
     const controlled = props.value !== undefined
     this.state = { controlled, initial, value: initial }
   }

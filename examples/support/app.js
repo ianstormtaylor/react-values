@@ -1,7 +1,9 @@
+import 'prismjs'
+import 'prismjs/components/prism-jsx.min'
+
 import React from 'react'
-import Highlighter from 'react-syntax-highlighter/prism'
-import styled from 'react-emotion'
-import { tomorrow } from 'react-syntax-highlighter/styles/prism'
+import styled, { css } from 'react-emotion'
+import Prism from 'react-prism'
 import {
   HashRouter,
   Link as RouterLink,
@@ -10,89 +12,121 @@ import {
   Switch,
 } from 'react-router-dom'
 
-const EXAMPLES = [
-  {
-    name: 'Basic Toggle',
-    path: '/basic-toggle',
-    Component: require('../basic-toggle').default,
-    source: require('!raw-loader!../basic-toggle'),
-  },
-  {
-    name: 'Reusable Toggle',
-    path: '/reusable-toggle',
-    Component: require('../reusable-toggle').default,
-    source: require('!raw-loader!../reusable-toggle'),
-  },
-]
+import examples from './examples'
+import logo from '../../docs/images/logo.svg'
+import { PURPLE } from './constants'
 
-const Container = styled('div')`
+const Columns = styled('div')`
   display: flex;
+  height: 100vh;
   color: #444;
-  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 `
 
-const NavTitle = styled('div')`
-  padding: 20px;
-  font-family: monospace;
-  border-bottom: 1px solid #eee;
-`
-
-const Nav = styled('div')`
+const ColumnNav = styled('div')`
+  position: relative;
+  background: white;
   flex: 0;
-  min-width: 180px;
-  background: #f9f9f9;
-  border-right: 1px solid #eee;
+  min-width: 200px;
 `
 
-const NavHeader = styled('div')`
+const ColumnContent = styled('div')`
+  flex: auto;
+  display: flex;
+  justify-content: space-between;
+  background: #202746;
+`
+
+const ColumnWarning = styled('div')`
+  flex: auto;
+  padding: 40px;
+  background: #fffae0;
+
+  & > pre {
+    margin: 0;
+    white-space: pre;
+    overflow-x: scroll;
+  }
+`
+
+const NavHeading = styled('div')`
   text-transform: uppercase;
   color: #aaa;
   font-size: 0.75em;
 `
 
-const NavSection = styled('div')`
-  padding: 20px;
+const NavLogo = styled('img')`
+  max-width: 100%;
+`
 
-  & + & {
-    margin-top: 10px;
+const NavSection = styled('div')`
+  position: relative;
+  margin: 20px;
+
+  & > * + * {
+    margin-top: 8px;
   }
 `
 
 const NavLink = styled(({ active, ...props }) => <RouterLink {...props} />)`
-  display: inline-block;
-  margin: 0.3em 0;
+  position: relative;
+  display: block;
   text-decoration: none;
-  color: ${props => (props.active ? 'dodgerblue' : 'inherit')};
+  color: ${props => (props.active ? PURPLE : '#666')};
+  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+
+  &:hover {
+    color: ${PURPLE};
+  }
+
+  margin-right: -20px;
+
+  &::after {
+    content: ${props => (props.active ? '""' : 'none')};
+    position: absolute;
+    top: 50%;
+    margin-top: -7px;
+    right: 0;
+    border: 7px solid transparent;
+    border-left: none;
+    border-right-color: #202746;
+  }
 `
 
-const Content = styled('div')`
-  flex: 1;
+const ExternalLink = NavLink.withComponent('a')
+
+const ExampleWrapper = styled('div')`
+  flex: 1 1;
+  padding: 40px;
   display: flex;
 `
 
 const Example = styled('div')`
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   background: #fff;
-  padding: 60px 40px;
+  border-radius: 4px;
+  padding: 10px;
+`
+
+const SourceWrapper = styled('div')`
+  flex: auto 1;
+  font-size: 0.8em;
+  max-width: 550px;
+  padding: 40px 0;
+  overflow-y: auto;
 `
 
 const Source = styled('div')`
-  flex: 1;
-  padding: 5px 10px 10px;
-  background: #2d2d2d;
-  font-size: 0.8em;
-`
-
-const Warning = styled('div')`
-  flex: 1;
-  padding: 20px;
-  background: #fffae0;
-
-  & > pre {
-    background: #fbf1bd;
-    white-space: pre;
+  > pre {
+    font-size: 0.85em !important;
     overflow-x: scroll;
-    margin-bottom: 0;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 `
 
@@ -109,12 +143,14 @@ export default class App extends React.Component {
   render() {
     return (
       <HashRouter>
-        <Container>
-          <Nav>
-            <NavTitle>react-values</NavTitle>
+        <Columns>
+          <ColumnNav>
             <NavSection>
-              <NavHeader>Examples</NavHeader>
-              {EXAMPLES.map(({ name, Component, path }) => (
+              <NavLogo src={logo} />
+            </NavSection>
+            <NavSection>
+              <NavHeading>Examples</NavHeading>
+              {examples.map(({ name, Component, path }) => (
                 <Route key={path} exact path={path}>
                   {({ match }) => (
                     <NavLink to={path} active={match && match.isExact}>
@@ -124,46 +160,62 @@ export default class App extends React.Component {
                 </Route>
               ))}
             </NavSection>
-          </Nav>
-          <Content>
-            {this.state.error ? (
-              <Warning>
-                <p>
-                  An error was thrown by one of the example's React components!
-                </p>
-                <pre>
-                  <code>
-                    {this.state.error.stack}
-                    {'\n'}
-                    {this.state.info.componentStack}
-                  </code>
-                </pre>
-              </Warning>
-            ) : (
+            <NavSection>
+              <NavHeading>Docs</NavHeading>
+              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/guide.md">
+                Getting Started
+              </ExternalLink>
+              <ExternalLink href="https://github.com/ianstormtaylor/react-values/blob/master/docs/reference.md">
+                API Reference
+              </ExternalLink>
+            </NavSection>
+          </ColumnNav>
+          {this.state.error ? (
+            <ColumnWarning>
+              <p>
+                An error was thrown by one of the example's React components!
+              </p>
+              <pre>
+                <code>
+                  {this.state.error.stack}
+                  {'\n'}
+                  {this.state.info.componentStack}
+                </code>
+              </pre>
+            </ColumnWarning>
+          ) : (
+            <ColumnContent>
               <Switch>
-                {EXAMPLES.map(({ name, Component, path, source }) => (
+                {examples.map(({ name, Component, path, source }) => (
                   <Route key={path} path={path}>
                     {({ match }) =>
                       match && (
                         <React.Fragment>
-                          <Example>
-                            <Component />
-                          </Example>
-                          <Source>
-                            <Highlighter language="javascript" style={tomorrow}>
-                              {source}
-                            </Highlighter>
-                          </Source>
+                          <ExampleWrapper>
+                            <Example>
+                              <Component />
+                            </Example>
+                          </ExampleWrapper>
+                          <SourceWrapper>
+                            <Source>
+                              <Prism className="language-jsx">
+                                {source.replace(
+                                  "from '..'",
+                                  "from 'react-values'"
+                                )}
+                              </Prism>
+                            </Source>
+                          </SourceWrapper>
                         </React.Fragment>
                       )
                     }
                   </Route>
                 ))}
-                <Redirect from="/" to={EXAMPLES[0].path} />
+                <Redirect from="/" to={examples[0].path} />
               </Switch>
-            )}
-          </Content>
-        </Container>
+            </ColumnContent>
+          )}
+        </Columns>
       </HashRouter>
     )
   }

@@ -33,11 +33,11 @@ It takes either a `value` or `defaultValue` and an `onChange` handler.
 </AnyValue>
 ```
 
-| Render Prop | Type                        | Description                            |
-| ----------- | --------------------------- | -------------------------------------- |
-| `value`     | `Any`                       | The state's current value.             |
-| `set`       | `Function` `set(next: Any)` | Sets the value to a new state.         |
-| `reset`     | `Function` `reset()`        | Resets the value to its initial state. |
+| Render Prop | Type                    | Description                            |
+| ----------- | ----------------------- | -------------------------------------- |
+| `value`     | `Any`                   | The state's current value.             |
+| `set`       | `Function` `set(value)` | Sets the value to a new state.         |
+| `reset`     | `Function` `reset()`    | Resets the value to its initial state. |
 
 ---
 

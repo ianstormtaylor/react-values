@@ -55,6 +55,10 @@ const config = {
           ],
         }),
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [

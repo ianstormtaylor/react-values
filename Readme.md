@@ -42,6 +42,16 @@ It does this using a small render-prop-based API that exposes helpful transforms
 ```js
 import { BooleanValue } from 'react-values'
 
+const Toggle = ({ value, defaultValue, onChange }) => (
+  <BooleanValue value={value} defaultValue={defaultValue} onChange={onChange}>
+    {({ value: on, toggle }) => (
+      <Track on={on} onClick={toggle}>
+        <Thumb on={on} />
+      </Track>
+    )}
+  </BooleanValue>
+)
+
 const Track = styled.div`
   position: relative;
   height: 25px;
@@ -58,16 +68,6 @@ const Thumb = styled.div`
   background-color: white;
   border-radius: 50px;
 `
-
-const Toggle = ({ value, defaultValue, onChange }) => (
-  <BooleanValue value={value} defaultValue={defaultValue} onChange={onChange}>
-    {({ value: on, toggle }) => (
-      <Track on={on} onClick={toggle}>
-        <Thumb on={on} />
-      </Track>
-    )}
-  </BooleanValue>
-)
 ```
 
 <br/>
@@ -86,13 +86,15 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 ### Principles
 
-1. **Leverage render props.** It uses a render-prop-based API with children functions to expose its state, and to provide powerful transform functions that do the state management for you.
+1. **Leverage render props.** It uses a render-prop-based API, exposing its state and a handful of convenient transform functions to you with the flexible function-as-children pattern.
 
 2. **Follow React's conventions.** Its components follow React's own naming conventions, using familiar concepts like `value/defaultValue`. This makes it extremely easy to slot into existing codebases or frameworks.
 
-3. **Follow JavaScript's conventions.** It also leverages JavaScript's familiar, built-in methods like `push/pop`, `filter`, etc. so that it's not reinventing the wheel and forcing you to constantly re-read documentation.
+3. **Follow JavaScript's conventions.** It also leverages JavaScript's familiar, built-in methods like `setDate/setHours`, `push/pop`, `filter`, `concat`, etc. so that it's not reinventing the wheel and forcing you to constantly re-read documentation.
 
-4. **Be extremely lightweight.** It's extremely lightweight (and tree-shakeable), with most components weighing just a few hundred bytes, so you can even use it in public-facing components.
+4. **Be extremely lightweight.** It's extremely lightweight (and tree-shakeable), with most components weighing just a few hundred bytes, so you can even import it from public-facing component libraries.
+
+5. **Prioritize convenience.** It's designed to provide convenient functions like `increment/decrement`, `toggle`, and even smarter ones like `incrementDate`, `decrementMonth`, etc. so you can build complex interactions in just a few lines of code.
 
 <br/>
 
@@ -113,5 +115,13 @@ If you're using `react-values` for the first time, check out the [Getting Starte
 
 * [**Getting Started**](./docs/guide.md)
 * [**Reference**](./docs/reference.md)
+  * [`<AnyValue>`](./docs/reference.md#anyvalue)
+  * [`<ArrayValue>`](./docs/reference.md#arrayvalue)
+  * [`<BooleanValue>`](./docs/reference.md#booleanvalue)
+  * [`<DateValue>`](./docs/reference.md#datevalue)
+  * [`<MapValue>`](./docs/reference.md#mapvalue)
+  * [`<NumberValue>`](./docs/reference.md#numbervalue)
+  * [`<SetValue>`](./docs/reference.md#setvalue)
+  * [`<StringValue>`](./docs/reference.md#stringvalue)
 
 If even that's not enough, you can always [read the source itself](./src), which is very simple!

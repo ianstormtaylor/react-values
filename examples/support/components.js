@@ -1,14 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-export const Button = styled('span')`
-  cursor: pointer;
-  color: ${props =>
-    props.reversed
-      ? props.active ? 'white' : '#aaa'
-      : props.active ? 'black' : '#ccc'};
-`
-
 export const Icon = styled(({ className, ...rest }) => {
   return <span className={`material-icons ${className}`} {...rest} />
 })`
@@ -16,20 +8,30 @@ export const Icon = styled(({ className, ...rest }) => {
   vertical-align: text-bottom;
 `
 
-export const Menu = styled('div')`
-  & > * {
-    display: inline-block;
+export const Button = styled(({ icon, children, ...props }) => (
+  <button {...props}>
+    {icon ? (
+      <React.Fragment>
+        <Icon>{icon}</Icon> {children}
+      </React.Fragment>
+    ) : (
+      children
+    )}
+  </button>
+))`
+  appearance: none;
+  border: none;
+  background: transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+  color: gray;
+  font-size: 16px;
+
+  &:hover {
+    color: dodgerblue;
   }
 
-  & > * + * {
-    margin-left: 15px;
+  &:focus {
+    outline: none;
   }
-`
-
-export const Toolbar = styled(Menu)`
-  position: relative;
-  padding: 1px 18px 17px;
-  margin: 0 -20px;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 20px;
 `
