@@ -22,7 +22,7 @@
     <img src="https://img.shields.io/npm/dt/react-values.svg?maxAge=3600">
   </a>
   <a href="https://unpkg.com/react-values/dist/react-values.min.js">
-    <img src="https://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react-values">
+    <img src="https://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react--values">
   </a>
   <a href="https://travis-ci.org/ianstormtaylor/react-values">
     <img src="https://travis-ci.org/ianstormtaylor/react-values.svg?branch=master">
@@ -49,7 +49,7 @@ It does this using a small render-prop-based API that exposes helpful transforms
 * `Set` values provide native methods like `add`, `delete` and `clear`.
 * `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
 
-This saves you from constantly re-write state management logic, so you can keep your components focused on behavior and presentation.
+This saves you from constantly re-writing the same state management logic, so you can keep your components focused on behavior and presentation.
 
 For example, here's a `<Toggle>` implemented in just a few lines of code using a `<BooleanValue>`:
 
@@ -90,7 +90,7 @@ const Thumb = styled.div`
 
 While building an app with React, you end up building a lot of stateful components in the process. Whether at the UI kit level for things like toggles, tooltips, checkbox groups, dropdown, etc. Or at the app level for modals, popovers, sorting, filtering, etc.
 
-In the process, you end up re-implementing run of the mill state handling logic all over the place, using `this.setState` and `this.state`. And for your components to be nicely reusable across your application you end up writing them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you re-invent common transforms like `open`, `close`, `toggle`, `increment`, `decrement`, etc. in lots of different components. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
+In the process, you end up re-implementing run of the mill state handling logic all over the place—whether with `this.setState` or by building the same action creators over and over. And for your components to be nicely reusable across your application you augment them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you re-invent common transforms like `open`, `close`, `toggle`, `increment`, `decrement`, etc. in lots of different components. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
 
 In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places in slightly different ways. All while your app's bundle size gets larger and larger.
 
