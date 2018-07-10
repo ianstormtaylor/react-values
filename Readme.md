@@ -9,9 +9,9 @@
 <br/>
 
 <p align="center">
-  <a href="#why"><strong>Why?</strong></a> · 
-  <a href="#principles"><strong>Principles</strong></a> · 
-  <a href="#examples"><strong>Examples</strong></a> · 
+  <a href="#why"><strong>Why?</strong></a> ·
+  <a href="#principles"><strong>Principles</strong></a> ·
+  <a href="#examples"><strong>Examples</strong></a> ·
   <a href="http://docs.slatejs.org"><strong>Documentation</strong></a> ·
   <a href="http://docs.slatejs.org"><strong>Contributing!</strong></a>
 </p>
@@ -20,19 +20,19 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/react-values">
     <img src="https://img.shields.io/npm/dt/react-values.svg?maxAge=3600">
-  </a> 
+  </a>
   <a href="https://unpkg.com/react-values/dist/react-values.min.js">
     <img src="https://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react-values">
   </a>
   <a href="https://travis-ci.org/ianstormtaylor/react-values">
     <img src="https://travis-ci.org/ianstormtaylor/react-values.svg?branch=master">
-  </a> 
+  </a>
   <a href="./packages/react-values/package.json">
     <img src="https://img.shields.io/npm/v/react-values.svg?maxAge=3600&label=react-values&colorB=007ec6">
-  </a> 
+  </a>
   <a href="./License.md">
     <img src="https://img.shields.io/npm/l/react-values.svg?maxAge=3600">
-  </a> 
+  </a>
 </p>
 <br/>
 
@@ -103,8 +103,8 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 To get a sense for how you might use `react-values`, check out a few of the examples:
 
-* [**Basic Toggle**](./examples/toggle) — using a `Boolean` to create a simple toggle component.
-* [**Reusable Toggle**](./examples/toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
+* [**Basic Toggle**](./examples/basic-toggle.js) — using a `Boolean` to create a simple toggle component.
+* [**Reusable Toggle**](./examples/reusable-toggle.js) — showing how you might turn that toggle into a controlled component in your own UI kit.
 
 If you have an idea for an example that shows a common use case, pull request it!
 
