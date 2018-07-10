@@ -42,14 +42,6 @@ const TimePickerExample = props => (
             onClick={() => incrementHours(hours < 12 ? 12 : -12)}
           />
         </Column>
-        <Column>
-          <Text>
-            {value
-              .toLocaleString('en', { timeZoneName: 'short' })
-              .split(' ')
-              .pop()}
-          </Text>
-        </Column>
       </Container>
     )}
   </DateValue>
