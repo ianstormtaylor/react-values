@@ -62,11 +62,18 @@ describe('<AnyValue>', () => {
     assert.equal(fake.lastArg.value, 42)
   })
 
+  it('enabled', () => {
+    const fake = sinon.fake.returns(null)
+    Renderer.create(<AnyValue children={fake} />)
+    assert.equal(fake.lastArg.disabled, false)
+  })
+
   it('disabled', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<AnyValue children={fake} disabled />)
     const { callCount } = fake
     fake.lastArg.set(true)
+    assert.equal(fake.lastArg.disabled, true)
     assert.notEqual(fake.lastArg.value, true)
     assert.equal(fake.callCount, callCount)
   })
