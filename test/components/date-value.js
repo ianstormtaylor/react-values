@@ -13,6 +13,17 @@ describe('<DateValue>', () => {
     assert.deepEqual(actual, expected)
   })
 
+  it('transform(fn) clones', () => {
+    const fake = sinon.fake.returns(null)
+    const renderer = Renderer.create(<DateValue children={fake} />)
+    const value = new Date()
+    const instance = renderer.getInstance()
+    instance.transform(() => value)
+    instance.transform(() => value)
+    assert.deepEqual(instance.value, value)
+    assert.notEqual(instance.value, value)
+  })
+
   it('value', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<DateValue children={fake} value={new Date(0)} />)

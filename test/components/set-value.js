@@ -11,6 +11,17 @@ describe('<SetValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Set())
   })
 
+  it('transform(fn) clones', () => {
+    const fake = sinon.fake.returns(null)
+    const renderer = Renderer.create(<SetValue children={fake} />)
+    const value = new Set()
+    const instance = renderer.getInstance()
+    instance.transform(() => value)
+    instance.transform(() => value)
+    assert.deepEqual(instance.value, value)
+    assert.notEqual(instance.value, value)
+  })
+
   it('value', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<SetValue children={fake} value={new Set([1])} />)

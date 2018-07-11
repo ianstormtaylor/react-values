@@ -17,10 +17,11 @@ class AnyValue extends React.Component {
     return state.controlled ? props.value : state.value
   }
 
-  transform = fn => {
+  transform(fn) {
     this.setState(
       existing => {
-        const next = fn(existing.value)
+        let next = fn(existing.value)
+        if (next === existing.value) next = this.clone(next)
         return { value: next }
       },
       () => {
@@ -39,16 +40,20 @@ class AnyValue extends React.Component {
     }
   }
 
+  clone(value) {
+    return value
+  }
+
   set = next => {
     this.transform(v => (typeof next === 'function' ? next(v) : next))
   }
 
   reset = () => {
-    this.transform(() => this.state.initial)
+    this.transform(() => this.clone(this.state.initial))
   }
 
   clear = () => {
-    this.transform(() => this.state.empty)
+    this.transform(() => this.clone(this.state.empty))
   }
 
   states = ['value']

@@ -5,6 +5,10 @@ class ArrayValue extends AnyValue {
     super(...args, [])
   }
 
+  clone(value) {
+    return value.slice()
+  }
+
   get first() {
     return this.value[0]
   }
@@ -14,13 +18,13 @@ class ArrayValue extends AnyValue {
   }
 
   concat = this.proxy('concat')
-  fill = this.proxy('fill')
+  fill = this.proxy('fill', true)
   filter = this.proxy('filter')
   flat = this.proxy('flat')
   flatMap = this.proxy('flatMap')
   map = this.proxy('map')
-  reverse = this.proxy('reverse')
-  sort = this.proxy('sort')
+  reverse = this.proxy('reverse', true)
+  sort = this.proxy('sort', true)
   slice = this.proxy('slice')
   push = this.proxy('push', true)
   pop = this.proxy('pop', true)

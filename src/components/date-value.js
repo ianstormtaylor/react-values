@@ -5,6 +5,10 @@ class DateValue extends AnyValue {
     super(...args, new Date())
   }
 
+  clone(value) {
+    return new Date(value.getTime())
+  }
+
   get date() {
     return this.value.getDate()
   }

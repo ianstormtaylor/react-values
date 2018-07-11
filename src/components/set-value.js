@@ -5,6 +5,10 @@ class SetValue extends AnyValue {
     super(...args, new Set())
   }
 
+  clone(value) {
+    return new Set(value)
+  }
+
   add = this.proxy('add')
   remove = this.proxy('delete', true)
   delete = this.proxy('delete', true)

@@ -11,6 +11,17 @@ describe('<MapValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Map())
   })
 
+  it('transform(fn) clones', () => {
+    const fake = sinon.fake.returns(null)
+    const renderer = Renderer.create(<MapValue children={fake} />)
+    const value = new Map()
+    const instance = renderer.getInstance()
+    instance.transform(() => value)
+    instance.transform(() => value)
+    assert.deepEqual(instance.value, value)
+    assert.notEqual(instance.value, value)
+  })
+
   it('value', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<MapValue children={fake} value={new Map([['a', 1]])} />)
@@ -38,10 +49,9 @@ describe('<MapValue>', () => {
 
   it('reset()', () => {
     const fake = sinon.fake.returns(null)
+    const initial = new Map([['a', 1]])
 
-    Renderer.create(
-      <MapValue children={fake} defaultValue={new Map([['a', 1]])} />
-    )
+    Renderer.create(<MapValue children={fake} defaultValue={initial} />)
 
     fake.lastArg.set(new Map([['b', 2]]))
     fake.lastArg.reset()
