@@ -54,19 +54,11 @@ class AnyValue extends React.Component {
   }
 
   reset = () => {
-    this.transform(() => {
-      const { initial } = this.state
-      const next = this.clone ? this.clone(initial) : initial
-      return next
-    })
+    this.transform(() => this.clone(this.state.initial))
   }
 
   clear = () => {
-    this.transform(() => {
-      const { empty } = this.state
-      const next = this.clone ? this.clone(empty) : empty
-      return next
-    })
+    this.transform(() => this.clone(this.state.empty))
   }
 
   states = ['value']
