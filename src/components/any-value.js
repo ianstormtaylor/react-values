@@ -78,11 +78,11 @@ class AnyValue extends React.Component {
 
   render() {
     const { props, transforms, computeds, value } = this
-    const { children, render } = props
+    const { children, render, disabled = false } = props
     const fn = children || render
     if (fn === null) return null
 
-    const renderProps = { value, ...transforms }
+    const renderProps = { value, disabled, ...transforms }
 
     for (const key in computeds) {
       renderProps[key] = computeds[key]()
