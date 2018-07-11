@@ -30,9 +30,6 @@
   <a href="./packages/react-values/package.json">
     <img src="https://img.shields.io/npm/v/react-values.svg?maxAge=3600&label=react-values&colorB=007ec6">
   </a>
-  <a href="./License.md">
-    <img src="https://img.shields.io/npm/l/react-values.svg?maxAge=3600">
-  </a>
 </p>
 <br/>
 
