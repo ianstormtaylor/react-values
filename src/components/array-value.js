@@ -1,35 +1,53 @@
-import React from 'react'
-
 import AnyValue from './any-value'
-import defaults from '../utils/defaults'
-import proxy from '../utils/proxy'
-import render from '../utils/render'
 
-const ArrayValue = props => (
-  <AnyValue {...props} {...defaults(props, [])}>
-    {value =>
-      render(props, {
-        ...value,
-        first: value.value[0],
-        last: value.value[Math.max(0, value.value.length - 1)],
-        clear: () => value.set([]),
-        concat: proxy(value, 'concat'),
-        fill: proxy(value, 'fill'),
-        filter: proxy(value, 'filter'),
-        flat: proxy(value, 'flat'),
-        flatMap: proxy(value, 'flatMap'),
-        map: proxy(value, 'map'),
-        reverse: proxy(value, 'reverse'),
-        sort: proxy(value, 'sort'),
-        slice: proxy(value, 'slice'),
-        push: proxy(value, 'push', true),
-        pop: proxy(value, 'pop', true),
-        shift: proxy(value, 'shift', true),
-        unshift: proxy(value, 'unshift', true),
-        splice: proxy(value, 'splice', true),
-      })
-    }
-  </AnyValue>
-)
+class ArrayValue extends AnyValue {
+  constructor(...args) {
+    super(...args, [])
+  }
+
+  get first() {
+    return this.value[0]
+  }
+
+  get last() {
+    return this.value[Math.max(0, this.value.length - 1)]
+  }
+
+  concat = this.proxy('concat')
+  fill = this.proxy('fill')
+  filter = this.proxy('filter')
+  flat = this.proxy('flat')
+  flatMap = this.proxy('flatMap')
+  map = this.proxy('map')
+  reverse = this.proxy('reverse')
+  sort = this.proxy('sort')
+  slice = this.proxy('slice')
+  push = this.proxy('push', true)
+  pop = this.proxy('pop', true)
+  shift = this.proxy('shift', true)
+  unshift = this.proxy('unshift', true)
+  splice = this.proxy('splice', true)
+
+  states = ['value', 'first', 'last']
+  transforms = [
+    'set',
+    'reset',
+    'clear',
+    'concat',
+    'fill',
+    'filter',
+    'flat',
+    'flatMap',
+    'map',
+    'reverse',
+    'sort',
+    'slice',
+    'push',
+    'pop',
+    'shift',
+    'unshift',
+    'splice',
+  ]
+}
 
 export default ArrayValue

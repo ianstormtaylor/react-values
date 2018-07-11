@@ -1,88 +1,108 @@
-import React from 'react'
-
 import AnyValue from './any-value'
-import defaults from '../utils/defaults'
-import proxy from '../utils/proxy'
-import render from '../utils/render'
 
-const DateValue = props => (
-  <AnyValue {...props} {...defaults(props, new Date())}>
-    {value => {
-      const d = value.value
-      const date = d.getDate()
-      const hours = d.getHours()
-      const milliseconds = d.getMilliseconds()
-      const minutes = d.getMinutes()
-      const month = d.getMonth()
-      const seconds = d.getSeconds()
-      const year = d.getFullYear()
+class DateValue extends AnyValue {
+  constructor(...args) {
+    super(...args, new Date())
+  }
 
-      const setDate = proxy(value, 'setDate', true)
-      const setHours = proxy(value, 'setHours', true)
-      const setMilliseconds = proxy(value, 'setMilliseconds', true)
-      const setMinutes = proxy(value, 'setMinutes', true)
-      const setMonth = m => value.set(v => setMonthHelper(v, m))
-      const setSeconds = proxy(value, 'setSeconds', true)
-      const setYear = proxy(value, 'setFullYear', true)
+  get date() {
+    return this.value.getDate()
+  }
 
-      const incrementDate = (n = 1) =>
-        value.set(v => {
-          v.setDate(date + n)
-          return v
-        })
-      const incrementHours = (n = 1) => incrementMinutes(n * 60)
-      const incrementMilliseconds = (n = 1) =>
-        value.set(v => new Date(v.getTime() + n))
-      const incrementMinutes = (n = 1) => incrementSeconds(n * 60)
-      const incrementMonth = (n = 1) => value.set(v => addMonthsHelper(v, n))
-      const incrementSeconds = (n = 1) => incrementMilliseconds(n * 1000)
-      const incrementYear = (n = 1) => incrementMonth(n * 12)
+  get hours() {
+    return this.value.getHours()
+  }
 
-      return render(props, {
-        ...value,
-        clear: () => value.set(new Date()),
+  get milliseconds() {
+    return this.value.getMilliseconds()
+  }
 
-        date,
-        hours,
-        milliseconds,
-        minutes,
-        month,
-        seconds,
-        year,
+  get minutes() {
+    return this.value.getMinutes()
+  }
 
-        setDate,
-        setHours,
-        setMilliseconds,
-        setMinutes,
-        setMonth,
-        setSeconds,
-        setYear,
+  get month() {
+    return this.value.getMonth()
+  }
 
-        incrementDate,
-        incrementHours,
-        incrementMilliseconds,
-        incrementMinutes,
-        incrementMonth,
-        incrementSeconds,
-        incrementYear,
+  get seconds() {
+    return this.value.getSeconds()
+  }
 
-        decrementDate: (n = 1) => incrementDate(0 - n),
-        decrementHours: (n = 1) => incrementHours(0 - n),
-        decrementMilliseconds: (n = 1) => incrementMilliseconds(0 - n),
-        decrementMinutes: (n = 1) => incrementMinutes(0 - n),
-        decrementMonth: (n = 1) => incrementMonth(0 - n),
-        decrementSeconds: (n = 1) => incrementSeconds(0 - n),
-        decrementYear: (n = 1) => incrementYear(0 - n),
+  get year() {
+    return this.value.getFullYear()
+  }
 
-        // Provide the years as `*FullYear` as well, since the native JavaScript
-        // APIs are named like that for backwards compatibility.
-        setFullYear: setYear,
-        incrementFullYear: incrementYear,
-        decrementFullYear: (n = 1) => incrementYear(0 - n),
-      })
-    }}
-  </AnyValue>
-)
+  setDate = this.proxy('setDate', true)
+  setHours = this.proxy('setHours', true)
+  setMilliseconds = this.proxy('setMilliseconds', true)
+  setMinutes = this.proxy('setMinutes', true)
+  setMonth = m => this.transform(v => setMonthHelper(v, m))
+  setSeconds = this.proxy('setSeconds', true)
+  setYear = this.proxy('setFullYear', true)
+  setFullYear = (...args) => this.setYear(...args)
+
+  incrementDate = (n = 1) =>
+    this.transform(v => {
+      v.setDate(this.date + n)
+      return v
+    })
+  incrementHours = (n = 1) => this.incrementMinutes(n * 60)
+  incrementMilliseconds = (n = 1) =>
+    this.transform(v => new Date(v.getTime() + n))
+  incrementMinutes = (n = 1) => this.incrementSeconds(n * 60)
+  incrementMonth = (n = 1) => this.transform(v => incrementMonthHelper(v, n))
+  incrementSeconds = (n = 1) => this.incrementMilliseconds(n * 1000)
+  incrementYear = (n = 1) => this.incrementMonth(n * 12)
+  incrementFullYear = (...args) => this.incrementYear(...args)
+
+  decrementDate = (n = 1) => this.incrementDate(0 - n)
+  decrementHours = (n = 1) => this.incrementHours(0 - n)
+  decrementMilliseconds = (n = 1) => this.incrementMilliseconds(0 - n)
+  decrementMinutes = (n = 1) => this.incrementMinutes(0 - n)
+  decrementMonth = (n = 1) => this.incrementMonth(0 - n)
+  decrementSeconds = (n = 1) => this.incrementSeconds(0 - n)
+  decrementYear = (n = 1) => this.incrementYear(0 - n)
+  decrementFullYear = (...args) => this.decrementYear(...args)
+
+  states = [
+    'value',
+    'date',
+    'hours',
+    'milliseconds',
+    'minutes',
+    'month',
+    'seconds',
+    'year',
+  ]
+
+  transforms = [
+    'set',
+    'reset',
+    'clear',
+    'decrementDate',
+    'decrementHours',
+    'decrementMilliseconds',
+    'decrementMinutes',
+    'decrementMonth',
+    'decrementSeconds',
+    'decrementYear',
+    'incrementDate',
+    'incrementHours',
+    'incrementMilliseconds',
+    'incrementMinutes',
+    'incrementMonth',
+    'incrementSeconds',
+    'incrementYear',
+    'setDate',
+    'setHours',
+    'setMilliseconds',
+    'setMinutes',
+    'setMonth',
+    'setSeconds',
+    'setYear',
+  ]
+}
 
 function setMonthHelper(date, month) {
   const year = date.getFullYear()
@@ -95,7 +115,7 @@ function setMonthHelper(date, month) {
   return date
 }
 
-function addMonthsHelper(date, amount) {
+function incrementMonthHelper(date, amount) {
   const year = date.getFullYear()
   const desiredMonth = date.getMonth() + amount
   const desired = new Date(0)

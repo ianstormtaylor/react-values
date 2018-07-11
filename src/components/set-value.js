@@ -1,26 +1,21 @@
-import React from 'react'
-
 import AnyValue from './any-value'
-import defaults from '../utils/defaults'
-import proxy from '../utils/proxy'
-import render from '../utils/render'
 
-const SetValue = props => (
-  <AnyValue {...props} {...defaults(props, new Set())}>
-    {value => {
-      const add = proxy(value, 'add')
-      const remove = proxy(value, 'delete', true)
-      const clear = proxy(value, 'clear', true)
-      return render(props, {
-        ...value,
-        add,
-        remove,
-        delete: remove,
-        clear,
-        toggle: (val, boolean) => (boolean ? add(val) : remove(val)),
-      })
-    }}
-  </AnyValue>
-)
+class SetValue extends AnyValue {
+  constructor(...args) {
+    super(...args, new Set())
+  }
+
+  add = this.proxy('add')
+  remove = this.proxy('delete', true)
+  delete = this.proxy('delete', true)
+  clear = this.proxy('clear', true)
+
+  toggle = (val, boolean) => {
+    const method = boolean ? 'add' : 'remove'
+    this[method](val)
+  }
+
+  transforms = ['set', 'reset', 'clear', 'add', 'remove', 'delete', 'toggle']
+}
 
 export default SetValue
