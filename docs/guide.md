@@ -6,6 +6,7 @@
 * [Observing Changes](#observing-changes)
 * [Setting Defaults](#settings-defaults)
 * [Controlled vs. Uncontrolled](#controlled-vs-uncontrolled)
+* [Disabling Components](#disabling-components)
 * [Spreading Props](#spreading-props)
 
 ## Installing `react-values`
@@ -22,7 +23,7 @@ npm install --save react-values
 
 You can then import any of its helpers into your code base:
 
-```js
+```jsx
 import { BooleanValue, NumberValue } from 'react-values'
 ```
 
@@ -40,7 +41,7 @@ With `react-values` installed, now you can start building components with it. Fo
 
 To start, setup an non-interactive toggle component with some styles:
 
-```js
+```jsx
 import React from 'react'
 import styled from 'react-emotion'
 
@@ -74,7 +75,7 @@ const Toggle = () => (
 
 Which you can render like so:
 
-```js
+```jsx
 <Toggle />
 ```
 
@@ -84,7 +85,7 @@ This works, but the toggle is not interactive. It has no way of managing any sta
 
 To make it stateful, lets use a `<BooleanValue>` helper from `react-values`:
 
-```js
+```jsx
 import { BooleanValue } from 'react-values'
 
 const Toggle = () => (
@@ -112,7 +113,7 @@ But we're not done yet... There is no way to observe the toggle as it changes, s
 
 To observe the toggle's state, you can pass in an `onChange` prop to the `<BooleanValue>`:
 
-```js
+```jsx
 const Toggle = ({ onChange }) => (
   <BooleanValue onChange={onChange}>
     {({ value, toggle }) => (
@@ -126,7 +127,7 @@ const Toggle = ({ onChange }) => (
 
 Now you can listen for changes to the toggle by passing in an `onChange` handler:
 
-```js
+```jsx
 <Toggle onChange={value => ...} />
 ```
 
@@ -136,7 +137,7 @@ If you want to share this component with others, they might ask you to be able t
 
 To do this, use the `defaultValue` prop:
 
-```js
+```jsx
 const Toggle = ({ defaultValue, onChange }) => (
   <BooleanValue defaultValue={defaultValue} onChange={onChange}>
     {({ value, toggle }) => (
@@ -150,7 +151,7 @@ const Toggle = ({ defaultValue, onChange }) => (
 
 That way people can do:
 
-```js
+```jsx
 <Toggle
   defaultValue={true}
   onChange={value => ...}
@@ -163,7 +164,7 @@ But wait! What if someone wants to use the toggle in a "controlled" manner, just
 
 To do that, you can use the `value` prop:
 
-```js
+```jsx
 const Toggle = ({ value, defaultValue, onChange }) => (
   <BooleanValue value={value} defaultValue={defaultValue} onChange={onChange}>
     {({ value, toggle }) => (
@@ -177,7 +178,7 @@ const Toggle = ({ value, defaultValue, onChange }) => (
 
 Now anyone who renders the toggle can choose whether they want to use it in a "controlled" manner or an "uncontrolled" manner, by passing either a `value` or a `defaultValue`:
 
-```js
+```jsx
 <Toggle
   value={true}
   onChange={value => ...}
@@ -189,11 +190,37 @@ Now anyone who renders the toggle can choose whether they want to use it in a "c
 />
 ```
 
+## Disabling Components
+
+You can also pass in a `disabled` prop to disable the value helper. This will make it so that it ignores any state changes, just like how React's native `<input>` and `<select>` components do.
+
+```jsx
+const Toggle = ({ value, defaultValue, onChange }) => (
+  <BooleanValue value={value} defaultValue={defaultValue} onChange={onChange}>
+    {({ value, toggle }) => (
+      <Track on={value} onClick={toggle}>
+        <Thumb on={value} />
+      </Track>
+    )}
+  </BooleanValue>
+)
+```
+
+Then anyone can disable the component with:
+
+```jsx
+<Toggle
+  value={true}
+  disabled={true}
+  onChange={value => ...}
+/>
+```
+
 ## Spreading Props
 
 One final change, just for simplicity's sake. You'll notice how we were passing the props in explicitly, but to make your code even simpler you can just spread them directly onto the `<BooleanValue>` instead:
 
-```js
+```jsx
 const Toggle = props => (
   <BooleanValue {...props}>
     {({ value, toggle }) => (
