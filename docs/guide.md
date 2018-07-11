@@ -196,7 +196,12 @@ You can also pass in a `disabled` prop to disable the value helper. This will ma
 
 ```jsx
 const Toggle = ({ value, defaultValue, disabled, onChange }) => (
-  <BooleanValue value={value} defaultValue={defaultValue} disabled={disabled} onChange={onChange}>
+  <BooleanValue
+    value={value}
+    defaultValue={defaultValue}
+    disabled={disabled}
+    onChange={onChange}
+  >
     {({ value, toggle }) => (
       <Track on={value} onClick={toggle}>
         <Thumb on={value} />
