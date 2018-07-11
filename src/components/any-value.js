@@ -3,13 +3,13 @@ import React from 'react'
 import render from '../utils/render'
 
 class AnyValue extends React.Component {
-  constructor(props) {
+  constructor(props, context, empty) {
     super(props)
-    let initial
+    let initial = empty
     if (props.defaultValue !== undefined) initial = props.defaultValue
     if (props.value !== undefined) initial = props.value
     const controlled = props.value !== undefined
-    this.state = { controlled, initial, value: initial }
+    this.state = { controlled, empty, initial, value: initial }
   }
 
   get value() {
@@ -30,6 +30,15 @@ class AnyValue extends React.Component {
     )
   }
 
+  proxy(method, mutates) {
+    return (...args) => {
+      this.transform(v => {
+        const ret = v[method](...args)
+        return mutates ? v : ret
+      })
+    }
+  }
+
   set = next => {
     this.transform(v => (typeof next === 'function' ? next(v) : next))
   }
@@ -39,12 +48,17 @@ class AnyValue extends React.Component {
   }
 
   clear = () => {
-    this.set()
+    this.transform(() => this.state.empty)
   }
 
+  states = ['value']
+  transforms = ['set', 'reset', 'clear']
+
   render() {
-    const { set, reset, clear, props, value } = this
-    return render(props, { value, set, reset, clear })
+    const obj = {}
+    this.states.forEach(state => (obj[state] = this[state]))
+    this.transforms.forEach(transform => (obj[transform] = this[transform]))
+    return render(this.props, obj)
   }
 }
 

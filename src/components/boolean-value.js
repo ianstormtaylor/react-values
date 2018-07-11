@@ -1,19 +1,19 @@
-import React from 'react'
-
 import AnyValue from './any-value'
-import defaults from '../utils/defaults'
-import render from '../utils/render'
 
-const BooleanValue = props => (
-  <AnyValue {...props} {...defaults(props, false)}>
-    {value =>
-      render(props, {
-        ...value,
-        clear: () => value.set(false),
-        toggle: () => value.set(v => !v),
-      })
-    }
-  </AnyValue>
-)
+class BooleanValue extends AnyValue {
+  constructor(props, context) {
+    super(props, context, false)
+  }
+
+  clear = () => {
+    this.set(false)
+  }
+
+  toggle = () => {
+    this.transform(v => !v)
+  }
+
+  transforms = ['set', 'reset', 'clear', 'toggle']
+}
 
 export default BooleanValue

@@ -1,33 +1,44 @@
-import React from 'react'
-
 import AnyValue from './any-value'
-import defaults from '../utils/defaults'
-import proxy from '../utils/proxy'
-import render from '../utils/render'
 
-const ArrayValue = props => (
-  <AnyValue {...props} {...defaults(props, [])}>
-    {value =>
-      render(props, {
-        ...value,
-        clear: () => value.set(''),
-        concat: proxy(value, 'concat'),
-        normalize: proxy(value, 'normalize'),
-        padEnd: proxy(value, 'padEnd'),
-        padStart: proxy(value, 'padStart'),
-        repeat: proxy(value, 'repeat'),
-        replace: proxy(value, 'replace'),
-        slice: proxy(value, 'slice'),
-        substr: proxy(value, 'substr'),
-        substring: proxy(value, 'substring'),
-        toLowerCase: proxy(value, 'toLowerCase'),
-        toUpperCase: proxy(value, 'toUpperCase'),
-        trim: proxy(value, 'trim'),
-        trimEnd: proxy(value, 'trimEnd'),
-        trimStart: proxy(value, 'trimStart'),
-      })
-    }
-  </AnyValue>
-)
+class StringValue extends AnyValue {
+  constructor(...args) {
+    super(...args, '')
+  }
 
-export default ArrayValue
+  concat = this.proxy('concat')
+  normalize = this.proxy('normalize')
+  padEnd = this.proxy('padEnd')
+  padStart = this.proxy('padStart')
+  repeat = this.proxy('repeat')
+  replace = this.proxy('replace')
+  slice = this.proxy('slice')
+  substr = this.proxy('substr')
+  substring = this.proxy('substring')
+  toLowerCase = this.proxy('toLowerCase')
+  toUpperCase = this.proxy('toUpperCase')
+  trim = this.proxy('trim')
+  trimEnd = this.proxy('trimEnd')
+  trimStart = this.proxy('trimStart')
+
+  transforms = [
+    'set',
+    'reset',
+    'clear',
+    'concat',
+    'normalize',
+    'padEnd',
+    'padStart',
+    'repeat',
+    'replace',
+    'slice',
+    'substr',
+    'substring',
+    'toLowerCase',
+    'toUpperCase',
+    'trim',
+    'trimEnd',
+    'trimStart',
+  ]
+}
+
+export default StringValue
