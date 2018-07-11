@@ -151,7 +151,13 @@ If you're using `react-values` for the first time, check out the [Getting Starte
   * [`<SetValue>`](./docs/reference.md#setvalue)
   * [`<StringValue>`](./docs/reference.md#stringvalue)
 
-If even that's not enough, you can always [read the source itself](./src), which is very simple!
+If even that's not enough, you can always [read the source itself](./src).
+
+There are also translations of the documentation into other languages:
+
+* [中文 (Chinese)](https://github.com/chinanf-boy/react-values-zh)
+
+If you're maintaining a translation, feel free to pull request it here!
 
 <br/>
 
