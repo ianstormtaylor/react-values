@@ -195,8 +195,8 @@ Now anyone who renders the toggle can choose whether they want to use it in a "c
 You can also pass in a `disabled` prop to disable the value helper. This will make it so that it ignores any state changes, just like how React's native `<input>` and `<select>` components do.
 
 ```jsx
-const Toggle = ({ value, defaultValue, onChange }) => (
-  <BooleanValue value={value} defaultValue={defaultValue} onChange={onChange}>
+const Toggle = ({ value, defaultValue, disabled, onChange }) => (
+  <BooleanValue value={value} defaultValue={defaultValue} disabled={disabled} onChange={onChange}>
     {({ value, toggle }) => (
       <Track on={value} onClick={toggle}>
         <Thumb on={value} />
