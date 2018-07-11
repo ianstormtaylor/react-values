@@ -17,11 +17,12 @@ The `<AnyValue>` component is the most generic component exposed by `react-value
 
 It takes either a `value` or `defaultValue` and an `onChange` handler. Depending on whether you pass it `value` or `defaultValue` it will either be "controlled" or "uncontrolled", respectively.
 
-```js
+```jsx
 <AnyValue
   value={Any|undefined}
   defaultValue={Any|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -33,6 +34,13 @@ It takes either a `value` or `defaultValue` and an `onChange` handler. Depending
   )}
 </AnyValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                    | Description                                                 |
 | ----------- | ----------------------- | ----------------------------------------------------------- |
@@ -47,11 +55,12 @@ It takes either a `value` or `defaultValue` and an `onChange` handler. Depending
 
 A value for an `Array`.
 
-```js
+```jsx
 <ArrayValue
   value={Array|undefined}
   defaultValue={Array|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -74,6 +83,13 @@ A value for an `Array`.
   )}
 </ArrayValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                                          | Description                                                                                                              |
 | ----------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -104,11 +120,12 @@ A value for an `Array`.
 
 A value for a `Boolean`.
 
-```js
+```jsx
 <BooleanValue
   value={Boolean|undefined}
   defaultValue={Boolean|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -121,6 +138,13 @@ A value for a `Boolean`.
   )}
 </BooleanValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                      | Description                                                 |
 | ----------- | ------------------------- | ----------------------------------------------------------- |
@@ -136,11 +160,12 @@ A value for a `Boolean`.
 
 A value for a `Date`.
 
-```js
+```jsx
 <DateValue
   value={Date|undefined}
   defaultValue={Date|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -180,6 +205,13 @@ A value for a `Date`.
   )}
 </DateValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop             | Type                                      | Description                                                                                                                                              |
 | ----------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -222,11 +254,12 @@ A value for a `Date`.
 
 A value for a `Map`.
 
-```js
+```jsx
 <MapValue
   value={Map|undefined}
   defaultValue={Map|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -240,6 +273,13 @@ A value for a `Map`.
   )}
 </MapValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                                       | Description                                                                                                                                          |
 | ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -256,11 +296,12 @@ A value for a `Map`.
 
 A value for a `Number`.
 
-```js
+```jsx
 <NumberValue
   value={Number|undefined}
   defaultValue={Number|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -273,6 +314,13 @@ A value for a `Number`.
   )}
 </NumberValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                          | Description                                                 |
 | ----------- | ----------------------------- | ----------------------------------------------------------- |
@@ -289,11 +337,12 @@ A value for a `Number`.
 
 A value for a `Set`.
 
-```js
+```jsx
 <SetValue
   value={Set|undefined}
   defaultValue={Set|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -309,6 +358,13 @@ A value for a `Set`.
   )}
 </SetValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop | Type                                | Description                                                                                                                                          |
 | ----------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -327,11 +383,12 @@ A value for a `Set`.
 
 A value for a `String`.
 
-```js
+```jsx
 <StringValue
   value={String|undefined}
   defaultValue={String|undefined}
   onChange={Function}
+  disabled={Boolean}
 >
   {({
     value,
@@ -356,6 +413,13 @@ A value for a `String`.
   )}
 </StringValue>
 ```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
 
 | Render Prop   | Type                            | Description                                                                                                                        |
 | ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |

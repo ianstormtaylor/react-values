@@ -27,7 +27,8 @@ class AnyValue extends React.Component {
   }
 
   transform(fn, options) {
-    const { value, onChange } = this.props
+    const { disabled, value, onChange } = this.props
+    if (disabled) return
 
     if (this.state.controlled) {
       const next = this.apply(value, fn, options)
