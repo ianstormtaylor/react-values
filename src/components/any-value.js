@@ -1,15 +1,20 @@
 import React from 'react'
 
-import render from '../utils/render'
-
 class AnyValue extends React.Component {
   constructor(props, context, empty) {
     super(props)
+    const controlled = props.value !== undefined
     let initial = empty
     if (props.defaultValue !== undefined) initial = props.defaultValue
     if (props.value !== undefined) initial = props.value
-    const controlled = props.value !== undefined
-    this.state = { controlled, empty, initial, value: initial }
+
+    this.state = { controlled, value: initial }
+    this.transforms = {}
+    this.computeds = {}
+
+    this.define('set', (v, next) => next)
+    this.define('reset', () => this.clone(initial))
+    this.define('clear', () => this.clone(empty))
   }
 
   get value() {
@@ -21,54 +26,69 @@ class AnyValue extends React.Component {
     return value
   }
 
-  transform(fn, options = {}) {
-    const { mutate = false } = options
+  transform(fn, options) {
+    const { value, onChange } = this.props
 
-    this.setState(
-      existing => {
-        const current = mutate ? this.clone(existing.value) : existing.value
-        const next = fn(current)
-        return { value: next }
-      },
-      () => {
-        const { onChange } = this.props
-        if (onChange) onChange(this.state.value)
-      }
-    )
-  }
-
-  proxy(method, mutate) {
-    return (...args) => {
-      this.transform(
-        v => {
-          const ret = v[method](...args)
-          return mutate ? v : ret
+    if (this.state.controlled) {
+      const next = this.apply(value, fn, options)
+      if (onChange) onChange(next)
+    } else {
+      this.setState(
+        existing => {
+          const next = this.apply(existing.value, fn, options)
+          return { value: next }
         },
-        { mutate }
+        () => {
+          if (onChange) onChange(this.state.value)
+        }
       )
     }
   }
 
-  set = next => {
-    this.transform(v => (typeof next === 'function' ? next(v) : next))
+  apply(value, fn, options = {}) {
+    const { mutates = false } = options
+    const current = mutates ? this.clone(value) : value
+    const next = typeof fn === 'function' ? fn(current) : fn
+    return next
   }
 
-  reset = () => {
-    this.transform(() => this.clone(this.state.initial))
+  define(name, fn, options) {
+    this.transforms[name] = (...args) => {
+      this.transform(v => fn(v, ...args), options)
+    }
   }
 
-  clear = () => {
-    this.transform(() => this.clone(this.state.empty))
+  compute(name, fn) {
+    this.computeds[name] = () => fn(this.value)
   }
 
-  states = ['value']
-  transforms = ['set', 'reset', 'clear']
+  proxy(method, options = {}) {
+    const { alias = method, mutates = false } = options
+
+    this.define(
+      alias,
+      (v, ...args) => {
+        const ret = v[method](...args)
+        return mutates ? v : ret
+      },
+      options
+    )
+  }
 
   render() {
-    const obj = {}
-    this.states.forEach(state => (obj[state] = this[state]))
-    this.transforms.forEach(transform => (obj[transform] = this[transform]))
-    return render(this.props, obj)
+    const { props, transforms, computeds, value } = this
+    const { children, render } = props
+    const fn = children || render
+    if (fn === null) return null
+
+    const renderProps = { value, ...transforms }
+
+    for (const key in computeds) {
+      renderProps[key] = computeds[key]()
+    }
+
+    const ret = typeof fn === 'function' ? fn(renderProps) : fn
+    return ret
   }
 }
 
