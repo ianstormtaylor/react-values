@@ -36,7 +36,7 @@ It does this using a small render-prop-based API that exposes helpful transforms
 * `Boolean` values provide `toggle`, which we've all re-implemented 100 times.
 * `Date` values provide really helpful transforms like `setHours` and `incrementMonth`.
 * `Map` values provide native methods like `set`, `delete` and `clear`.
-* `Number` values provide `increment` and `decrement`, which have also be re-written in every codebase ever.
+* `Number` values provide `increment` and `decrement`, which have also been re-written in every codebase ever.
 * `Set` values provide native methods like `add`, `delete` and `clear`.
 * `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
 
