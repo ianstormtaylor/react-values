@@ -32,20 +32,26 @@ describe('<SetValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Set([2]))
   })
 
-  it('reset()', () => {
+  it('reset() (mutates)', () => {
     const fake = sinon.fake.returns(null)
-    Renderer.create(<SetValue children={fake} defaultValue={new Set([1])} />)
+    const initial = new Set([1])
+    Renderer.create(<SetValue children={fake} defaultValue={initial} />)
     fake.lastArg.set(new Set([2]))
     fake.lastArg.reset()
-    assert.deepEqual(fake.lastArg.value, new Set([1]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Set([1]))
+    assert.notEqual(value, initial)
   })
 
-  it('clear()', () => {
+  it('clear() (mutates)', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<SetValue children={fake} defaultValue={new Set([1])} />)
     fake.lastArg.set(new Set([2]))
+    const previous = fake.lastArg.value
     fake.lastArg.clear()
-    assert.deepEqual(fake.lastArg.value, new Set())
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Set())
+    assert.notEqual(value, previous)
   })
 
   it('add(val)', () => {
@@ -55,18 +61,24 @@ describe('<SetValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Set([2]))
   })
 
-  it('delete(val)', () => {
+  it('delete(val) (mutates)', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<SetValue children={fake} defaultValue={new Set([1, 2])} />)
+    const previous = fake.lastArg.value
     fake.lastArg.delete(1)
-    assert.deepEqual(fake.lastArg.value, new Set([2]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Set([2]))
+    assert.notEqual(value, previous)
   })
 
-  it('remove(val) (alias)', () => {
+  it('remove(val) (alias) (mutates)', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<SetValue children={fake} defaultValue={new Set([1, 2])} />)
+    const previous = fake.lastArg.value
     fake.lastArg.remove(1)
-    assert.deepEqual(fake.lastArg.value, new Set([2]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Set([2]))
+    assert.notEqual(value, previous)
   })
 
   it('toggle(val, boolean)', () => {

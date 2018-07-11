@@ -143,7 +143,7 @@ describe('<DateValue>', () => {
     assert.deepEqual(fake.lastArg.milliseconds, 293)
   })
 
-  it('setYear(n)', () => {
+  it('setYear(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -153,8 +153,11 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setYear(1999)
-    assert.deepEqual(fake.lastArg.value, new Date('1999-12-20T13:42:21'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('1999-12-20T13:42:21'))
+    assert.notEqual(value, previous)
   })
 
   it('setMonth(n)', () => {
@@ -185,7 +188,7 @@ describe('<DateValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Date('2000-02-29T13:42:21'))
   })
 
-  it('setDate(n)', () => {
+  it('setDate(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -195,11 +198,14 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setDate(10)
-    assert.deepEqual(fake.lastArg.value, new Date('2000-12-10T13:42:21'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('2000-12-10T13:42:21'))
+    assert.notEqual(value, previous)
   })
 
-  it('setHours(n)', () => {
+  it('setHours(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -209,11 +215,14 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setHours(10)
-    assert.deepEqual(fake.lastArg.value, new Date('2000-12-20T10:42:21'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('2000-12-20T10:42:21'))
+    assert.notEqual(value, previous)
   })
 
-  it('setMinutes(n)', () => {
+  it('setMinutes(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -223,11 +232,14 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setMinutes(10)
-    assert.deepEqual(fake.lastArg.value, new Date('2000-12-20T13:10:21'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('2000-12-20T13:10:21'))
+    assert.notEqual(value, previous)
   })
 
-  it('setSeconds(n)', () => {
+  it('setSeconds(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -237,11 +249,14 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setSeconds(10)
-    assert.deepEqual(fake.lastArg.value, new Date('2000-12-20T13:42:10'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('2000-12-20T13:42:10'))
+    assert.notEqual(value, previous)
   })
 
-  it('setMilliseconds(n)', () => {
+  it('setMilliseconds(n) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -251,8 +266,11 @@ describe('<DateValue>', () => {
       />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.setMilliseconds(10)
-    assert.deepEqual(fake.lastArg.value, new Date('2000-12-20T13:42:21.010'))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Date('2000-12-20T13:42:21.010'))
+    assert.notEqual(value, previous)
   })
 
   it('incrementYear()', () => {

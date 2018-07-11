@@ -5,6 +5,10 @@ class MapValue extends AnyValue {
     super(...args, new Map())
   }
 
+  clone(value) {
+    return new Map(value)
+  }
+
   set = (...args) => {
     const first = args[0]
     return args.length === 1
