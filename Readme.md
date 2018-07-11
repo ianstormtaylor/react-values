@@ -12,8 +12,8 @@
   <a href="#why"><strong>Why?</strong></a> ·
   <a href="#principles"><strong>Principles</strong></a> ·
   <a href="#examples"><strong>Examples</strong></a> ·
-  <a href="http://docs.slatejs.org"><strong>Documentation</strong></a> ·
-  <a href="http://docs.slatejs.org"><strong>Contributing!</strong></a>
+  <a href="#documentation"><strong>Documentation</strong></a> ·
+  <a href="#contributing"><strong>Contributing!</strong></a>
 </p>
 <br/>
 
