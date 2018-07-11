@@ -45,6 +45,7 @@ It takes either a `value` or `defaultValue` and an `onChange` handler. Depending
 | Render Prop | Type                    | Description                                                 |
 | ----------- | ----------------------- | ----------------------------------------------------------- |
 | `value`     | `Any`                   | The state's current value.                                  |
+| `disabled`  | `Boolean`               | Whether the component is currently disabled or not.         |
 | `set`       | `Function` `set(value)` | Sets the value to a new state.                              |
 | `clear`     | `Function` `clear()`    | Sets the value to `undefined`.                              |
 | `reset`     | `Function` `reset()`    | Resets the value to its initial `value/defaultValue` state. |
@@ -94,6 +95,7 @@ A value for an `Array`.
 | Render Prop | Type                                          | Description                                                                                                              |
 | ----------- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `value`     | `Array`                                       | The current array value.                                                                                                 |
+| `disabled`  | `Boolean`                                     | Whether the component is currently disabled or not.                                                                      |
 | `set`       | `Function` `set(array)`                       | Sets the value to a new state.                                                                                           |
 | `clear`     | `Function` `clear()`                          | Sets the value to an `[]` empty array.                                                                                   |
 | `reset`     | `Function` `reset()`                          | Resets the value to its initial `value/defaultValue` state.                                                              |
@@ -149,6 +151,7 @@ A value for a `Boolean`.
 | Render Prop | Type                      | Description                                                 |
 | ----------- | ------------------------- | ----------------------------------------------------------- |
 | `value`     | `Boolean`                 | The current boolean value.                                  |
+| `disabled`  | `Boolean`                 | Whether the component is currently disabled or not.         |
 | `set`       | `Function` `set(boolean)` | Sets the value to a new state.                              |
 | `clear`     | `Function` `clear()`      | Sets the value to `false`.                                  |
 | `reset`     | `Function` `reset()`      | Resets the value to its initial `value/defaultValue` state. |
@@ -216,6 +219,7 @@ A value for a `Date`.
 | Render Prop             | Type                                      | Description                                                                                                                                              |
 | ----------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`                 | `Date`                                    | The current date value.                                                                                                                                  |
+| `disabled`              | `Boolean`                                 | Whether the component is currently disabled or not.                                                                                                      |
 | `set`                   | `Function` `set(date)`                    | Sets the value to a date.                                                                                                                                |
 | `clear`                 | `Function` `clear()`                      | Sets the value to `new Date()`.                                                                                                                          |
 | `reset`                 | `Function` `reset()`                      | Resets the value to its initial `value/defaultValue` state.                                                                                              |
@@ -284,6 +288,7 @@ A value for a `Map`.
 | Render Prop | Type                                       | Description                                                                                                                                          |
 | ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`     | `Any`                                      | The current map value.                                                                                                                               |
+| `disabled`  | `Boolean`                                  | Whether the component is currently disabled or not.                                                                                                  |
 | `set`       | `Function` `set(key, value)` or `set(map)` | Calls [`Map.set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set), or sets the value to a new map.         |
 | `clear`     | `Function` `clear()`                       | Calls [`Map.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear).                                     |
 | `reset`     | `Function` `reset()`                       | Resets the value to its initial `value/defaultValue` state.                                                                                          |
@@ -325,6 +330,7 @@ A value for a `Number`.
 | Render Prop | Type                          | Description                                                 |
 | ----------- | ----------------------------- | ----------------------------------------------------------- |
 | `value`     | `Number`                      | The current number value.                                   |
+| `disabled`  | `Boolean`                     | Whether the component is currently disabled or not.         |
 | `set`       | `Function` `set(number)`      | Sets the value to a new `number`.                           |
 | `clear`     | `Function` `clear()`          | Sets the value to `0`.                                      |
 | `reset`     | `Function` `reset()`          | Resets the value to its initial `value/defaultValue` state. |
@@ -369,6 +375,7 @@ A value for a `Set`.
 | Render Prop | Type                                | Description                                                                                                                                          |
 | ----------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `value`     | `Set`                               | The current set value.                                                                                                                               |
+| `disabled`  | `Boolean`                           | Whether the component is currently disabled or not.                                                                                                  |
 | `set`       | `Function` `set(set)`               | Sets the value to a new `set`.                                                                                                                       |
 | `clear`     | `Function` `clear()`                | Calls [`Set.clear`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear).                                     |
 | `reset`     | `Function` `reset()`                | Resets the value to its initial `value/defaultValue` state.                                                                                          |
@@ -424,6 +431,7 @@ A value for a `String`.
 | Render Prop   | Type                            | Description                                                                                                                        |
 | ------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `value`       | `String`                        | The current string value.                                                                                                          |
+| `disabled`    | `Boolean`                       | Whether the component is currently disabled or not.                                                                                |
 | `set`         | `Function` `set(string)`        | Sets the value to a new `string`.                                                                                                  |
 | `clear`       | `Function` `clear()`            | Sets the value to an `''` empty string.                                                                                            |
 | `reset`       | `Function` `reset()`            | Resets the value to its initial `value/defaultValue` state.                                                                        |
