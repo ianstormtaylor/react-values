@@ -24,9 +24,6 @@
   <a href="https://unpkg.com/react-values/dist/react-values.min.js">
     <img src="https://img.badgesize.io/https://unpkg.com/react-values/dist/react-values.min.js?compression=gzip&amp;label=react--values">
   </a>
-  <a href="https://travis-ci.org/ianstormtaylor/react-values">
-    <img src="https://travis-ci.org/ianstormtaylor/react-values.svg?branch=master">
-  </a>
   <a href="./packages/react-values/package.json">
     <img src="https://img.shields.io/npm/v/react-values.svg?maxAge=3600&label=react-values&colorB=007ec6">
   </a>
