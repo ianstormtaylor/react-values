@@ -3,55 +3,29 @@ import AnyValue from './any-value'
 class ArrayValue extends AnyValue {
   constructor(...args) {
     super(...args, [])
+
+    this.compute('first', v => v[0])
+    this.compute('last', v => v[Math.max(0, v.length - 1)])
+
+    this.proxy('concat')
+    this.proxy('fill', { mutates: true })
+    this.proxy('filter')
+    this.proxy('flat')
+    this.proxy('flatMap')
+    this.proxy('map')
+    this.proxy('pop', { mutates: true })
+    this.proxy('push', { mutates: true })
+    this.proxy('reverse', { mutates: true })
+    this.proxy('shift', { mutates: true })
+    this.proxy('slice')
+    this.proxy('sort', { mutates: true })
+    this.proxy('splice', { mutates: true })
+    this.proxy('unshift', { mutates: true })
   }
 
   clone(value) {
     return value.slice()
   }
-
-  get first() {
-    return this.value[0]
-  }
-
-  get last() {
-    return this.value[Math.max(0, this.value.length - 1)]
-  }
-
-  concat = this.proxy('concat')
-  fill = this.proxy('fill', true)
-  filter = this.proxy('filter')
-  flat = this.proxy('flat')
-  flatMap = this.proxy('flatMap')
-  map = this.proxy('map')
-  reverse = this.proxy('reverse', true)
-  sort = this.proxy('sort', true)
-  slice = this.proxy('slice')
-  push = this.proxy('push', true)
-  pop = this.proxy('pop', true)
-  shift = this.proxy('shift', true)
-  unshift = this.proxy('unshift', true)
-  splice = this.proxy('splice', true)
-
-  states = ['value', 'first', 'last']
-  transforms = [
-    'set',
-    'reset',
-    'clear',
-    'concat',
-    'fill',
-    'filter',
-    'flat',
-    'flatMap',
-    'map',
-    'reverse',
-    'sort',
-    'slice',
-    'push',
-    'pop',
-    'shift',
-    'unshift',
-    'splice',
-  ]
 }
 
 export default ArrayValue
