@@ -11,17 +11,6 @@ describe('<MapValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Map())
   })
 
-  it('transform(fn) clones', () => {
-    const fake = sinon.fake.returns(null)
-    const renderer = Renderer.create(<MapValue children={fake} />)
-    const value = new Map()
-    const instance = renderer.getInstance()
-    instance.transform(() => value)
-    instance.transform(() => value)
-    assert.deepEqual(instance.value, value)
-    assert.notEqual(instance.value, value)
-  })
-
   it('value', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<MapValue children={fake} value={new Map([['a', 1]])} />)
@@ -47,18 +36,18 @@ describe('<MapValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Map([['b', 2]]))
   })
 
-  it('reset()', () => {
+  it('reset() (mutates)', () => {
     const fake = sinon.fake.returns(null)
     const initial = new Map([['a', 1]])
-
     Renderer.create(<MapValue children={fake} defaultValue={initial} />)
-
     fake.lastArg.set(new Map([['b', 2]]))
     fake.lastArg.reset()
-    assert.deepEqual(fake.lastArg.value, new Map([['a', 1]]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Map([['a', 1]]))
+    assert.notEqual(value, initial)
   })
 
-  it('clear()', () => {
+  it('clear() (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
@@ -66,8 +55,11 @@ describe('<MapValue>', () => {
     )
 
     fake.lastArg.set(new Map([['b', 2]]))
+    const previous = fake.lastArg.value
     fake.lastArg.clear()
-    assert.deepEqual(fake.lastArg.value, new Map())
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Map())
+    assert.notEqual(value, previous)
   })
 
   it('set(key, val)', () => {
@@ -77,26 +69,32 @@ describe('<MapValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Map([['b', 2]]))
   })
 
-  it('delete(key)', () => {
+  it('delete(key) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <MapValue children={fake} defaultValue={new Map([['a', 1], ['b', 2]])} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.delete('a')
-    assert.deepEqual(fake.lastArg.value, new Map([['b', 2]]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Map([['b', 2]]))
+    assert.notEqual(value, previous)
   })
 
-  it('unset(key) (alias)', () => {
+  it('unset(key) (alias) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <MapValue children={fake} defaultValue={new Map([['a', 1], ['b', 2]])} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.unset('a')
-    assert.deepEqual(fake.lastArg.value, new Map([['b', 2]]))
+    const { value } = fake.lastArg
+    assert.deepEqual(value, new Map([['b', 2]]))
+    assert.notEqual(value, previous)
   })
 
   it('onChange', () => {

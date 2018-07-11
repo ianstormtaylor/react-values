@@ -17,11 +17,17 @@ class AnyValue extends React.Component {
     return state.controlled ? props.value : state.value
   }
 
-  transform(fn) {
+  clone(value) {
+    return value
+  }
+
+  transform(fn, options = {}) {
+    const { mutate = false } = options
+
     this.setState(
       existing => {
-        let next = fn(existing.value)
-        if (next === existing.value) next = this.clone(next)
+        const current = mutate ? this.clone(existing.value) : existing.value
+        const next = fn(current)
         return { value: next }
       },
       () => {
@@ -31,17 +37,16 @@ class AnyValue extends React.Component {
     )
   }
 
-  proxy(method, mutates) {
+  proxy(method, mutate) {
     return (...args) => {
-      this.transform(v => {
-        const ret = v[method](...args)
-        return mutates ? v : ret
-      })
+      this.transform(
+        v => {
+          const ret = v[method](...args)
+          return mutate ? v : ret
+        },
+        { mutate }
+      )
     }
-  }
-
-  clone(value) {
-    return value
   }
 
   set = next => {
@@ -49,11 +54,19 @@ class AnyValue extends React.Component {
   }
 
   reset = () => {
-    this.transform(() => this.clone(this.state.initial))
+    this.transform(() => {
+      const { initial } = this.state
+      const next = this.clone ? this.clone(initial) : initial
+      return next
+    })
   }
 
   clear = () => {
-    this.transform(() => this.clone(this.state.empty))
+    this.transform(() => {
+      const { empty } = this.state
+      const next = this.clone ? this.clone(empty) : empty
+      return next
+    })
   }
 
   states = ['value']

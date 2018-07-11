@@ -11,17 +11,6 @@ describe('<ArrayValue>', () => {
     assert.deepEqual(fake.lastArg.value, [])
   })
 
-  it('transform(fn) clones', () => {
-    const fake = sinon.fake.returns(null)
-    const renderer = Renderer.create(<ArrayValue children={fake} />)
-    const value = []
-    const instance = renderer.getInstance()
-    instance.transform(() => value)
-    instance.transform(() => value)
-    assert.deepEqual(instance.value, value)
-    assert.notEqual(instance.value, value)
-  })
-
   it('value', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<ArrayValue children={fake} value={['a']} />)
@@ -90,11 +79,14 @@ describe('<ArrayValue>', () => {
     assert.deepEqual(fake.lastArg.value, [0, 1, 2, 3, 4, 5])
   })
 
-  it('fill()', () => {
+  it('fill() (mutates)', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<ArrayValue children={fake} defaultValue={[0, 1, 2]} />)
+    const previous = fake.lastArg.value
     fake.lastArg.fill(true)
-    assert.deepEqual(fake.lastArg.value, [true, true, true])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, [true, true, true])
+    assert.notEqual(value, previous)
   })
 
   it('filter(fn)', () => {
@@ -137,22 +129,28 @@ describe('<ArrayValue>', () => {
     assert.deepEqual(fake.lastArg.value, ['aaa', 'bbb'])
   })
 
-  it('reverse()', () => {
+  it('reverse() (mutates)', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<ArrayValue children={fake} defaultValue={['a', 'b']} />)
+    const previous = fake.lastArg.value
     fake.lastArg.reverse()
-    assert.deepEqual(fake.lastArg.value, ['b', 'a'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['b', 'a'])
+    assert.notEqual(value, previous)
   })
 
-  it('sort()', () => {
+  it('sort() (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['b', 'c', 'a']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.sort()
-    assert.deepEqual(fake.lastArg.value, ['a', 'b', 'c'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['a', 'b', 'c'])
+    assert.notEqual(value, previous)
   })
 
   it('slice()', () => {
@@ -166,59 +164,74 @@ describe('<ArrayValue>', () => {
     assert.deepEqual(fake.lastArg.value, ['b', 'c'])
   })
 
-  it('push(val)', () => {
+  it('push(val) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['a', 'b', 'c']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.push('d')
-    assert.deepEqual(fake.lastArg.value, ['a', 'b', 'c', 'd'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['a', 'b', 'c', 'd'])
+    assert.notEqual(value, previous)
   })
 
-  it('pop()', () => {
+  it('pop() (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['a', 'b', 'c']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.pop()
-    assert.deepEqual(fake.lastArg.value, ['a', 'b'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['a', 'b'])
+    assert.notEqual(value, previous)
   })
 
-  it('shift()', () => {
+  it('shift() (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['a', 'b', 'c']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.shift()
-    assert.deepEqual(fake.lastArg.value, ['b', 'c'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['b', 'c'])
+    assert.notEqual(value, previous)
   })
 
-  it('unshift(val)', () => {
+  it('unshift(val) (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['a', 'b', 'c']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.unshift('d')
-    assert.deepEqual(fake.lastArg.value, ['d', 'a', 'b', 'c'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['d', 'a', 'b', 'c'])
+    assert.notEqual(value, previous)
   })
 
-  it('splice()', () => {
+  it('splice() (mutates)', () => {
     const fake = sinon.fake.returns(null)
 
     Renderer.create(
       <ArrayValue children={fake} defaultValue={['a', 'b', 'c']} />
     )
 
+    const previous = fake.lastArg.value
     fake.lastArg.splice(1, 1, 'd')
-    assert.deepEqual(fake.lastArg.value, ['a', 'd', 'c'])
+    const { value } = fake.lastArg
+    assert.deepEqual(value, ['a', 'd', 'c'])
+    assert.notEqual(value, previous)
   })
 
   it('onChange', () => {
