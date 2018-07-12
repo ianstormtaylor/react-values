@@ -17,11 +17,11 @@ class AnyValue extends React.Component {
     this.define('reset', () => this.clone(initial))
     this.define('clear', () => this.clone(empty))
   }
-  
+
   componentDidMount() {
     this._isMounted = true
   }
-  
+
   componentWillUnmount() {
     this._isMounted = false
   }
