@@ -11,7 +11,7 @@ class AnyValue extends React.Component {
     this.state = { controlled, value: initial }
     this.transforms = {}
     this.computeds = {}
-    this._isMounted = false
+    this.mounted = false
 
     this.define('set', (v, next) => next)
     this.define('reset', () => this.clone(initial))
@@ -19,11 +19,11 @@ class AnyValue extends React.Component {
   }
 
   componentDidMount() {
-    this._isMounted = true
+    this.mounted = true
   }
 
   componentWillUnmount() {
-    this._isMounted = false
+    this.mounted = false
   }
 
   get value() {
@@ -36,24 +36,23 @@ class AnyValue extends React.Component {
   }
 
   transform(fn, options) {
-    if (this._isMounted) {
-      const { disabled, value, onChange } = this.props
-      if (disabled) return
+    const { disabled, value, onChange } = this.props
+    if (!this.mounted) return
+    if (disabled) return
 
-      if (this.state.controlled) {
-        const next = this.apply(value, fn, options)
-        if (onChange) onChange(next)
-      } else {
-        this.setState(
-          existing => {
-            const next = this.apply(existing.value, fn, options)
-            return { value: next }
-          },
-          () => {
-            if (onChange) onChange(this.state.value)
-          }
-        )
-      }
+    if (this.state.controlled) {
+      const next = this.apply(value, fn, options)
+      if (onChange) onChange(next)
+    } else {
+      this.setState(
+        existing => {
+          const next = this.apply(existing.value, fn, options)
+          return { value: next }
+        },
+        () => {
+          if (onChange) onChange(this.state.value)
+        }
+      )
     }
   }
 
