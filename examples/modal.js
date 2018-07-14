@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import { BooleanValue } from '..'
 import { Button } from './support/components'
 
-const TooltipExample = props => (
+const ModalExample = props => (
   <BooleanValue>
     {({ value: opened, toggle }) => (
       <React.Fragment>
@@ -42,4 +42,4 @@ const Modal = styled('div')`
   border-radius: 4px;
 `
 
-export default TooltipExample
+export default ModalExample
