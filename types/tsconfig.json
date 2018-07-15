@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "lib": ["es5", "es2015.collection","es2015.iterable"],
+    "lib": ["es5", "es2015.collection", "es2015.iterable"],
     "jsx": "react",
     "noImplicitAny": true,
     "noImplicitThis": true,

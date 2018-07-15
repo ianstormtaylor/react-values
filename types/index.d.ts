@@ -28,7 +28,7 @@ export interface ReactValueRenderProps<T> {
 export type AnyValueRenderProps<T> = (props: ReactValueRenderProps<T> & {}) => React.ReactNode;
 
 export type AnyValueProps<T> = ReactValueProps<T> & {
-  children: AnyValueRenderProps<T>
+  children: AnyValueRenderProps<T>;
 };
 
 export class AnyValue<T> extends React.Component<AnyValueProps<T>> {
@@ -52,7 +52,7 @@ export type ArrayValueRenderProps<T, A = T[]> = (props: ReactValueRenderProps<A>
 }) => React.ReactNode;
 
 export type ArrayValueProps<T, A = T[]> = ReactValueProps<A> & {
-  children: ArrayValueRenderProps<T, A>
+  children: ArrayValueRenderProps<T, A>;
 };
 
 export class ArrayValue<T> extends React.Component<ArrayValueProps<T>> {
@@ -74,13 +74,13 @@ export class BooleanValue extends React.Component<BooleanValueProps<boolean>> {
 /* DateValue */
 
 export type DateValueRenderProps = (props: ReactValueRenderProps<Date> & {
-  date: number,
-  hours: number,
-  milliseconds: number,
-  minutes: number,
-  month: number,
-  seconds: number,
-  year: number,
+  date: number;
+  hours: number;
+  milliseconds: number;
+  minutes: number;
+  month: number;
+  seconds: number;
+  year: number;
   setDate: (d: Date) => void;
   setHours: (d: number) => void;
   setMilliseconds: (d: number) => void;
@@ -113,14 +113,14 @@ export class DateValue extends React.Component<DateValueProps> {
 
 /* MapValue */
 
-export type MapValueRenderProps<T extends object, K extends keyof T> = (props: ReactValueRenderProps<T> & {
-  set: (key: K, value: T[K]) => void
+export type MapValueRenderProps<T extends object, K extends keyof T = keyof T> = (props: ReactValueRenderProps<T> & {
+  set: (key: K, value: T[K]) => void;
   unset: (key: K) => void;
   delete: (key: K) => void;
 }) => React.ReactNode;
 
 export type MapValueProps<T extends object, K extends keyof T> = ReactValueProps<T> & {
-  children: MapValueRenderProps<T, K>
+  children: MapValueRenderProps<T, K>;
 };
 
 export class MapValue<T extends object, K extends keyof T> extends React.Component<MapValueProps<T, K>> {
