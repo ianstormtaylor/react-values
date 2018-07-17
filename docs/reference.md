@@ -6,6 +6,7 @@
 * [`<DateValue>`](#datevalue)
 * [`<MapValue>`](#mapvalue)
 * [`<NumberValue>`](#numbervalue)
+* [`<ObjectValue>`](#objectvalue)
 * [`<SetValue>`](#setvalue)
 * [`<StringValue>`](#stringvalue)
 
@@ -338,6 +339,49 @@ A value for a `Number`.
 | `decrement` | `Function` `decrement(n = 1)` | Decrements the number by `n`.                               |
 
 ---
+
+### `<ObjectValue>`
+
+A value for a `Object`.
+
+```jsx
+<ObjectValue
+  value={Object|undefined}
+  defaultValue={Object|undefined}
+  onChange={Function}
+  disabled={Boolean}
+>
+  {({
+    value,
+    set,
+    clear,
+    reset,
+    unset,
+    delete,
+    assign,
+  }) => (
+    ...
+  )}
+</ObjectValue>
+```
+
+| Prop           | Type                         | Description                                                        |
+| -------------- | ---------------------------- | ------------------------------------------------------------------ |
+| `value`        | `Any`                        | The value, for controlled components.                              |
+| `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
+| `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
+| `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
+
+| Render Prop | Type                                          | Description                                                                                                                                                           |
+| ----------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value`     | `Any`                                         | The current object value.                                                                                                                                             |
+| `disabled`  | `Boolean`                                     | Whether the component is currently disabled or not.                                                                                                                   |
+| `set`       | `Function` `set(key, value)` or `set(object)` | Set a specific `key` in to `value`, or sets the value to a new object.                                                                                                |
+| `clear`     | `Function` `clear()`                          | Set the value to a new empty object.                                                                                                                                  |
+| `reset`     | `Function` `reset()`                          | Resets the value to its initial `value/defaultValue` state.                                                                                                           |
+| `delete`    | `Function` `delete(key)`                      | Delete a key from the current object.                                                                                                                                 |
+| `unset`     | `Function` `unset(key)`                       | An alias for `delete` that's not a reserved word.                                                                                                                     |
+| `assign`    | `Function` `assign(value)`                    | Extend the current object with another value using [`Object.assign`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign). |
 
 ### `<SetValue>`
 
