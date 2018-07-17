@@ -37,6 +37,7 @@ It does this using a small render-prop-based API that exposes helpful transforms
 * `Date` values provide really helpful transforms like `setHours` and `incrementMonth`.
 * `Map` values provide native methods like `set`, `delete` and `clear`.
 * `Number` values provide `increment` and `decrement`, which have also been re-written in every codebase ever.
+* `Object` values provide helpful transforms like `set`, `unset` and `assign`.
 * `Set` values provide native methods like `add`, `delete` and `clear`.
 * `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
 
@@ -139,6 +140,7 @@ If you're using `react-values` for the first time, check out the [Getting Starte
   * [`<DateValue>`](./docs/reference.md#datevalue)
   * [`<MapValue>`](./docs/reference.md#mapvalue)
   * [`<NumberValue>`](./docs/reference.md#numbervalue)
+  * [`<ObjectValue>`](./docs/reference.md#objectvalue)
   * [`<SetValue>`](./docs/reference.md#setvalue)
   * [`<StringValue>`](./docs/reference.md#stringvalue)
 
