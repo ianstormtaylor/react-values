@@ -8,9 +8,9 @@ const CounterExample = props => (
     {({ value, increment, decrement }) => (
       <Container>
         <Button icon="first_page" onClick={() => decrement(10)} />
-        <Button icon="keyboard_arrow_left" onClick={() => decrement()} />
+        <Button icon="keyboard_arrow_left" onClick={decrement} />
         <Counter>{value}</Counter>
-        <Button icon="keyboard_arrow_right" onClick={() => increment()} />
+        <Button icon="keyboard_arrow_right" onClick={increment} />
         <Button icon="last_page" onClick={() => increment(10)} />
       </Container>
     )}
