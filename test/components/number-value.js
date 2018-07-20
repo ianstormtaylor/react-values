@@ -84,6 +84,20 @@ describe('<NumberValue>', () => {
     assert.equal(fake.lastArg.value, -10)
   })
 
+  it('min', () => {
+    const fake = sinon.fake.returns(null)
+    Renderer.create(<NumberValue children={fake} min={0} />)
+    fake.lastArg.decrement()
+    assert.equal(fake.lastArg.value, 0)
+  })
+
+  it('max', () => {
+    const fake = sinon.fake.returns(null)
+    Renderer.create(<NumberValue children={fake} max={0} />)
+    fake.lastArg.increment()
+    assert.equal(fake.lastArg.value, 0)
+  })
+
   it('onChange', () => {
     const fake = sinon.fake.returns(null)
     const onChange = sinon.fake()
