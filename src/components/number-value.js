@@ -5,18 +5,17 @@ class NumberValue extends AnyValue {
     max: Number.MAX_SAFE_INTEGER,
     min: Number.MIN_SAFE_INTEGER,
   }
-  constructor(props, ...rest) {
-    super(props, ...rest, 0)
-    const { max, min } = props
+  constructor(...args) {
+    super(...args, 0)
 
     this.define('increment', (v, n = 1) => {
       const num = typeof n !== 'number' ? 1 : n
-      return Math.min(v + num, max)
+      return Math.min(v + num, this.props.max)
     })
 
     this.define('decrement', (v, n = 1) => {
       const num = typeof n !== 'number' ? 1 : n
-      return Math.max(v - num, min)
+      return Math.max(v - num, this.props.min)
     })
   }
 }
