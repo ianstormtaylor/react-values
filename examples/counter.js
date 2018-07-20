@@ -4,13 +4,13 @@ import { NumberValue } from '..'
 import { Button } from './support/components'
 
 const CounterExample = props => (
-  <NumberValue defaultValue={42}>
+  <NumberValue defaultValue={42} min={0} max={100}>
     {({ value, increment, decrement }) => (
       <Container>
         <Button icon="first_page" onClick={() => decrement(10)} />
-        <Button icon="keyboard_arrow_left" onClick={() => decrement()} />
+        <Button icon="keyboard_arrow_left" onClick={decrement} />
         <Counter>{value}</Counter>
-        <Button icon="keyboard_arrow_right" onClick={() => increment()} />
+        <Button icon="keyboard_arrow_right" onClick={increment} />
         <Button icon="last_page" onClick={() => increment(10)} />
       </Container>
     )}
