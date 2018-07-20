@@ -5,6 +5,7 @@ class NumberValue extends AnyValue {
     max: Number.MAX_SAFE_INTEGER,
     min: Number.MIN_SAFE_INTEGER,
   }
+
   constructor(...args) {
     super(...args, 0)
 
