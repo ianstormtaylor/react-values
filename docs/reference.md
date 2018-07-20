@@ -308,6 +308,8 @@ A value for a `Number`.
   defaultValue={Number|undefined}
   onChange={Function}
   disabled={Boolean}
+  min={Number|undefined}
+  max={Number|undefined}
 >
   {({
     value,
@@ -327,6 +329,8 @@ A value for a `Number`.
 | `defaultValue` | `Any`                        | The default value, for uncontrolled components.                    |
 | `onChange`     | `Function` `onChange(value)` | A handler that will be called whenever the current value changes.  |
 | `disabled`     | `Boolean`                    | Whether the component is current disabled, ignoring state changes. |
+| `min`          | `Number`                     | An optional minimum value to not go under.                         |
+| `max`          | `Number`                     | An optional maximum value to not go over.                          |
 
 | Render Prop | Type                          | Description                                                 |
 | ----------- | ----------------------------- | ----------------------------------------------------------- |
