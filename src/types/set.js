@@ -1,8 +1,10 @@
-import AnyValue from './any-value'
+import createComponent from '../utils/create-component'
+import createFactory from '../utils/create-factory'
+import { Store } from './any'
 
-class SetValue extends AnyValue {
-  constructor(...args) {
-    super(...args, new Set())
+class SetStore extends Store {
+  constructor(value, props) {
+    super(value, props, new Set())
 
     this.define(
       'toggle',
@@ -28,4 +30,7 @@ class SetValue extends AnyValue {
   }
 }
 
-export default SetValue
+const SetValue = createComponent(SetStore)
+const createSetValue = createFactory(SetStore, SetValue)
+
+export { SetValue, createSetValue, SetStore }

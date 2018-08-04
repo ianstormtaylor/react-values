@@ -1,12 +1,14 @@
-import AnyValue from './any-value'
+import createComponent from '../utils/create-component'
+import createFactory from '../utils/create-factory'
+import { Store } from './any'
 
 const SECONDS = 1000
 const MINUTES = 1000 * 60
 const HOURS = 1000 * 60 * 60
 
-class DateValue extends AnyValue {
-  constructor(...args) {
-    super(...args, new Date())
+class DateStore extends Store {
+  constructor(value, props) {
+    super(value, props, new Date())
 
     this.compute('date', v => v.getDate())
     this.compute('hours', v => v.getHours())
@@ -89,4 +91,7 @@ function days(v) {
   return lastDayOfMonth.getDate()
 }
 
-export default DateValue
+const DateValue = createComponent(DateStore)
+const createDateValue = createFactory(DateStore, DateValue)
+
+export { DateValue, createDateValue, DateStore }

@@ -1,8 +1,10 @@
-import AnyValue from './any-value'
+import createComponent from '../utils/create-component'
+import createFactory from '../utils/create-factory'
+import { Store } from './any'
 
-class ObjectValue extends AnyValue {
-  constructor(...args) {
-    super(...args, {})
+class ObjectStore extends Store {
+  constructor(value, props) {
+    super(value, props, {})
 
     this.define('set', (v, ...a) => {
       const first = a[0]
@@ -34,4 +36,7 @@ function unset(v, key) {
   return clone
 }
 
-export default ObjectValue
+const ObjectValue = createComponent(ObjectStore)
+const createObjectValue = createFactory(ObjectStore, ObjectValue)
+
+export { ObjectValue, createObjectValue, ObjectStore }
