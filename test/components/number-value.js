@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { NumberValue } from '../../src'
+import { NumberValue, createNumberValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<NumberValue>', () => {
@@ -110,5 +110,27 @@ describe('<NumberValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<NumberValue render={fake} />)
     assert.equal(fake.lastArg.value, 0)
+  })
+
+  it('connected', () => {
+    const Connected = createNumberValue(42)
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.equal(one.lastArg.value, 42)
+    assert.equal(two.lastArg.value, 42)
+    one.lastArg.increment()
+    assert.equal(one.lastArg.value, 43)
+    assert.equal(two.lastArg.value, 43)
+    two.lastArg.decrement(10)
+    assert.equal(one.lastArg.value, 33)
+    assert.equal(two.lastArg.value, 33)
   })
 })

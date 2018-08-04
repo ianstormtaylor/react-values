@@ -8,6 +8,7 @@
 * [Controlled vs. Uncontrolled](#controlled-vs-uncontrolled)
 * [Disabling Components](#disabling-components)
 * [Spreading Props](#spreading-props)
+* [Connecting Values](#connecting-values)
 
 ## Installing `react-values`
 
@@ -223,7 +224,7 @@ Then anyone can disable the component with:
 
 ## Spreading Props
 
-One final change, just for simplicity's sake. You'll notice how we were passing the props in explicitly, but to make your code even simpler you can just spread them directly onto the `<BooleanValue>` instead:
+Let's refactor, just for simplicity's sake. You'll notice how we were passing the props in explicitly, but to make your code even simpler you can just spread them directly onto the `<BooleanValue>` instead:
 
 ```jsx
 const Toggle = props => (
@@ -237,8 +238,51 @@ const Toggle = props => (
 )
 ```
 
-That's all!
-
-Thanks to the `<BooleanValue>` helper component handling the state management for you, you've implemented a fully functional toggle in just a few lines of code—and it can be either controlled or uncontrolled!
+There you have it! Thanks to the `<BooleanValue>` helper component handling the state management for you, you've implemented a fully functional toggle in just a few lines of code—and it can be either controlled or uncontrolled!
 
 And `react-values` handles more than just simple booleans. Check out the full [API Reference](./reference.md) to see everything you can do.
+
+## Connecting Values
+
+One last thing...
+
+Sometimes you want to have a value that is synced between two (or more) different places in your render tree. Maybe users can open a modal in multiple ways, or there's a global search box, etc.
+
+`react-values` gives you special factory functions for creating "connected" value components for this exact purpose.
+
+For example, you can create a connected boolean:
+
+```js
+const ModalOpenedValue = createBooleanValue()
+```
+
+And then you can render it in multiple places:
+
+```jsx
+<App>
+  <Content>
+    <ModalOpenedValue>
+      {({ toggle }) => (
+        <Button onClick={toggle}>Open Modal</Button>
+      )}
+    </ModalOpenedValue>
+  </Content>
+  <ModalOpenedValue>
+    {({ value, toggle }) => (
+      value && (
+        <Modal>
+          <Button onClick={toggle}>Close</Button>
+        </Modal>
+      )
+    )}
+  </ModalOpenedValue>
+</App>
+```
+
+This is just a simple example, so the components live fairly close together in the render tree. But this isn't always the case, they can be extremely far apart (or even inside portals) and still share a connected value. 
+
+Any of them can trigger changes to the value and all of them will re-render.
+
+This can eliminate one of the biggest reasons people turn to libraries like Redux or Mobx, to share state between components. And with `react-values` it's extremely simple, using the same old render props.
+
+Check out the full [API Reference](./reference.md) to see everything you can do.

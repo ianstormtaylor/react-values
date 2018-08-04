@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { ObjectValue } from '../../src'
+import { ObjectValue, createObjectValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<ObjectValue>', () => {
@@ -111,5 +111,27 @@ describe('<ObjectValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<ObjectValue render={fake} />)
     assert.deepEqual(fake.lastArg.value, {})
+  })
+
+  it('connected', () => {
+    const Connected = createObjectValue({ a: 1, b: 2 })
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.deepEqual(one.lastArg.value, { a: 1, b: 2 })
+    assert.deepEqual(two.lastArg.value, { a: 1, b: 2 })
+    one.lastArg.set('b', null)
+    assert.deepEqual(one.lastArg.value, { a: 1, b: null })
+    assert.deepEqual(two.lastArg.value, { a: 1, b: null })
+    two.lastArg.unset('b')
+    assert.deepEqual(one.lastArg.value, { a: 1 })
+    assert.deepEqual(two.lastArg.value, { a: 1 })
   })
 })

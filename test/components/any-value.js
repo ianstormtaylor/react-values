@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { Value } from '../../src'
+import { Value, createValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<Value>', () => {
@@ -76,5 +76,46 @@ describe('<Value>', () => {
     assert.equal(fake.lastArg.disabled, true)
     assert.notEqual(fake.lastArg.value, true)
     assert.equal(fake.callCount, callCount)
+  })
+
+  it('connected', () => {
+    const Connected = createValue(false)
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.equal(one.lastArg.value, false)
+    assert.equal(two.lastArg.value, false)
+    one.lastArg.set(true)
+    assert.equal(one.lastArg.value, true)
+    assert.equal(two.lastArg.value, true)
+    two.lastArg.set(false)
+    assert.equal(one.lastArg.value, false)
+    assert.equal(two.lastArg.value, false)
+  })
+
+  it('connected static', () => {
+    const Connected = createValue(false)
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.equal(one.lastArg.value, false)
+    assert.equal(two.lastArg.value, false)
+    Connected.set(true)
+    assert.equal(one.lastArg.value, true)
+    assert.equal(two.lastArg.value, true)
   })
 })

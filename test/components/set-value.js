@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { SetValue } from '../../src'
+import { SetValue, createSetValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<SetValue>', () => {
@@ -102,5 +102,27 @@ describe('<SetValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<SetValue render={fake} />)
     assert.deepEqual(fake.lastArg.value, new Set())
+  })
+
+  it('connected', () => {
+    const Connected = createSetValue(new Set([1, 2]))
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.deepEqual(one.lastArg.value, new Set([1, 2]))
+    assert.deepEqual(two.lastArg.value, new Set([1, 2]))
+    one.lastArg.add(3)
+    assert.deepEqual(one.lastArg.value, new Set([1, 2, 3]))
+    assert.deepEqual(two.lastArg.value, new Set([1, 2, 3]))
+    two.lastArg.clear()
+    assert.deepEqual(one.lastArg.value, new Set())
+    assert.deepEqual(two.lastArg.value, new Set())
   })
 })

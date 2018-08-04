@@ -1,16 +1,20 @@
 import React from 'react'
 
-export default function createFactory(Component, Store) {
+export default function createFactory(Store, Value) {
   return (initial, props) => {
     const store = new Store(initial, props)
 
     class Connected extends React.Component {
       render() {
-        return <Component {...this.props} store={store} />
+        return <Value {...this.props} store={store} />
       }
     }
 
-    Connected.displayName = `Connected${Component.displayName}`
+    for (const k in store.transforms) {
+      Connected[k] = store.transforms[k]
+    }
+
+    Connected.displayName = `Connected${Value.displayName}`
     return Connected
   }
 }
