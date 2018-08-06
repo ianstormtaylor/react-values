@@ -262,24 +262,22 @@ And then you can render it in multiple places:
 <App>
   <Content>
     <ModalOpenedValue>
-      {({ toggle }) => (
-        <Button onClick={toggle}>Open Modal</Button>
-      )}
+      {({ toggle }) => <Button onClick={toggle}>Open Modal</Button>}
     </ModalOpenedValue>
   </Content>
   <ModalOpenedValue>
-    {({ value, toggle }) => (
+    {({ value, toggle }) =>
       value && (
         <Modal>
           <Button onClick={toggle}>Close</Button>
         </Modal>
       )
-    )}
+    }
   </ModalOpenedValue>
 </App>
 ```
 
-This is just a simple example, so the components live fairly close together in the render tree. But this isn't always the case, they can be extremely far apart (or even inside portals) and still share a connected value. 
+This is just a simple example, so the components live fairly close together in the render tree. But this isn't always the case, they can be extremely far apart (or even inside portals) and still share a connected value.
 
 Any of them can trigger changes to the value and all of them will re-render.
 

@@ -124,7 +124,6 @@ const App = () => (
 
 The primitives `react-values` gives you seem simple at first, but they can be composed together to create complex behaviors that are still easy to reason about, in just a few lines of code.
 
-
 <br/>
 
 ### Why?
@@ -185,26 +184,26 @@ If you're using `react-values` for the first time, check out the [Getting Starte
   * [Controlled vs. Uncontrolled](./docs/guide.md#controlled-vs-uncontrolled)
   * [Spreading Props](./docs/guide.md#spreading-props)
 * [**Reference**](./docs/reference.md)
-  - [**Components**](./docs/reference.md#value)
-    + [`<Value>`](./docs/reference.md#value)
-    + [`<ArrayValue>`](./docs/reference.md#arrayvalue)
-    + [`<BooleanValue>`](./docs/reference.md#booleanvalue)
-    + [`<DateValue>`](./docs/reference.md#datevalue)
-    + [`<MapValue>`](./docs/reference.md#mapvalue)
-    + [`<NumberValue>`](./docs/reference.md#numbervalue)
-    + [`<ObjectValue>`](./docs/reference.md#objectvalue)
-    + [`<SetValue>`](./docs/reference.md#setvalue)
-    + [`<StringValue>`](./docs/reference.md#stringvalue)
-  - [**Connected Components**](./docs/reference.md#createvalue)
-    + [`createValue`](./docs/reference.md#createvalue)
-    + [`createArrayValue`](./docs/reference.md#createarrayvalue)
-    + [`createBooleanValue`](./docs/reference.md#createbooleanvalue)
-    + [`createDateValue`](./docs/reference.md#createdatevalue)
-    + [`createMapValue`](./docs/reference.md#createmapvalue)
-    + [`createNumberValue`](./docs/reference.md#createnumbervalue)
-    + [`createObjectValue`](./docs/reference.md#createobjectvalue)
-    + [`createSetValue`](./docs/reference.md#createsetvalue)
-    + [`createStringValue`](./docs/reference.md#createstringvalue)
+  * [**Components**](./docs/reference.md#value)
+    * [`<Value>`](./docs/reference.md#value)
+    * [`<ArrayValue>`](./docs/reference.md#arrayvalue)
+    * [`<BooleanValue>`](./docs/reference.md#booleanvalue)
+    * [`<DateValue>`](./docs/reference.md#datevalue)
+    * [`<MapValue>`](./docs/reference.md#mapvalue)
+    * [`<NumberValue>`](./docs/reference.md#numbervalue)
+    * [`<ObjectValue>`](./docs/reference.md#objectvalue)
+    * [`<SetValue>`](./docs/reference.md#setvalue)
+    * [`<StringValue>`](./docs/reference.md#stringvalue)
+  * [**Connected Components**](./docs/reference.md#createvalue)
+    * [`createValue`](./docs/reference.md#createvalue)
+    * [`createArrayValue`](./docs/reference.md#createarrayvalue)
+    * [`createBooleanValue`](./docs/reference.md#createbooleanvalue)
+    * [`createDateValue`](./docs/reference.md#createdatevalue)
+    * [`createMapValue`](./docs/reference.md#createmapvalue)
+    * [`createNumberValue`](./docs/reference.md#createnumbervalue)
+    * [`createObjectValue`](./docs/reference.md#createobjectvalue)
+    * [`createSetValue`](./docs/reference.md#createsetvalue)
+    * [`createStringValue`](./docs/reference.md#createstringvalue)
 
 If even that's not enough, you can always [read the source itself](./src).
 

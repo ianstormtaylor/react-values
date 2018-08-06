@@ -1,25 +1,25 @@
 # API Reference
 
 * **Components**
-  - [`<Value>`](#value)
-  - [`<ArrayValue>`](#arrayvalue)
-  - [`<BooleanValue>`](#booleanvalue)
-  - [`<DateValue>`](#datevalue)
-  - [`<MapValue>`](#mapvalue)
-  - [`<NumberValue>`](#numbervalue)
-  - [`<ObjectValue>`](#objectvalue)
-  - [`<SetValue>`](#setvalue)
-  - [`<StringValue>`](#stringvalue)
+  * [`<Value>`](#value)
+  * [`<ArrayValue>`](#arrayvalue)
+  * [`<BooleanValue>`](#booleanvalue)
+  * [`<DateValue>`](#datevalue)
+  * [`<MapValue>`](#mapvalue)
+  * [`<NumberValue>`](#numbervalue)
+  * [`<ObjectValue>`](#objectvalue)
+  * [`<SetValue>`](#setvalue)
+  * [`<StringValue>`](#stringvalue)
 * **Connected Components**
-  - [`createValue`](#createvalue)
-  - [`createArrayValue`](#createarrayvalue)
-  - [`createBooleanValue`](#createbooleanvalue)
-  - [`createDateValue`](#createdatevalue)
-  - [`createMapValue`](#createmapvalue)
-  - [`createNumberValue`](#createnumbervalue)
-  - [`createObjectValue`](#createobjectvalue)
-  - [`createSetValue`](#createsetvalue)
-  - [`createStringValue`](#createstringvalue)
+  * [`createValue`](#createvalue)
+  * [`createArrayValue`](#createarrayvalue)
+  * [`createBooleanValue`](#createbooleanvalue)
+  * [`createDateValue`](#createdatevalue)
+  * [`createMapValue`](#createmapvalue)
+  * [`createNumberValue`](#createnumbervalue)
+  * [`createObjectValue`](#createobjectvalue)
+  * [`createSetValue`](#createsetvalue)
+  * [`createStringValue`](#createstringvalue)
 
 ---
 
@@ -526,10 +526,10 @@ const ConnectedValue = createValue('default')
 </ConnectedValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Any`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Any`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -547,10 +547,10 @@ const ConnectedArrayValue = createArrayValue([0, 1, 2])
 </ConnectedArrayValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Array`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Array`  | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -568,10 +568,10 @@ const ConnectedBooleanValue = createBooleanValue(true)
 </ConnectedBooleanValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Boolean`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type      | Description                       |
+| -------------- | --------- | --------------------------------- |
+| `defaultValue` | `Boolean` | The default connected value.      |
+| `defaultProps` | `Object`  | An optional set of default props. |
 
 ---
 
@@ -589,10 +589,10 @@ const ConnectedDateValue = createDateValue(new Date())
 </ConnectedDateValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Date`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Date`   | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -610,10 +610,10 @@ const ConnectedMapValue = createMapValue(new Map([['a', 1]]))
 </ConnectedMapValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Map`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Map`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -631,10 +631,10 @@ const ConnectedNumberValue = createNumberValue(42)
 </ConnectedNumberValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Number`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Number` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -652,10 +652,10 @@ const ConnectedObjectValue = createObjectValue({ a: 1 })
 </ConnectedObjectValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Object`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Object` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -673,10 +673,10 @@ const ConnectedSetValue = createSetValue(new Set([0, 1, 2]))
 </ConnectedSetValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `Set`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Set`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
 
 ---
 
@@ -694,7 +694,7 @@ const ConnectedStringValue = createStringValue('default')
 </ConnectedStringValue>
 ```
 
-| Argument           | Type                         | Description                                                        |
-| -------------- | ---------------------------- | ------------------------------------------------------------------ |
-| `defaultValue`        | `String`                        | The default connected value.                              |
-| `defaultProps` | `Object`                        | An optional set of default props. |
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `String` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
