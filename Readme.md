@@ -45,7 +45,7 @@ This saves you from constantly re-writing the same state management logic, so yo
 
 For example, here's a `<Toggle>` implemented in just a few lines of code using a `<BooleanValue>`:
 
-```js
+```jsx
 import { BooleanValue } from 'react-values'
 
 const Toggle = ({ value, defaultValue, onChange }) => (
@@ -76,15 +76,64 @@ const Thumb = styled.div`
 `
 ```
 
+Or, here's the classic "counter" example:
+
+```jsx
+import { NumberValue } from 'react-values'
+
+const Counter = () => (
+  <NumberValue defaultValue={0}>
+    {({ value, increment, decrement }) => (
+      <button onClick={() => increment()}>+1</button>
+      <span>{value}</span>
+      <button onClick={() => decrement()}>-1</button>
+    )}
+  </NumberValue>
+)
+```
+
+But you can go further, because `react-values` can "connect" a single value across multiple components. This is helpful any time you need a "global" piece of state in your app, without wanting to add tons of complexity.
+
+For example, using the same `<Toggle>` from above, you could could open and close modal from anywhere in your render tree:
+
+```jsx
+import { createBooleanValue } from 'react-values'
+import { Modal, Toggle } from './ui'
+
+const ModalValue = createBooleanValue(false)
+
+const App = () => (
+  <div class="app">
+    <div class="sidebar">
+      <ModalValue>
+        {({ value, set }) => (
+          <Toggle value={value} onChange={set} />
+        )}
+      </ModalValue>
+    </div>
+    <div class="content">
+      <ModalValue>
+        {({ value: opened }) => (
+          opened && <Modal />
+        )}
+      </ModalValue>
+    </div>
+  <div>
+)
+```
+
+The primitives `react-values` gives you seem simple at first, but they can be composed together to create complex behaviors that are still easy to reason about, in just a few lines of code.
+
+
 <br/>
 
 ### Why?
 
 While building an app with React, you end up building a lot of stateful components in the process. Whether at the UI kit level for things like toggles, tooltips, checkbox groups, dropdown, etc. Or at the app level for modals, popovers, sorting, filtering, etc.
 
-In the process, you end up re-implementing run of the mill state handling logic all over the place—whether with `this.setState` or by building the same action creators over and over. And for your components to be nicely reusable across your application you augment them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you re-invent common transforms like `open`, `close`, `toggle`, `increment`, `decrement`, etc. in lots of different components. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
+In the process, you end up re-implementing run of the mill state handling logic all over the place—whether with `this.setState` or by adopting some "state management framework" and writing the same boilerplate over and over again. And for your components to be nicely reusable across your application you augment them to handle both "controlled" and "uncontrolled" use cases using `value` or `defaultValue`. And to make things a bit more manageable, you re-invent common transforms like `open`, `close`, `toggle`, `increment`, `decrement`, etc. in lots of different components. And if you're working with a team, you end up doing all of this in slightly different ways throughout your codebase.
 
-In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places in slightly different ways. All while your app's bundle size gets larger and larger.
+In the end, you're now maintaing a lot more logic than necessary, duplicated in many different places in slightly different ways. It gets harder and harder to understand your app's data flow. All while your app's bundle size grows.
 
 `react-values` solves all of that with a few principles...
 
@@ -111,11 +160,13 @@ To get a sense for how you might use `react-values`, check out a few of the exam
 * [**Basic Toggle**](https://ianstormtaylor.github.io/react-values/#/basic-toggle) — using a `Boolean` to create a simple toggle component.
 * [**Reusable Toggle**](https://ianstormtaylor.github.io/react-values/#/reusable-toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
 * [**Counter**](https://ianstormtaylor.github.io/react-values/#/counter) — a simple counter using a `Number` and its convenience transforms.
+* [**Connected Counters**](https://ianstormtaylor.github.io/react-values/#/connected-counters) — two counters that are connected together, sharing a single value.
 * [**Time Picker**](https://ianstormtaylor.github.io/react-values/#/time-picker) — a more complex time picker component, using `Date` and its convenience transforms.
 * [**Filtering**](https://ianstormtaylor.github.io/react-values/#/filtering) — a basic `String` value used for filtering a list.
 * [**Checkbox Set**](https://ianstormtaylor.github.io/react-values/#/checkbox-set) — using a `Set` to keep track of a checkbox group.
 * [**Simple Tooltip**](https://ianstormtaylor.github.io/react-values/#/tooltip) — a simplistic tooltip implemented as a `Boolean`.
 * [**Simple Modal**](https://ianstormtaylor.github.io/react-values/#/modal) — a simplistic modal implemented as a `Boolean`.
+* [**Connected Modal**](https://ianstormtaylor.github.io/react-values/#/connected-modal) — a modal whose opened/closed state is controllable from other components.
 
 If you have an idea for an example that shows a common use case, pull request it!
 
