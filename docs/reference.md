@@ -10,7 +10,7 @@
   - [`<ObjectValue>`](#objectvalue)
   - [`<SetValue>`](#setvalue)
   - [`<StringValue>`](#stringvalue)
-* **Connected Factories**
+* **Connected Components**
   - [`createValue`](#createvalue)
   - [`createArrayValue`](#createarrayvalue)
   - [`createBooleanValue`](#createbooleanvalue)
