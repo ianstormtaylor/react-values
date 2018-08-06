@@ -18,6 +18,12 @@ export default [
     source: require('!raw-loader!../counter'),
   },
   {
+    name: 'Connected Counters',
+    path: '/connected-counters',
+    Component: require('../connected-counters').default,
+    source: require('!raw-loader!../connected-counters'),
+  },
+  {
     name: 'Time Picker',
     path: '/time-picker',
     Component: require('../time-picker').default,
@@ -46,5 +52,11 @@ export default [
     path: '/modal',
     Component: require('../modal').default,
     source: require('!raw-loader!../modal'),
+  },
+  {
+    name: 'Connected Modal',
+    path: '/connected-modal',
+    Component: require('../connected-modal').default,
+    source: require('!raw-loader!../connected-modal'),
   },
 ]

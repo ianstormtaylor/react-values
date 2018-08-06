@@ -1,25 +1,36 @@
 # API Reference
 
-* [`<AnyValue>`](#anyvalue)
-* [`<ArrayValue>`](#arrayvalue)
-* [`<BooleanValue>`](#booleanvalue)
-* [`<DateValue>`](#datevalue)
-* [`<MapValue>`](#mapvalue)
-* [`<NumberValue>`](#numbervalue)
-* [`<ObjectValue>`](#objectvalue)
-* [`<SetValue>`](#setvalue)
-* [`<StringValue>`](#stringvalue)
+* **Components**
+  * [`<Value>`](#value)
+  * [`<ArrayValue>`](#arrayvalue)
+  * [`<BooleanValue>`](#booleanvalue)
+  * [`<DateValue>`](#datevalue)
+  * [`<MapValue>`](#mapvalue)
+  * [`<NumberValue>`](#numbervalue)
+  * [`<ObjectValue>`](#objectvalue)
+  * [`<SetValue>`](#setvalue)
+  * [`<StringValue>`](#stringvalue)
+* **Connected Components**
+  * [`createValue`](#createvalue)
+  * [`createArrayValue`](#createarrayvalue)
+  * [`createBooleanValue`](#createbooleanvalue)
+  * [`createDateValue`](#createdatevalue)
+  * [`createMapValue`](#createmapvalue)
+  * [`createNumberValue`](#createnumbervalue)
+  * [`createObjectValue`](#createobjectvalue)
+  * [`createSetValue`](#createsetvalue)
+  * [`createStringValue`](#createstringvalue)
 
 ---
 
-### `<AnyValue>`
+### `<Value>`
 
-The `<AnyValue>` component is the most generic component exposed by `react-values`, and it is the base for all other components.
+The `<Value>` component is the most generic component exposed by `react-values`, and it is the base for all other components.
 
 It takes either a `value` or `defaultValue` and an `onChange` handler. Depending on whether you pass it `value` or `defaultValue` it will either be "controlled" or "uncontrolled", respectively.
 
 ```jsx
-<AnyValue
+<Value
   value={Any|undefined}
   defaultValue={Any|undefined}
   onChange={Function}
@@ -33,7 +44,7 @@ It takes either a `value` or `defaultValue` and an `onChange` handler. Depending
   }) => (
     ...
   )}
-</AnyValue>
+</Value>
 ```
 
 | Prop           | Type                         | Description                                                        |
@@ -496,3 +507,194 @@ A value for a `String`.
 | `trim`        | `Function` `trim(value)`        | Calls [`String.trim`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim).               |
 | `trimEnd`     | `Function` `trimEnd(value)`     | Calls [`String.trimEnd`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimEnd).         |
 | `trimStart`   | `Function` `trimStart(value)`   | Calls [`String.trimStart`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trimStart).     |
+
+---
+
+### `createValue`
+
+The `createValue` factory creates a new `<Value>` component with the exact same API, but that shares its state between multiple places in your app's render tree.
+
+It takes either a `defaultValue` and an optional set of `defaultProps`, and returns a React component. The `ConnectedValue` constructor also has all of the transforms exposed as static methods, so you can update the connected value without even rendering it.
+
+```jsx
+const ConnectedValue = createValue('default')
+
+<ConnectedValue>
+  {({ value, ... }) => (
+    ...
+  )}
+</ConnectedValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Any`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createArrayValue`
+
+Create a connected `<ArrayValue>` component.
+
+```jsx
+const ConnectedArrayValue = createArrayValue([0, 1, 2])
+
+<ConnectedArrayValue>
+  {({ value, push, pop, slice, ... }) => (
+    ...
+  )}
+</ConnectedArrayValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Array`  | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createBooleanValue`
+
+Create a connected `<BooleanValue>` component.
+
+```jsx
+const ConnectedBooleanValue = createBooleanValue(true)
+
+<ConnectedBooleanValue>
+  {({ value, set, toggle, ... }) => (
+    ...
+  )}
+</ConnectedBooleanValue>
+```
+
+| Argument       | Type      | Description                       |
+| -------------- | --------- | --------------------------------- |
+| `defaultValue` | `Boolean` | The default connected value.      |
+| `defaultProps` | `Object`  | An optional set of default props. |
+
+---
+
+### `createDateValue`
+
+Create a connected `<DateValue>` component.
+
+```jsx
+const ConnectedDateValue = createDateValue(new Date())
+
+<ConnectedDateValue>
+  {({ value, date, month, year, ... }) => (
+    ...
+  )}
+</ConnectedDateValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Date`   | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createMapValue`
+
+Create a connected `<MapValue>` component.
+
+```jsx
+const ConnectedMapValue = createMapValue(new Map([['a', 1]]))
+
+<ConnectedMapValue>
+  {({ value, set, unset, ... }) => (
+    ...
+  )}
+</ConnectedMapValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Map`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createNumberValue`
+
+Create a connected `<NumberValue>` component.
+
+```jsx
+const ConnectedNumberValue = createNumberValue(42)
+
+<ConnectedNumberValue>
+  {({ value, increment, decrement, ... }) => (
+    ...
+  )}
+</ConnectedNumberValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Number` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createObjectValue`
+
+Create a connected `<ObjectValue>` component.
+
+```jsx
+const ConnectedObjectValue = createObjectValue({ a: 1 })
+
+<ConnectedObjectValue>
+  {({ value, set, unset, ... }) => (
+    ...
+  )}
+</ConnectedObjectValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Object` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createSetValue`
+
+Create a connected `<SetValue>` component.
+
+```jsx
+const ConnectedSetValue = createSetValue(new Set([0, 1, 2]))
+
+<ConnectedSetValue>
+  {({ value, add, remove, ... }) => (
+    ...
+  )}
+</ConnectedSetValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `Set`    | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |
+
+---
+
+### `createStringValue`
+
+Create a connected `<StringValue>` component.
+
+```jsx
+const ConnectedStringValue = createStringValue('default')
+
+<ConnectedStringValue>
+  {({ value, repeat, slice, ... }) => (
+    ...
+  )}
+</ConnectedStringValue>
+```
+
+| Argument       | Type     | Description                       |
+| -------------- | -------- | --------------------------------- |
+| `defaultValue` | `String` | The default connected value.      |
+| `defaultProps` | `Object` | An optional set of default props. |

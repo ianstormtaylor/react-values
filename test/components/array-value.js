@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { ArrayValue } from '../../src'
+import { ArrayValue, createArrayValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<ArrayValue>', () => {
@@ -246,5 +246,27 @@ describe('<ArrayValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<ArrayValue render={fake} />)
     assert.deepEqual(fake.lastArg.value, [])
+  })
+
+  it('connected', () => {
+    const Connected = createArrayValue(['a', 'b', 'c'])
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.deepEqual(one.lastArg.value, ['a', 'b', 'c'])
+    assert.deepEqual(two.lastArg.value, ['a', 'b', 'c'])
+    one.lastArg.pop()
+    assert.deepEqual(one.lastArg.value, ['a', 'b'])
+    assert.deepEqual(two.lastArg.value, ['a', 'b'])
+    two.lastArg.pop()
+    assert.deepEqual(one.lastArg.value, ['a'])
+    assert.deepEqual(two.lastArg.value, ['a'])
   })
 })

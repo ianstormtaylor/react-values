@@ -1,8 +1,10 @@
-import AnyValue from './any-value'
+import createComponent from '../utils/create-component'
+import createFactory from '../utils/create-factory'
+import { Store } from './any'
 
-class MapValue extends AnyValue {
-  constructor(...args) {
-    super(...args, new Map())
+class MapStore extends Store {
+  constructor(value, props) {
+    super(value, props, new Map())
 
     this.define('set', (v, ...a) => {
       const first = a[0]
@@ -21,4 +23,7 @@ class MapValue extends AnyValue {
   }
 }
 
-export default MapValue
+const MapValue = createComponent(MapStore)
+const createMapValue = createFactory(MapStore, MapValue)
+
+export { MapValue, createMapValue, MapStore }

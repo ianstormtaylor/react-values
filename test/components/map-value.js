@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { MapValue } from '../../src'
+import { MapValue, createMapValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<MapValue>', () => {
@@ -109,5 +109,27 @@ describe('<MapValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<MapValue render={fake} />)
     assert.deepEqual(fake.lastArg.value, new Map())
+  })
+
+  it('connected', () => {
+    const Connected = createMapValue(new Map([['a', 1], ['b', 2]]))
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.deepEqual(one.lastArg.value, new Map([['a', 1], ['b', 2]]))
+    assert.deepEqual(two.lastArg.value, new Map([['a', 1], ['b', 2]]))
+    one.lastArg.unset('b')
+    assert.deepEqual(one.lastArg.value, new Map([['a', 1]]))
+    assert.deepEqual(two.lastArg.value, new Map([['a', 1]]))
+    two.lastArg.unset('a')
+    assert.deepEqual(one.lastArg.value, new Map())
+    assert.deepEqual(two.lastArg.value, new Map())
   })
 })

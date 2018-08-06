@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { BooleanValue } from '../../src'
+import { BooleanValue, createBooleanValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<BooleanValue>', () => {
@@ -60,5 +60,27 @@ describe('<BooleanValue>', () => {
     const fake = sinon.fake.returns(null)
     Renderer.create(<BooleanValue render={fake} />)
     assert.equal(fake.lastArg.value, false)
+  })
+
+  it('connected', () => {
+    const Connected = createBooleanValue(false)
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.equal(one.lastArg.value, false)
+    assert.equal(two.lastArg.value, false)
+    one.lastArg.set(true)
+    assert.equal(one.lastArg.value, true)
+    assert.equal(two.lastArg.value, true)
+    two.lastArg.set(false)
+    assert.equal(one.lastArg.value, false)
+    assert.equal(two.lastArg.value, false)
   })
 })

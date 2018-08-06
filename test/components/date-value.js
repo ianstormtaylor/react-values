@@ -1,7 +1,7 @@
 import assert from 'assert'
 import React from 'react'
 import sinon from 'sinon'
-import { DateValue } from '../../src'
+import { DateValue, createDateValue } from '../../src'
 import Renderer from 'react-test-renderer'
 
 describe('<DateValue>', () => {
@@ -707,5 +707,27 @@ describe('<DateValue>', () => {
     Renderer.create(<DateValue render={fake} value={new Date(0)} />)
 
     assert.deepEqual(fake.lastArg.value, new Date(0))
+  })
+
+  it('connected', () => {
+    const Connected = createDateValue(new Date(0))
+    const one = sinon.fake.returns(null)
+    const two = sinon.fake.returns(null)
+
+    Renderer.create(
+      <React.Fragment>
+        <Connected children={one} />
+        <Connected children={two} />
+      </React.Fragment>
+    )
+
+    assert.deepEqual(one.lastArg.value, new Date(0))
+    assert.deepEqual(two.lastArg.value, new Date(0))
+    one.lastArg.incrementMilliseconds(1)
+    assert.deepEqual(one.lastArg.value, new Date(1))
+    assert.deepEqual(two.lastArg.value, new Date(1))
+    two.lastArg.incrementMilliseconds(1)
+    assert.deepEqual(one.lastArg.value, new Date(2))
+    assert.deepEqual(two.lastArg.value, new Date(2))
   })
 })

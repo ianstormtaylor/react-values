@@ -1,8 +1,10 @@
-import AnyValue from './any-value'
+import createComponent from '../utils/create-component'
+import createFactory from '../utils/create-factory'
+import { Store } from './any'
 
-class ArrayValue extends AnyValue {
-  constructor(...args) {
-    super(...args, [])
+class ArrayStore extends Store {
+  constructor(value, props) {
+    super(value, props, [])
 
     this.compute('first', v => v[0])
     this.compute('last', v => v[Math.max(0, v.length - 1)])
@@ -28,4 +30,7 @@ class ArrayValue extends AnyValue {
   }
 }
 
-export default ArrayValue
+const ArrayValue = createComponent(ArrayStore)
+const createArrayValue = createFactory(ArrayStore, ArrayValue)
+
+export { ArrayValue, createArrayValue, ArrayStore }
