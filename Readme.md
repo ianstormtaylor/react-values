@@ -43,7 +43,23 @@ It does this using a small render-prop-based API that exposes helpful transforms
 
 This saves you from constantly re-writing the same state management logic, so you can keep your components focused on behavior and presentation.
 
-For example, here's a `<Toggle>` implemented in just a few lines of code using a `<BooleanValue>`:
+For example, here's the classic state management "counter" example:
+
+```jsx
+import { NumberValue } from 'react-values'
+
+const Counter = () => (
+  <NumberValue defaultValue={0}>
+    {({ value, increment, decrement }) => (
+      <button onClick={() => increment()}>+1</button>
+      <span>{value}</span>
+      <button onClick={() => decrement()}>-1</button>
+    )}
+  </NumberValue>
+)
+```
+
+Of going further, here's a full fledged `<Toggle>` (respecting `value/defaultValue` and providing `onChange`) implemented in just a few lines of code using a `<BooleanValue>`:
 
 ```jsx
 import { BooleanValue } from 'react-values'
@@ -76,25 +92,9 @@ const Thumb = styled.div`
 `
 ```
 
-Or, here's the classic "counter" example:
-
-```jsx
-import { NumberValue } from 'react-values'
-
-const Counter = () => (
-  <NumberValue defaultValue={0}>
-    {({ value, increment, decrement }) => (
-      <button onClick={() => increment()}>+1</button>
-      <span>{value}</span>
-      <button onClick={() => decrement()}>-1</button>
-    )}
-  </NumberValue>
-)
-```
-
 But you can go further, because `react-values` can "connect" a single value across multiple components. This is helpful any time you need a "global" piece of state in your app, without wanting to add tons of complexity.
 
-For example, using the same `<Toggle>` from above, you could could open and close modal from anywhere in your render tree:
+For example, using the `<Toggle>` from above, here's a model you can open and close from anywhere in your app:
 
 ```jsx
 import { createBooleanValue } from 'react-values'
