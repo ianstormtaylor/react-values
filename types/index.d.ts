@@ -34,6 +34,8 @@ export type AnyValueProps<T> = ReactValueProps<T> & {
 export class AnyValue<T> extends React.Component<AnyValueProps<T>> {
 }
 
+export function createValue<T>(initial: T, props?: Partial<AnyValueProps<T>>): React.SFC<AnyValueProps<T>>;
+
 /* ArrayValue */
 
 export type ArrayValueRenderProps<T, A = T[]> = (props: ReactValueRenderProps<A> & {
@@ -58,18 +60,22 @@ export type ArrayValueProps<T, A = T[]> = ReactValueProps<A> & {
 export class ArrayValue<T> extends React.Component<ArrayValueProps<T>> {
 }
 
+export function createArrayValue<T>(initial: T[], props?: Partial<ArrayValueProps<T>>): React.SFC<ArrayValueProps<T>>;
+
 /* BooleanValue */
 
 export type BooleanValueRenderProps = (props: ReactValueRenderProps<boolean> & {
   toggle: () => void;
 }) => React.ReactNode;
 
-export type BooleanValueProps<T> = ReactValueProps<T> & {
+export type BooleanValueProps = ReactValueProps<boolean> & {
   children: BooleanValueRenderProps;
 };
 
-export class BooleanValue extends React.Component<BooleanValueProps<boolean>> {
+export class BooleanValue extends React.Component<BooleanValueProps> {
 }
+
+export function createBooleanValue(initial: boolean, props?: Partial<BooleanValueProps>): React.SFC<BooleanValueProps>;
 
 /* DateValue */
 
@@ -111,6 +117,8 @@ export type DateValueProps = ReactValueProps<Date> & {
 export class DateValue extends React.Component<DateValueProps> {
 }
 
+export function createDateValue(initial: Date, props?: Partial<DateValueProps>): React.SFC<DateValueProps>;
+
 /* MapValue */
 
 export type MapValueRenderProps<T extends object, K extends keyof T = keyof T> = (props: ReactValueRenderProps<T> & {
@@ -126,6 +134,8 @@ export type MapValueProps<T extends object, K extends keyof T> = ReactValueProps
 export class MapValue<T extends object, K extends keyof T> extends React.Component<MapValueProps<T, K>> {
 }
 
+export function createMapValue<T extends object, K extends keyof T>(initial: T, props?: Partial<MapValueProps<T, K>>): React.SFC<MapValueProps<T, K>>;
+
 /* NumberValue */
 
 export type NumberValueRenderProps = (props: ReactValueRenderProps<number> & {
@@ -140,9 +150,11 @@ export type NumberValueProps = ReactValueProps<number> & {
 export class NumberValue extends React.Component<NumberValueProps> {
 }
 
+export function createNumberValue(initial: number, props?: Partial<NumberValueProps>): React.SFC<NumberValueProps>;
+
 /* SetValue */
 
-export type SetValueRenderProps<V, T = Set<V> > = (props: ReactValueRenderProps<T> & {
+export type SetValueRenderProps<V, T = Set<V>> = (props: ReactValueRenderProps<T> & {
   add: (v: V) => void;
   remove: (v: V) => void;
   delete: (v: V) => void;
@@ -155,6 +167,8 @@ export type SetValueProps<V, T = Set<V>> = ReactValueProps<T> & {
 
 export class SetValue<V, T = Set<V>> extends React.Component<SetValueProps<V, T>> {
 }
+
+export function createSetValue<V, T = Set<V>>(initial: V, props?: Partial<SetValueProps<V, T>>): React.SFC<SetValueProps<V, T>>;
 
 /* StringValue */
 
@@ -178,5 +192,25 @@ export type StringValueProps = ReactValueProps<string> & {
   children: StringValueRenderProps;
 };
 
-export class StringValue<T> extends React.Component<StringValueProps> {
+export class StringValue extends React.Component<StringValueProps> {
 }
+
+export function createStringValue(initial: string, props?: Partial<StringValueProps>): React.SFC<StringValueProps>;
+
+/* Object value */
+
+export type ObjectRenderProps<T> = (props: ReactValueRenderProps<T> & {
+  delete: (v: string) => void;
+  set: ((k: string, v: any) => void) | ((k: T) => void);
+  unset: (v: string) => void;
+  assign: (v: T) => void;
+}) => React.ReactNode;
+
+export type ObjectProps<T> = ReactValueProps<T> & {
+  children: ObjectRenderProps<T>;
+};
+
+export class ObjectValue<T> extends React.Component<ObjectProps<T>> {
+}
+
+export function createObjectValue<T extends object>(initial: T, props?: Partial<ObjectProps<T>>): React.SFC<ObjectProps<T>>;

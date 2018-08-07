@@ -7,7 +7,7 @@ import {
   ArrayValue, ArrayValueRenderProps,
   BooleanValue, BooleanValueRenderProps,
   SetValue, SetValueRenderProps,
-  MapValue, MapValueRenderProps
+  MapValue, MapValueRenderProps, createValue, createArrayValue, createBooleanValue, createMapValue, createSetValue
 } from './index';
 
 const noop = () => null;
@@ -19,16 +19,18 @@ const noop = () => null;
   };
   const onNChange = (value: number) => ({});
   const onSChange = (value: string) => ({});
+  const Value = createValue(42);
   [
-  <AnyValue>{render}</AnyValue>,
-  <AnyValue defaultValue={10} onChange={onNChange}>{noop}</AnyValue>,
-  // $ExpectError
-  <AnyValue defaultValue={10} onChange={onSChange}>{noop}</AnyValue>,
-  // $ExpectError
-  <AnyValue/>,
-  // $ExpectError
-  <AnyValue defaultValue="string">{render}</AnyValue>,
-];
+    <AnyValue>{render}</AnyValue>,
+    <Value>{render}</Value>,
+    <AnyValue defaultValue={10} onChange={onNChange}>{noop}</AnyValue>,
+    // $ExpectError
+    <AnyValue defaultValue={10} onChange={onSChange}>{noop}</AnyValue>,
+    // $ExpectError
+    <AnyValue/>,
+    // $ExpectError
+    <AnyValue defaultValue="string">{render}</AnyValue>,
+  ];
 }
 
 /* ArrayValue */
@@ -38,8 +40,10 @@ const noop = () => null;
   };
   const onNChange = (value: number) => ({});
   const onAChange = (value: number[]) => ({});
+  const Value = createArrayValue([1, 2, 3]);
   [
     <ArrayValue>{render}</ArrayValue>,
+    <Value>{render}</Value>,
     <ArrayValue onChange={onAChange}>{noop}</ArrayValue>,
     <ArrayValue defaultValue={[10]}>{render}</ArrayValue>,
     // $ExpectError
@@ -58,8 +62,10 @@ const noop = () => null;
   };
   const onBChange = (value: boolean) => ({});
   const onSChange = (value: string) => ({});
+  const Value = createBooleanValue(false);
   [
     <BooleanValue>{render}</BooleanValue>,
+    <Value>{render}</Value>,
     <BooleanValue defaultValue={true} onChange={onBChange}>{noop}</BooleanValue>,
     // $ExpectError
     <BooleanValue defaultValue={10} onChange={onNChange}>{noop}</BooleanValue>,
@@ -75,8 +81,10 @@ const noop = () => null;
   };
   const onSChange = (value: string) => ({});
   const onOChange = (value: { [key: string]: number }) => ({});
+  var Value = createMapValue({x: 10, y: 22});
   [
     <MapValue defaultValue={{x: 10, y: 22}}>{render}</MapValue>,
+    <Value defaultValue={{x: 10, y: 22}}>{render}</Value>,
     <MapValue defaultValue={{x: 10, y: 22}} onChange={onOChange}>{render}</MapValue>,
     <MapValue defaultValue={{x: 10, y: 22}}>{render}</MapValue>,
     <MapValue defaultValue={{x: 10, y: 22}}>{({set}) => set('x', 22) as any}</MapValue>,
@@ -99,8 +107,10 @@ const noop = () => null;
   };
   const onBChange = (value: Set<any>) => ({});
   const onSChange = (value: string) => ({});
+  const Value = createSetValue({});
   [
     <SetValue>{render}</SetValue>,
+    <Value>{render}</Value>,
     <SetValue defaultValue={new Set()} onChange={onBChange}>{noop}</SetValue>,
     // $ExpectError
     <SetValue/>,
