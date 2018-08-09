@@ -8,7 +8,7 @@ This document maintains a list of changes to the `react-values` package with eac
 
 ###### NEW
 
-**Introducing "connected" values.** These new types of values allow you to define a single value that can be rendered in multiple places, and will be kept in sync across all of the places they are rendered. 
+**Introducing "connected" values.** These new types of values allow you to define a single value that can be rendered in multiple places, and will be kept in sync across all of the places they are rendered.
 
 ```jsx
 import { createBooleanValue } from 'react-values'
@@ -44,9 +44,7 @@ This kind of "global" value is helpful any time you want to refer to a single pi
 **Added a `disabled` prop for disabling components.** This makes it trivial to implement a "disabled" state in components, where no transforms will take place even if their functions are called, without forcing you to maintain your own separate disabled state.
 
 ```jsx
-<BooleanValue disabled={true}>
-  ...
-</BooleanValue>
+<BooleanValue disabled={true}>...</BooleanValue>
 ```
 
 ###### BREAKING
