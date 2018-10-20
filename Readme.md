@@ -94,7 +94,7 @@ const Thumb = styled.div`
 
 But you can go further, because `react-values` can "connect" a single value across multiple components. This is helpful any time you need a "global" piece of state in your app, without wanting to add tons of complexity.
 
-For example, using the `<Toggle>` from above, here's a model you can open and close from anywhere in your app:
+For example, using the `<Toggle>` from above, here's a modal you can open and close from anywhere in your app:
 
 ```jsx
 import { createBooleanValue } from 'react-values'
