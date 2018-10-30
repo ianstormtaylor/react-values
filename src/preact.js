@@ -1,45 +1,54 @@
 import createComponent from './utils/preact/create-component'
 import createFactory from './utils/preact/create-factory'
 
-export Store from './types/any'
-export ArrayStore from './types/array';
-export BooleanStore from './types/boolean'
-export DateStore from './types/date'
-export MapStore from './types/map'
-export NumberStore from './types/number'
-export ObjectStore from './types/object'
-export SetStore from './types/set'
-export StringStore from './types/string'
+import Store from './types/any'
+import ArrayStore from './types/array';
+import BooleanStore from './types/boolean'
+import DateStore from './types/date'
+import MapStore from './types/map'
+import NumberStore from './types/number'
+import ObjectStore from './types/object'
+import SetStore from './types/set'
+import StringStore from './types/string'
 
-export const Value = createComponent(Store)
-export const createValue = createFactory(Store, Value)
+const Value = createComponent(Store)
+const createValue = createFactory(Store, Value)
+export {Store, Value, createValue}
 
-export const ArrayValue = createComponent(ArrayStore)
-export const createArrayValue = createFactory(ArrayStore, ArrayValue)
+const ArrayValue = createComponent(ArrayStore)
+const createArrayValue = createFactory(ArrayStore, ArrayValue)
+export {ArrayStore, ArrayValue, createArrayValue}
 
-export const BooleanValue = createComponent(BooleanStore)
-export const createBooleanValue = createFactory(BooleanStore, BooleanValue)
+const BooleanValue = createComponent(BooleanStore)
+const createBooleanValue = createFactory(BooleanStore, BooleanValue)
+export {BooleanStore, BooleanValue, createBooleanValue}
 
-export const DateValue = createComponent(DateStore)
-export const createDateValue = createFactory(DateStore, DateValue)
+const DateValue = createComponent(DateStore)
+const createDateValue = createFactory(DateStore, DateValue)
+export {DateStore, DateValue, createDateValue}
 
-export const MapValue = createComponent(MapStore)
-export const createMapValue = createFactory(MapStore, MapValue)
+const MapValue = createComponent(MapStore)
+const createMapValue = createFactory(MapStore, MapValue)
+export {MapStore,MapValue,createMapValue}
 
 
-export const NumberValue = createComponent(NumberStore)
-export const createNumberValue = createFactory(NumberStore, NumberValue)
+const NumberValue = createComponent(NumberStore)
+const createNumberValue = createFactory(NumberStore, NumberValue)
+export {NumberStore,NumberValue,createNumberValue}
 
 NumberValue.defaultProps = {
   max: Number.MAX_SAFE_INTEGER,
   min: Number.MIN_SAFE_INTEGER,
 }
 
-export const ObjectValue = createComponent(ObjectStore)
-export const createObjectValue = createFactory(ObjectStore, ObjectValue)
+const ObjectValue = createComponent(ObjectStore)
+const createObjectValue = createFactory(ObjectStore, ObjectValue)
+export {ObjectStore,ObjectValue,createObjectValue}
 
-export const SetValue = createComponent(SetStore)
-export const createSetValue = createFactory(SetStore, SetValue)
+const SetValue = createComponent(SetStore)
+const createSetValue = createFactory(SetStore, SetValue)
+export {SetStore, SetValue, createSetValue}
 
-export const StringValue = createComponent(StringStore)
-export const createStringValue = createFactory(StringStore, StringValue)
+const StringValue = createComponent(StringStore)
+const createStringValue = createFactory(StringStore, StringValue)
+export {StringStore, StringValue, createStringValue}
