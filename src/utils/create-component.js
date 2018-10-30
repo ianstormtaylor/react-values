@@ -1,7 +1,7 @@
-import React from 'react'
+import { Component } from 'preact';
 
 export default function createComponent(Store) {
-  return class Value extends React.Component {
+  return class Value extends Component {
     constructor(props, context) {
       super(props)
       let { value, defaultValue, store } = props
@@ -56,7 +56,7 @@ export default function createComponent(Store) {
       const { controlled, connected, store } = this.state
       const value = controlled ? this.props.value : this.state.value
       const transforms = disabled ? store.noops : store.transforms
-      const fn = children || render
+      const fn = children[0] || render
 
       if (!connected) {
         store.props = this.props
