@@ -1,8 +1,6 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
-class SetStore extends Store {
+export default class SetStore extends Store {
   constructor(value, props) {
     super(value, props, new Set())
 
@@ -29,8 +27,3 @@ class SetStore extends Store {
     return new Set(value)
   }
 }
-
-const SetValue = createComponent(SetStore)
-const createSetValue = createFactory(SetStore, SetValue)
-
-export { SetValue, createSetValue, SetStore }

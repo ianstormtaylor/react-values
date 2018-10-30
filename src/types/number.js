@@ -1,8 +1,6 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
-class NumberStore extends Store {
+export default class NumberStore extends Store {
   constructor(value, props) {
     super(value, props, 0)
 
@@ -17,13 +15,3 @@ class NumberStore extends Store {
     })
   }
 }
-
-const NumberValue = createComponent(NumberStore)
-const createNumberValue = createFactory(NumberStore, NumberValue)
-
-NumberValue.defaultProps = {
-  max: Number.MAX_SAFE_INTEGER,
-  min: Number.MIN_SAFE_INTEGER,
-}
-
-export { NumberValue, createNumberValue, NumberStore }

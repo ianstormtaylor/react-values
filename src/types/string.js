@@ -1,8 +1,6 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
-class StringStore extends Store {
+export default class StringStore extends Store {
   constructor(value, props) {
     super(value, props, '')
     this.proxy('concat')
@@ -21,8 +19,3 @@ class StringStore extends Store {
     this.proxy('trimStart')
   }
 }
-
-const StringValue = createComponent(StringStore)
-const createStringValue = createFactory(StringStore, StringValue)
-
-export { StringValue, createStringValue, StringStore }

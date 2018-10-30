@@ -1,12 +1,10 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
 const SECONDS = 1000
 const MINUTES = 1000 * 60
 const HOURS = 1000 * 60 * 60
 
-class DateStore extends Store {
+export default class DateStore extends Store {
   constructor(value, props) {
     super(value, props, new Date())
 
@@ -90,8 +88,3 @@ function days(v) {
   lastDayOfMonth.setHours(0, 0, 0, 0)
   return lastDayOfMonth.getDate()
 }
-
-const DateValue = createComponent(DateStore)
-const createDateValue = createFactory(DateStore, DateValue)
-
-export { DateValue, createDateValue, DateStore }

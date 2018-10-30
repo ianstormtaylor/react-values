@@ -1,8 +1,6 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
-class ArrayStore extends Store {
+export default class ArrayStore extends Store {
   constructor(value, props) {
     super(value, props, [])
 
@@ -29,8 +27,3 @@ class ArrayStore extends Store {
     return value.slice()
   }
 }
-
-const ArrayValue = createComponent(ArrayStore)
-const createArrayValue = createFactory(ArrayStore, ArrayValue)
-
-export { ArrayValue, createArrayValue, ArrayStore }

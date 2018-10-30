@@ -1,5 +1,5 @@
-import createComponent from './utils/create-component'
-import createFactory from './utils/create-factory'
+import createComponent from './utils/preact/create-component'
+import createFactory from './utils/preact/create-factory'
 
 export Store from './types/any'
 export ArrayStore from './types/array';

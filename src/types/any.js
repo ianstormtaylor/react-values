@@ -1,7 +1,4 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-
-class Store {
+export default class Store {
   constructor(value, props, empty) {
     this.callbacks = []
     this.value = value === undefined ? empty : value
@@ -59,7 +56,9 @@ class Store {
   }
 }
 
+/*
 const Value = createComponent(Store)
 const createValue = createFactory(Store, Value)
 
 export { Value, createValue, Store }
+*/

@@ -1,8 +1,6 @@
-import createComponent from '../utils/create-component'
-import createFactory from '../utils/create-factory'
-import { Store } from './any'
+import Store from './any'
 
-class ObjectStore extends Store {
+export default class ObjectStore extends Store {
   constructor(value, props) {
     super(value, props, {})
 
@@ -35,8 +33,3 @@ function unset(v, key) {
   delete clone[key]
   return clone
 }
-
-const ObjectValue = createComponent(ObjectStore)
-const createObjectValue = createFactory(ObjectStore, ObjectValue)
-
-export { ObjectValue, createObjectValue, ObjectStore }
