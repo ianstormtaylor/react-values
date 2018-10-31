@@ -1,4 +1,4 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 
 export default function createFactory(Store, Value) {
   return (initial, props) => {
