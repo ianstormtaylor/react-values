@@ -55,10 +55,3 @@ export default class Store {
     )
   }
 }
-
-/*
-const Value = createComponent(Store)
-const createValue = createFactory(Store, Value)
-
-export { Value, createValue, Store }
-*/

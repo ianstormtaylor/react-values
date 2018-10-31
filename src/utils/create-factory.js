@@ -4,10 +4,8 @@ export default function createFactory(Store, Value) {
   return (initial, props) => {
     const store = new Store(initial, props)
 
-    class Connected extends React.Component {
-      render() {
-        return <Value {...this.props} store={store} />
-      }
+    function Connected(props) {
+      return (<Value {...props} store={store} />)
     }
 
     for (const k in store.transforms) {
