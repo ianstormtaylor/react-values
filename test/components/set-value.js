@@ -104,6 +104,21 @@ describe('<SetValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Set())
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <SetValue children={fake} value={new Set([1])} onChange={onChange} />
+    )
+
+    renderer.update(
+      <SetValue children={fake} value={new Set([1, 2])} onChange={onChange} />
+    )
+
+    fake.lastArg.add(3)
+    assert.deepEqual(onChange.lastArg, new Set([1, 2, 3]))
+  })
+
   it('connected', () => {
     const Connected = createSetValue(new Set([1, 2]))
     const one = sinon.fake.returns(null)

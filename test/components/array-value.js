@@ -248,6 +248,21 @@ describe('<ArrayValue>', () => {
     assert.deepEqual(fake.lastArg.value, [])
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <ArrayValue children={fake} value={[1]} onChange={onChange} />
+    )
+
+    renderer.update(
+      <ArrayValue children={fake} value={[2]} onChange={onChange} />
+    )
+
+    fake.lastArg.push(3)
+    assert.deepEqual(onChange.lastArg, [2, 3])
+  })
+
   it('connected', () => {
     const Connected = createArrayValue(['a', 'b', 'c'])
     const one = sinon.fake.returns(null)

@@ -112,6 +112,21 @@ describe('<NumberValue>', () => {
     assert.equal(fake.lastArg.value, 0)
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <NumberValue children={fake} value={42} onChange={onChange} />
+    )
+
+    renderer.update(
+      <NumberValue children={fake} value={7} onChange={onChange} />
+    )
+
+    fake.lastArg.increment()
+    assert.deepEqual(onChange.lastArg, 8)
+  })
+
   it('connected', () => {
     const Connected = createNumberValue(42)
     const one = sinon.fake.returns(null)

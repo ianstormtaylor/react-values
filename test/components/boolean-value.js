@@ -62,6 +62,21 @@ describe('<BooleanValue>', () => {
     assert.equal(fake.lastArg.value, false)
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <BooleanValue children={fake} value onChange={onChange} />
+    )
+
+    renderer.update(
+      <BooleanValue children={fake} value={false} onChange={onChange} />
+    )
+
+    fake.lastArg.toggle()
+    assert.deepEqual(onChange.lastArg, true)
+  })
+
   it('connected', () => {
     const Connected = createBooleanValue(false)
     const one = sinon.fake.returns(null)

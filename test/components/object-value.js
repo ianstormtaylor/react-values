@@ -113,6 +113,21 @@ describe('<ObjectValue>', () => {
     assert.deepEqual(fake.lastArg.value, {})
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <ObjectValue children={fake} value={{ a: 1 }} onChange={onChange} />
+    )
+
+    renderer.update(
+      <ObjectValue children={fake} value={{ a: 2 }} onChange={onChange} />
+    )
+
+    fake.lastArg.set('b', 1)
+    assert.deepEqual(onChange.lastArg, { a: 2, b: 1 })
+  })
+
   it('connected', () => {
     const Connected = createObjectValue({ a: 1, b: 2 })
     const one = sinon.fake.returns(null)

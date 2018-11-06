@@ -153,6 +153,21 @@ describe('<StringValue>', () => {
     assert.equal(fake.lastArg.value, '')
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <StringValue children={fake} value={'a'} onChange={onChange} />
+    )
+
+    renderer.update(
+      <StringValue children={fake} value={'ab'} onChange={onChange} />
+    )
+
+    fake.lastArg.padStart(3)
+    assert.deepEqual(onChange.lastArg, ' ab')
+  })
+
   it('connected', () => {
     const Connected = createStringValue('abc')
     const one = sinon.fake.returns(null)

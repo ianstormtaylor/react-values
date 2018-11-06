@@ -111,6 +111,29 @@ describe('<MapValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Map())
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <MapValue
+        children={fake}
+        value={new Map([['a', 1]])}
+        onChange={onChange}
+      />
+    )
+
+    renderer.update(
+      <MapValue
+        children={fake}
+        value={new Map([['a', 2]])}
+        onChange={onChange}
+      />
+    )
+
+    fake.lastArg.set('b', 1)
+    assert.deepEqual(onChange.lastArg, new Map([['a', 2], ['b', 1]]))
+  })
+
   it('connected', () => {
     const Connected = createMapValue(new Map([['a', 1], ['b', 2]]))
     const one = sinon.fake.returns(null)

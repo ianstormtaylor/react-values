@@ -709,6 +709,21 @@ describe('<DateValue>', () => {
     assert.deepEqual(fake.lastArg.value, new Date(0))
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <DateValue children={fake} value={new Date(0)} onChange={onChange} />
+    )
+
+    renderer.update(
+      <DateValue children={fake} value={new Date(7)} onChange={onChange} />
+    )
+
+    fake.lastArg.incrementMilliseconds()
+    assert.deepEqual(onChange.lastArg, new Date(8))
+  })
+
   it('connected', () => {
     const Connected = createDateValue(new Date(0))
     const one = sinon.fake.returns(null)

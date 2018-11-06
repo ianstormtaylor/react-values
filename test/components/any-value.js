@@ -78,6 +78,19 @@ describe('<Value>', () => {
     assert.equal(fake.callCount, callCount)
   })
 
+  it('controlled', () => {
+    const fake = sinon.fake.returns(null)
+    const onChange = sinon.fake()
+    const renderer = Renderer.create(
+      <Value children={fake} value={42} onChange={onChange} />
+    )
+
+    assert.equal(fake.lastArg.value, 42)
+
+    renderer.update(<Value children={fake} value={7} onChange={onChange} />)
+    assert.equal(fake.lastArg.value, 7)
+  })
+
   it('connected', () => {
     const Connected = createValue(false)
     const one = sinon.fake.returns(null)

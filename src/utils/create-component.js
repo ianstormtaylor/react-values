@@ -58,6 +58,10 @@ export default function createComponent(Store) {
       const transforms = disabled ? store.noops : store.transforms
       const fn = children || render
 
+      if (controlled) {
+        store.value = value
+      }
+
       if (!connected) {
         store.props = this.props
       }
