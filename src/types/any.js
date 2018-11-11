@@ -2,16 +2,21 @@ import createComponent from '../utils/create-component'
 import createFactory from '../utils/create-factory'
 
 class Store {
-  constructor(value, props, empty) {
+  constructor(value, props = {}, empty) {
     this.callbacks = []
     this.value = value === undefined ? empty : value
     this.transforms = {}
     this.noops = {}
     this.computeds = {}
-    this.props = props || {}
+    this.props = props
+
     this.define('set', (v, next) => next)
     this.define('reset', () => this.clone(value))
     this.define('clear', () => this.clone(empty))
+
+    if (props.onChange) {
+      this.on(props.onChange)
+    }
   }
 
   on(callback) {
