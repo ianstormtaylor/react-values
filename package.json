@@ -1,7 +1,7 @@
 {
   "name": "react-values",
   "description": "A set of tiny, composable React components for handling state with render props.",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "license": "MIT",
   "repository": "git://github.com/ianstormtaylor/react-values.git",
   "main": "lib/react-values.js",
