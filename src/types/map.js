@@ -9,7 +9,9 @@ class MapStore extends Store {
     this.define('set', (v, ...a) => {
       const first = a[0]
       return a.length === 1
-        ? typeof first === 'function' ? first(v) : first
+        ? typeof first === 'function'
+          ? first(v)
+          : first
         : v.set(...a)
     })
 
