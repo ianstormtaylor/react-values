@@ -2,11 +2,11 @@
 
 Want to contribute to `react-values`? That would be awesome!
 
-* [Reporting Bugs](#reporting-bugs)
-* [Submitting Pull Requests](#submitting-pull-requests)
-* [Running Examples](#running-examples)
-* [Running Tests](#running-tests)
-* [Publishing Releases](#publishing-releases)
+- [Reporting Bugs](#reporting-bugs)
+- [Submitting Pull Requests](#submitting-pull-requests)
+- [Running Examples](#running-examples)
+- [Running Tests](#running-tests)
+- [Publishing Releases](#publishing-releases)
 
 ## Reporting Bugs
 

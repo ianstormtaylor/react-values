@@ -1,25 +1,25 @@
 # API Reference
 
-* **Components**
-  * [`<Value>`](#value)
-  * [`<ArrayValue>`](#arrayvalue)
-  * [`<BooleanValue>`](#booleanvalue)
-  * [`<DateValue>`](#datevalue)
-  * [`<MapValue>`](#mapvalue)
-  * [`<NumberValue>`](#numbervalue)
-  * [`<ObjectValue>`](#objectvalue)
-  * [`<SetValue>`](#setvalue)
-  * [`<StringValue>`](#stringvalue)
-* **Connected Components**
-  * [`createValue`](#createvalue)
-  * [`createArrayValue`](#createarrayvalue)
-  * [`createBooleanValue`](#createbooleanvalue)
-  * [`createDateValue`](#createdatevalue)
-  * [`createMapValue`](#createmapvalue)
-  * [`createNumberValue`](#createnumbervalue)
-  * [`createObjectValue`](#createobjectvalue)
-  * [`createSetValue`](#createsetvalue)
-  * [`createStringValue`](#createstringvalue)
+- **Components**
+  - [`<Value>`](#value)
+  - [`<ArrayValue>`](#arrayvalue)
+  - [`<BooleanValue>`](#booleanvalue)
+  - [`<DateValue>`](#datevalue)
+  - [`<MapValue>`](#mapvalue)
+  - [`<NumberValue>`](#numbervalue)
+  - [`<ObjectValue>`](#objectvalue)
+  - [`<SetValue>`](#setvalue)
+  - [`<StringValue>`](#stringvalue)
+- **Connected Components**
+  - [`createValue`](#createvalue)
+  - [`createArrayValue`](#createarrayvalue)
+  - [`createBooleanValue`](#createbooleanvalue)
+  - [`createDateValue`](#createdatevalue)
+  - [`createMapValue`](#createmapvalue)
+  - [`createNumberValue`](#createnumbervalue)
+  - [`createObjectValue`](#createobjectvalue)
+  - [`createSetValue`](#createsetvalue)
+  - [`createStringValue`](#createstringvalue)
 
 ---
 

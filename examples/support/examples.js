@@ -59,4 +59,10 @@ export default [
     Component: require('../connected-modal').default,
     source: require('!raw-loader!../connected-modal'),
   },
+  {
+    name: 'Radio Set',
+    path: '/radio-set',
+    Component: require('../radio-set').default,
+    source: require('!raw-loader!../radio-set'),
+  },
 ]
