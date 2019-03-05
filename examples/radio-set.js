@@ -2,9 +2,7 @@ import React from 'react'
 import styled from 'react-emotion'
 import { SetValue } from '..'
 
-
 const CHOICES = ['Yes', 'No', 'Maybe']
-
 
 const RadioSetExample = props => (
   <SetValue defaultValue={new Set(['No'])}>
@@ -34,7 +32,6 @@ const RadioSetExample = props => (
   </SetValue>
 )
 
-
 const Container = styled('div')`
   width: 100%;
   height: 100%;
@@ -44,44 +41,36 @@ const Container = styled('div')`
   align-items: center;
 `
 
-
 const List = styled('div')`
   padding: 20px;
   columns: 3;
   column-gap: 20px;
-
 
   & > * + * {
     margin-top: 5px;
   }
 `
 
-
 const Item = styled('div')`
   whitespace: no-wrap;
 `
-
 
 const Radio = styled('input')`
   display: inline-block;
   vertical-align: middle;
 `
 
-
 const RadioList = styled('div')`
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
 
-
   margin: -5px;
-
 
   & > * {
     margin: 5px;
   }
 `
-
 
 const ListItem = styled('div')`
   display: inline-block;
@@ -90,6 +79,5 @@ const ListItem = styled('div')`
   color: #000;
   border-radius: 4px;
 `
-
 
 export default RadioSetExample

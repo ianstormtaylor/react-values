@@ -31,15 +31,15 @@
 
 It does this using a small render-prop-based API that exposes helpful transforms like `toggle`, `increment`, `filter`, etc. depending on the type of value, all based on JavaScripts native value types...
 
-* `Any` values provide simple transforms like `set` and `clear`.
-* `Array` values provide native methods like `push`, `pop`, `filter`, etc.
-* `Boolean` values provide `toggle`, which we've all re-implemented 100 times.
-* `Date` values provide really helpful transforms like `setHours` and `incrementMonth`.
-* `Map` values provide native methods like `set`, `delete` and `clear`.
-* `Number` values provide `increment` and `decrement`, which have also been re-written in every codebase ever.
-* `Object` values provide helpful transforms like `set`, `unset` and `assign`.
-* `Set` values provide native methods like `add`, `delete` and `clear`.
-* `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
+- `Any` values provide simple transforms like `set` and `clear`.
+- `Array` values provide native methods like `push`, `pop`, `filter`, etc.
+- `Boolean` values provide `toggle`, which we've all re-implemented 100 times.
+- `Date` values provide really helpful transforms like `setHours` and `incrementMonth`.
+- `Map` values provide native methods like `set`, `delete` and `clear`.
+- `Number` values provide `increment` and `decrement`, which have also been re-written in every codebase ever.
+- `Object` values provide helpful transforms like `set`, `unset` and `assign`.
+- `Set` values provide native methods like `add`, `delete` and `clear`.
+- `String` values provide native methods like `concat`, `repeat`, `trim`, etc.
 
 This saves you from constantly re-writing the same state management logic, so you can keep your components focused on behavior and presentation.
 
@@ -156,16 +156,16 @@ In the end, you're now maintaing a lot more logic than necessary, duplicated in 
 
 To get a sense for how you might use `react-values`, check out a few of the examples:
 
-* [**Basic Toggle**](https://ianstormtaylor.github.io/react-values/#/basic-toggle) — using a `Boolean` to create a simple toggle component.
-* [**Reusable Toggle**](https://ianstormtaylor.github.io/react-values/#/reusable-toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
-* [**Counter**](https://ianstormtaylor.github.io/react-values/#/counter) — a simple counter using a `Number` and its convenience transforms.
-* [**Connected Counters**](https://ianstormtaylor.github.io/react-values/#/connected-counters) — two counters that are connected together, sharing a single value.
-* [**Time Picker**](https://ianstormtaylor.github.io/react-values/#/time-picker) — a more complex time picker component, using `Date` and its convenience transforms.
-* [**Filtering**](https://ianstormtaylor.github.io/react-values/#/filtering) — a basic `String` value used for filtering a list.
-* [**Checkbox Set**](https://ianstormtaylor.github.io/react-values/#/checkbox-set) — using a `Set` to keep track of a checkbox group.
-* [**Simple Tooltip**](https://ianstormtaylor.github.io/react-values/#/tooltip) — a simplistic tooltip implemented as a `Boolean`.
-* [**Simple Modal**](https://ianstormtaylor.github.io/react-values/#/modal) — a simplistic modal implemented as a `Boolean`.
-* [**Connected Modal**](https://ianstormtaylor.github.io/react-values/#/connected-modal) — a modal whose opened/closed state is controllable from other components.
+- [**Basic Toggle**](https://ianstormtaylor.github.io/react-values/#/basic-toggle) — using a `Boolean` to create a simple toggle component.
+- [**Reusable Toggle**](https://ianstormtaylor.github.io/react-values/#/reusable-toggle) — showing how you might turn that toggle into a controlled component in your own UI kit.
+- [**Counter**](https://ianstormtaylor.github.io/react-values/#/counter) — a simple counter using a `Number` and its convenience transforms.
+- [**Connected Counters**](https://ianstormtaylor.github.io/react-values/#/connected-counters) — two counters that are connected together, sharing a single value.
+- [**Time Picker**](https://ianstormtaylor.github.io/react-values/#/time-picker) — a more complex time picker component, using `Date` and its convenience transforms.
+- [**Filtering**](https://ianstormtaylor.github.io/react-values/#/filtering) — a basic `String` value used for filtering a list.
+- [**Checkbox Set**](https://ianstormtaylor.github.io/react-values/#/checkbox-set) — using a `Set` to keep track of a checkbox group.
+- [**Simple Tooltip**](https://ianstormtaylor.github.io/react-values/#/tooltip) — a simplistic tooltip implemented as a `Boolean`.
+- [**Simple Modal**](https://ianstormtaylor.github.io/react-values/#/modal) — a simplistic modal implemented as a `Boolean`.
+- [**Connected Modal**](https://ianstormtaylor.github.io/react-values/#/connected-modal) — a modal whose opened/closed state is controllable from other components.
 
 If you have an idea for an example that shows a common use case, pull request it!
 
@@ -175,41 +175,41 @@ If you have an idea for an example that shows a common use case, pull request it
 
 If you're using `react-values` for the first time, check out the [Getting Started](./docs/guide.md) guide to familiarize yourself with how it works. Once you've done that, you'll probably want to check out the full [API Reference](http://docs.slatejs.org/react-values-core).
 
-* [**Getting Started**](./docs/guide.md)
-  * [Installing `react-values`](./docs/guide.md#installing-react-values)
-  * [Building a Component](./docs/guide.md#building-a-component)
-  * [Introducing State](./docs/guide.md#introducing-state)
-  * [Observing Changes](./docs/guide.md#observing-changes)
-  * [Setting Defaults](./docs/guide.md#settings-defaults)
-  * [Controlled vs. Uncontrolled](./docs/guide.md#controlled-vs-uncontrolled)
-  * [Spreading Props](./docs/guide.md#spreading-props)
-* [**Reference**](./docs/reference.md)
-  * [**Components**](./docs/reference.md#value)
-    * [`<Value>`](./docs/reference.md#value)
-    * [`<ArrayValue>`](./docs/reference.md#arrayvalue)
-    * [`<BooleanValue>`](./docs/reference.md#booleanvalue)
-    * [`<DateValue>`](./docs/reference.md#datevalue)
-    * [`<MapValue>`](./docs/reference.md#mapvalue)
-    * [`<NumberValue>`](./docs/reference.md#numbervalue)
-    * [`<ObjectValue>`](./docs/reference.md#objectvalue)
-    * [`<SetValue>`](./docs/reference.md#setvalue)
-    * [`<StringValue>`](./docs/reference.md#stringvalue)
-  * [**Connected Components**](./docs/reference.md#createvalue)
-    * [`createValue`](./docs/reference.md#createvalue)
-    * [`createArrayValue`](./docs/reference.md#createarrayvalue)
-    * [`createBooleanValue`](./docs/reference.md#createbooleanvalue)
-    * [`createDateValue`](./docs/reference.md#createdatevalue)
-    * [`createMapValue`](./docs/reference.md#createmapvalue)
-    * [`createNumberValue`](./docs/reference.md#createnumbervalue)
-    * [`createObjectValue`](./docs/reference.md#createobjectvalue)
-    * [`createSetValue`](./docs/reference.md#createsetvalue)
-    * [`createStringValue`](./docs/reference.md#createstringvalue)
+- [**Getting Started**](./docs/guide.md)
+  - [Installing `react-values`](./docs/guide.md#installing-react-values)
+  - [Building a Component](./docs/guide.md#building-a-component)
+  - [Introducing State](./docs/guide.md#introducing-state)
+  - [Observing Changes](./docs/guide.md#observing-changes)
+  - [Setting Defaults](./docs/guide.md#settings-defaults)
+  - [Controlled vs. Uncontrolled](./docs/guide.md#controlled-vs-uncontrolled)
+  - [Spreading Props](./docs/guide.md#spreading-props)
+- [**Reference**](./docs/reference.md)
+  - [**Components**](./docs/reference.md#value)
+    - [`<Value>`](./docs/reference.md#value)
+    - [`<ArrayValue>`](./docs/reference.md#arrayvalue)
+    - [`<BooleanValue>`](./docs/reference.md#booleanvalue)
+    - [`<DateValue>`](./docs/reference.md#datevalue)
+    - [`<MapValue>`](./docs/reference.md#mapvalue)
+    - [`<NumberValue>`](./docs/reference.md#numbervalue)
+    - [`<ObjectValue>`](./docs/reference.md#objectvalue)
+    - [`<SetValue>`](./docs/reference.md#setvalue)
+    - [`<StringValue>`](./docs/reference.md#stringvalue)
+  - [**Connected Components**](./docs/reference.md#createvalue)
+    - [`createValue`](./docs/reference.md#createvalue)
+    - [`createArrayValue`](./docs/reference.md#createarrayvalue)
+    - [`createBooleanValue`](./docs/reference.md#createbooleanvalue)
+    - [`createDateValue`](./docs/reference.md#createdatevalue)
+    - [`createMapValue`](./docs/reference.md#createmapvalue)
+    - [`createNumberValue`](./docs/reference.md#createnumbervalue)
+    - [`createObjectValue`](./docs/reference.md#createobjectvalue)
+    - [`createSetValue`](./docs/reference.md#createsetvalue)
+    - [`createStringValue`](./docs/reference.md#createstringvalue)
 
 If even that's not enough, you can always [read the source itself](./src).
 
 There are also translations of the documentation into other languages:
 
-* [中文 (Chinese)](https://github.com/chinanf-boy/react-values-zh)
+- [中文 (Chinese)](https://github.com/chinanf-boy/react-values-zh)
 
 If you're maintaining a translation, feel free to pull request it here!
 

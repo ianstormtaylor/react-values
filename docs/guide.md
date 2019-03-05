@@ -1,14 +1,14 @@
 # Getting Started
 
-* [Installing `react-values`](#installing-react-values)
-* [Building a Component](#building-a-component)
-* [Introducing State](#introducing-state)
-* [Observing Changes](#observing-changes)
-* [Setting Defaults](#settings-defaults)
-* [Controlled vs. Uncontrolled](#controlled-vs-uncontrolled)
-* [Disabling Components](#disabling-components)
-* [Spreading Props](#spreading-props)
-* [Connecting Values](#connecting-values)
+- [Installing `react-values`](#installing-react-values)
+- [Building a Component](#building-a-component)
+- [Introducing State](#introducing-state)
+- [Observing Changes](#observing-changes)
+- [Setting Defaults](#settings-defaults)
+- [Controlled vs. Uncontrolled](#controlled-vs-uncontrolled)
+- [Disabling Components](#disabling-components)
+- [Spreading Props](#spreading-props)
+- [Connecting Values](#connecting-values)
 
 ## Installing `react-values`
 
